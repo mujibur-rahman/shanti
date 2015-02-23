@@ -1,0 +1,67 @@
+STarted:
+SET foreign_key_checks = 0;
+artisan serve --> run the laravel apache server
+artisan migrate:install  --> migration created.
+artisan migrate --> Run the database migrations
+artisan make:migration add_group_column --table="users" --create --> Added new field
+
+php artisan migrate:make rename_stk_column --table="YOUR TABLE" --create --> Rename column fields
+public function up()
+    {
+        Schema::table('stnk', function($t) {
+                        $t->renameColumn('id', 'id_stnk');
+                });
+    }
+php artisan make:migration --create create_news
+php artisan migrate:make create_users_table --create=users
+php artisan migrate --seed
+
+FOR CSS,
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+
+OR
+
+<link href="{{ URL::asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+
+FOR JS,
+
+<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+
+OR
+
+ <script type="text/javascript" src="{{ URL::asset('js/custom.js') }}"></script>
+
+FOR IMAGES,
+
+{{ asset('img/photo.jpg'); }}
+
+ down vote
+	
+public as base directory
+
+Try to set a virtual host, go to
+
+/Applications/MAMP/conf/apache/extra/httpd-vhosts.conf , add configuration
+
+<VirtualHost *:80>
+  DocumentRoot /Applications/MAMP/htdocs/laravel-site/laravel-5-app/public/
+  ServerName www.laravel.dev
+</VirtualHost>
+
+Also place your host to /etc/hosts
+
+127.0.0.1 www.laravel.dev (at the end of the file)
+
+Restart your apache server, launch http://www.laravel.dev
+Link your assets
+
+// if you have saved css file at as root/public/assets/css/app.css
+{!! HTML::style('assets/css/app.css') !!} 
+// OR 
+// if you have save css file at as root/public/css/app.css
+{!! HTML::style('css/app.css') !!} 
+
+Just a tip you can also do php artisan serve from your application path. In your case /Applications/MAMP/htdocs/laravel-site/laravel-5-app
+<p>
+        {!! link_to_route('projects.create', 'Create Project') !!}
+    </p>
