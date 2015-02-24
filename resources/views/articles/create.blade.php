@@ -383,7 +383,7 @@
 	    		var division_id = this.value;
 	    		if( division_id ){
 	    			$.ajax({
-	    				url: '/articles/getlists/' + division_id + '/district',
+	    				url: '/public/articles/getlists/' + division_id + '/district',
 	    				type: 'GET',
 	    				dataType: 'json',
 	    			})
@@ -410,7 +410,7 @@
 	    		var district_id = this.value;
 	    		if( district_id ){
 	    			$.ajax({
-	    				url: '/articles/getlists/' + district_id + '/thana',
+	    				url: '/public/articles/getlists/' + district_id + '/thana',
 	    				type: 'GET',
 	    				dataType: 'json',
 	    			})
