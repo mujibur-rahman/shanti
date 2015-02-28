@@ -7,12 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreateAddressTable' => $baseDir . '/database/migrations/2015_02_21_173857_create_address_table.php',
+    'CreateAddressesTable' => $baseDir . '/database/migrations/2015_02_28_042342_create_addresses_table.php',
     'CreateArticleCategoriesLanguageTable' => $baseDir . '/database/migrations/2015_02_21_101746_create_article_categories_language_table.php',
     'CreateArticleCategoryTable' => $baseDir . '/database/migrations/2015_02_20_103332_create_article_category_table.php',
     'CreateArticleLanguagesTable' => $baseDir . '/database/migrations/2015_02_21_182446_create_article_languages_table.php',
     'CreateArticlesTable' => $baseDir . '/database/migrations/2015_02_21_180614_create_articles_table.php',
     'CreateCountriesTable' => $baseDir . '/database/migrations/2015_02_22_100955_create_countries_table.php',
-    'CreateCountryTable' => $baseDir . '/database/migrations/2015_02_21_164703_create_country_table.php',
     'CreateDistrictsTable' => $baseDir . '/database/migrations/2015_02_22_094530_create_districts_table.php',
     'CreateDivisionsTable' => $baseDir . '/database/migrations/2015_02_22_093427_create_divisions_table.php',
     'CreateLanguagesTable' => $baseDir . '/database/migrations/2015_02_21_095928_create_languages_table.php',

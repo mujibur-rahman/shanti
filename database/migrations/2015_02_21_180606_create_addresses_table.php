@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTable extends Migration {
+class CreateAddressesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateAddressTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('address', function(Blueprint $table)
+		Schema::create('addresses', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('location');
@@ -20,20 +20,22 @@ class CreateAddressTable extends Migration {
 			$table->integer('thana_id')->unsigned();
 			$table->integer('district_id')->unsigned();
 			$table->integer('division_id')->unsigned();
+			$table->integer('country_id')->unsigned();
 			$table->timestamps();
 		});
 
-		Schema::table('address', function(Blueprint $table){
+		Schema::table('addresses', function(Blueprint $table){
 			$table->foreign('thana_id')
 					->references('id')
-					->on('thana');
+					->on('thanas');
 			$table->foreign('district_id')
 					->references('id')
-					->on('district');
+					->on('districts');
 			$table->foreign('division_id')
 					->references('id')
-					->on('division');
-
+					->on('divisions');
+			$table->foreign('country_id')->references('id')
+					->on('countries');
 		});
 	}
 
@@ -44,12 +46,13 @@ class CreateAddressTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('address', function(Blueprint $table){
+		Schema::table('addresses', function(Blueprint $table){
 			$table->dropForeign('thana_id_foreign');
 			$table->dropForeign('district_id_foreign');
 			$table->dropForeign('division_id_foreign');
+			$table->dropForeign('country_id_foreign');
 		});
-		Schema::drop('address');
+		Schema::drop('addresses');
 	}
 
 }

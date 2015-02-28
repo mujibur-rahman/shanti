@@ -27,9 +27,7 @@ class CreateArticleLanguagesTable extends Migration {
 			$table->timestamps();
 		});
 		Schema::table('article_languages', function(Blueprint $table){
-			$table->foreign('article_id')
-					->references('id')
-					->on('articles');
+			$table->foreign('article_id')->references('id')->on('articles');
 		});
 	}
 
@@ -41,7 +39,7 @@ class CreateArticleLanguagesTable extends Migration {
 	public function down()
 	{
 		Schema::table('article_languages', function(Blueprint $table){
-			$table->dropForeign('article_id_foreign');
+			$table->dropForeign(article_languages_id_foreign);
 		});
 		Schema::drop('article_languages');
 	}

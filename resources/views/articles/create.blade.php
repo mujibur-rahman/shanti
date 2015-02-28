@@ -53,6 +53,12 @@
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
+			                                        {!! Form::label('bengaliTitle', 'Bengali:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px;">
+			                                            {!! Form::text('bengaliTitle', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
 			                                        {!! Form::label('permalink', 'Permalink:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-7" style="margin-left: 10px; margin-top: 4px;">
 			                                            {!! $url !!}{!! Form::text('permalink', null, array('class' => 'form-control required')) !!}
@@ -121,9 +127,21 @@
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
+			                                        {!! Form::label('bengaliShortDetails', 'Bengali:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::textarea('bengaliShortDetails', null, array('style' => 'width: 100%; height: 104px;')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
 			                                        {!! Form::label('Details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
 			                                            {!! Form::textarea('details', null, array('style' => 'width: 100%; height: 100px;')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('bengaliDetails', 'Bengali:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::textarea('bengaliDetails', null, array('style' => 'width: 100%; height: 100px;')) !!}
 			                                        </div>
 			                                    </div>
 			                                </fieldset>
@@ -139,9 +157,21 @@
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
+			                                        {!! Form::label('bengaliKeyword', 'Bengali:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::textarea('bengaliKeyword', null, array('style' => 'width: 100%; height: 104px;')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
 			                                        {!! Form::label('description', 'Description:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
 			                                            {!! Form::textarea('description', null, array('style' => 'width: 100%; height: 100px;')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('bengaliDescription', 'Bengali:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::textarea('bengaliDescription', null, array('style' => 'width: 100%; height: 100px;')) !!}
 			                                        </div>
 			                                    </div>
 			                                </fieldset>
@@ -227,8 +257,10 @@
 		};
 
 	    CKEDITOR.replace( 'shortDetails', config);
+	    CKEDITOR.replace( 'bengaliShortDetails', config);
 	    config['height'] = 200;
 		CKEDITOR.replace( 'details', config);
+		CKEDITOR.replace( 'bengaliDetails', config);
 	    $("#title").keyup(function(){
 				var str = sansAccent($(this).val());
 				str = str.replace(/[^a-zA-Z0-9\s]/g,"");

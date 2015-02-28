@@ -38,7 +38,7 @@ class CreateArticlesTable extends Migration {
 					->on('article_category');
 			$table->foreign('address_id')
 					->references('id')
-					->on('address');
+					->on('addresses');
 		});
 	}
 

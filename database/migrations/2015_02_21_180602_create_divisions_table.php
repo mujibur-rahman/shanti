@@ -23,7 +23,7 @@ class CreateDivisionsTable extends Migration {
 		Schema::table('divisions', function(Blueprint $table){
 			$table->foreign('country_id')
 					->references('id')
-					->on('country');
+					->on('countries');
 
 		});
 	}

@@ -1,5 +1,6 @@
 STarted:
 SET foreign_key_checks = 0;
+mysqldump -h 127.0.0.1 -u root -proot shanti | mysql -u root -h 127.0.0.1 -proot shanti_back;
 artisan serve --> run the laravel apache server
 artisan migrate:install  --> migration created.
 artisan migrate --> Run the database migrations
