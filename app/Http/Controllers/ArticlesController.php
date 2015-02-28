@@ -94,40 +94,43 @@ class ArticlesController extends Controller {
 		if( $request['active'] )
 			$activate = 1;
 		$address = $this->address->create([
-			'location' => $request['address'],
-			'thana_id' => $request['thana'],
-			'district_id' => $request['district'],
-			'division_id' => $request['division'],
-			'is_active' => $activate
+			'location' 		=> 	$request['address'],
+			'thana_id' 		=> 	$request['thana'],
+			'district_id' 	=> 	$request['district'],
+			'division_id' 	=> 	$request['division'],
+			'country_id' 	=>	$request['country'],
+			'is_active' 	=> 	$activate
 		]);
 
 		$lastAddressId = $address->id;
 
 		$article = $this->articles->create([
-			'article_category_id' => $request['title'],
-			'title' => $request['title'],
-			'short_detail' => $request['keyword'],
-			'details' => $request['description'],
-			'meta_keyword' => $request['keyword'],
-			'meta_description' => $request['description'],
-			'website' => $request['title'],
-			'phone' => $request['keyword'],
-			'meta_description' => $request['description'],
-			'is_active' => $activate,
-			'address_id' => $lastAddressId,
+			'article_category_id' 	=> $request['category'],
+			'title' 				=> $request['title'],
+			'short_detail' 			=> $request['shortDetails'],
+			'details' 				=> $request['details'],
+			'meta_keyword' 			=> $request['keyword'],
+			'meta_description' 		=> $request['description'],
+			'website' 				=> $request['website'],
+			'phone' 				=> $request['phone'],
+			//'email'		=> 		$request['email'],
+			'is_active' 			=> $activate,
+			'address_id' 			=> $lastAddressId,
 			''
 			]);
-		$cat_id = $category->id; //last inserted ID
+		$lastInsertedArticleId = $article->id;
 
-		// $this->articleCategoriesLanguage->create([
-		// 	'article_category_id' => $cat_id,
-		// 	'title' => $request['bengaliTitle'],
-		// 	'meta_keyword' => $request['bengaliKeyword'],
-		// 	'meta_description' => $request['bengaliDescription'],
-		// 	'language_id' => 1, //Todo: Mujib: Used 1 for Bengali 
-		// 	'isactive' => $activate
-		// ]);
-		return redirect()->route('category.index');
+		$this->articleLanguages->create([
+			'article_id' => $lastInsertedArticleId,
+			'title' => $request['bengaliTitle'],
+			'short_detail' 			=> $request['bengaliShortDetails'],
+			'details' 				=> $request['bengaliDetails'],
+			'meta_keyword' => $request['bengaliKeyword'],
+			'meta_description' => $request['bengaliDescription'],
+			'language_id' => 1, //Todo: Mujib: Used 1 for Bengali 
+			'is_active' => $activate
+		]);
+		return redirect()->route('articles.index');
 	}
 
 	/**

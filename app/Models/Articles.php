@@ -6,6 +6,6 @@ class Articles extends Model {
 
 	protected $article = "articles";
 
-	public $fillable = ['article_id','title', 'short_detail', 'details', 'is_active'];
+	public $fillable = ['article_category_id','title', 'short_detail', 'details', 'is_active', 'address_id'];
 
 }
