@@ -1,45 +1,90 @@
-@extends('back.template')
+@extends('app')
+@section('content')
+  @section('right')
+    <aside class="right-side">
+      <section class="content-header">
+          <h1>Articles</h1>
+          <ol class="breadcrumb">
+              <li>
+                  <a href="#admin/users/index">
+                      <i class="livicon" data-color="#000" data-name="home" data-size="16" id="livicon-46" style="width: 16px; height: 16px;"></i>
+                      Dashboard 
+                  </a>
+              </li>
+              <li>Articles</li>
+              <li class="active">Add articles</li>
+          </ol>
+      </section>
+      <section class="content paddingleft_right15">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          <h4 class="panel-title"> <img src="#" />Add new article</h4>
+                           <span class="pull-right clickable">
+                              <i class="glyphicon glyphicon-chevron-up"></i>
+                          </span>
+                      </div>
+                      <div class="panel-body">
+                        <div class="table-responsives"> 
+                          <div class="content clearfix">
+                          {!! Form::open(array('route' => 'articles.store')) !!}
+                          <div class="row">
+                              <div class="table-responsive">
+                                  @if ($articles->count())
+                                      <table class="table table-bordered">
+                                          <thead>
+                                              <tr>
+                                                  <th>Category</th>
+                                                  <th>Title</th>
+                                                  <th>Address</th>
+                                                  <th colspan="2">Actions</th>
+                                              </tr>
+                                          </thead>
 
-@section('main')
+                                          <tbody>
+                                              @foreach ($articles as $article)
+                                                  <tr>
+                                                      <td>{{ $article->article_category->title }}</td>
+                                                      <td>{{ substr($article->title, 0, 30) }} ...</td>
+                                                      <td>
+                                                        {{ $article->address->location}}, {{ $article->address->thana->title }}, {{ $article->address->district->title }}, {{ $article->address->division->title }}, {{ $article->address->country->title }}
+                                                      </td>
+                                                      <td width="10">{!! link_to_route('articles.edit', 'Edit', array($article->id), array('class' => 'btn btn-warning')) !!}</td>
+                                                      <td width="10">
+                                                          {!! Form::open(array('method' => 'DELETE', 'route' => array('articles.destroy', $article->id))) !!}
+                                                              {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                                                          {!! Form::close() !!}
+                                                      </td>
+                                                  </tr>
+                                              @endforeach
+                                          </tbody>
+                                          @if ($articles->count() > 10)
+                                          <tfoot>
+                                              <tr>
+                                                  <td colspan="5">
+                                                      {!! $articles !!}
+                                                  </td>
+                                              </tr>
+                                          </tfoot>
+                                          @endif
+                                      </table>
+                                        @else
+                                            There are no article
+                                        @endif
 
- <!-- Entête de page -->
-  @include('back.partials.entete', ['title' => trans('back/blog.dashboard') . link_to_route('blog.create', trans('back/blog.add'), [], ['class' => 'btn btn-info pull-right']), 'icone' => 'pencil', 'fil' => trans('back/blog.posts')])
-
-	@if(session()->has('ok'))
-    @include('partials/error', ['type' => 'success', 'message' => session('ok')])
-	@endif
-
-  <div class="row col-lg-12">
-    <div class="pull-right link">{!! $links !!}</div>
-  </div>
-
-  <div class="row col-lg-12">
-  	<div class="table-responsive">
-  		<table class="table">
-  			<thead>
-  				<tr>
-  					<th>{{ trans('back/blog.title') }} <a href="#" name="title" class="order"><span class="fa fa-fw fa-unsorted"></span></a></th>
-  					<th>{{ trans('back/blog.date') }} <a href="#" name="created_at" class="order"><span class="fa fa-fw fa-sort-desc"></th>
-            <th>{{ trans('back/blog.published') }} <a href="#" name="active" class="order"><span class="fa fa-fw fa-unsorted"></th> 
-            @if(session('statut') == 'admin')
-              <th>{{ trans('back/blog.author') }} <a href="#" name="username" class="order"><span class="fa fa-fw fa-unsorted"></th>            
-              <th>{{ trans('back/blog.seen') }} <a href="#" name="posts.seen" class="order"><span class="fa fa-fw fa-unsorted"></th>
-            @endif
-  				</tr>
-  			</thead>
-  			<tbody>
-  			  @include('back.blog.table')
-    		</tbody>
-  		</table>
-  	</div>
-  </div>
-
-  <div class="row col-lg-12">
-    <div class="pull-right link">{!! $links !!}</div>
-  </div>
-
-@stop
-
+                                      </div>  
+                                    </div><!-- Row finishh-->    
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </aside>
+  @endsection
+@endsection
 @section('scripts')
 
   <script>

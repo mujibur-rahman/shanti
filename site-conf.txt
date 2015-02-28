@@ -1,5 +1,7 @@
 STarted:
 SET foreign_key_checks = 0;
+MySQL error code 150: Foreign key constraint is incorrectly formed
+$ perror 150
 mysqldump -h 127.0.0.1 -u root -proot shanti | mysql -u root -h 127.0.0.1 -proot shanti_back;
 artisan serve --> run the laravel apache server
 artisan migrate:install  --> migration created.

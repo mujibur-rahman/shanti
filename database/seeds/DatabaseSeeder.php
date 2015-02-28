@@ -40,7 +40,8 @@ class DatabaseSeeder extends Seeder {
 			'name' => 'Mujibur Rahman',
 			'email' => 'mujib.rahman.bd@gmail.com',
 			'password' => Hash::make('123456'),
-			'role_id' => 1
+			'role_id' => 1,
+			'isactive' => 1
 		]);
 		
 		// Language::create([

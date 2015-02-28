@@ -4,7 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Districts extends Model {
 
-	protected $district = "districts";
-	
+	protected $table = "districts";
 
 }
