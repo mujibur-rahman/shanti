@@ -28,7 +28,7 @@
                       <div class="panel-body">
                         <div class="table-responsives"> 
                           <div class="content clearfix">
-                          {!! Form::open(array('route' => 'articles.store')) !!}
+                         
                           <div class="row">
                               <div class="table-responsive">
                                   @if ($articles->count())
@@ -53,7 +53,7 @@
                                                       <td width="10">{!! link_to_route('articles.edit', 'Edit', array($article->id), array('class' => 'btn btn-warning')) !!}</td>
                                                       <td width="10">
                                                           {!! Form::open(array('method' => 'DELETE', 'route' => array('articles.destroy', $article->id))) !!}
-                                                              {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                                                            {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
                                                           {!! Form::close() !!}
                                                       </td>
                                                   </tr>

@@ -15,6 +15,8 @@ return array(
     'CreateCountriesTable' => $baseDir . '/database/migrations/2015_02_21_180601_create_countries_table.php',
     'CreateDistrictsTable' => $baseDir . '/database/migrations/2015_02_21_180603_create_districts_table.php',
     'CreateDivisionsTable' => $baseDir . '/database/migrations/2015_02_21_180602_create_divisions_table.php',
+    'CreateEventLanguagesTable' => $baseDir . '/database/migrations/2015_02_28_162147_create-event-languages-table.php',
+    'CreateEventsTable' => $baseDir . '/database/migrations/2015_02_28_160541_create-events-table.php',
     'CreateLanguagesTable' => $baseDir . '/database/migrations/2015_02_21_095928_create_languages_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2015_02_20_055845_create_roles_table.php',

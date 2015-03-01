@@ -64,9 +64,10 @@ class ArticlesController extends Controller {
 		$limit = 10;
 		$articles = $this->articles
 									->with('address')
-									->with('article_category')
-									->whereIs_active(1)
-									->paginate($limit); 
+									//->with('article_category')
+									->whereIsActive(1)
+									->paginate($limit);
+		//dd($articles);
 		return view('articles.index', compact('articles'));
 	}
 
@@ -161,15 +162,15 @@ class ArticlesController extends Controller {
 		$district = $this->districts->all()->lists('title', 'id');
 		$thana 	  = $this->thanas->all()->lists('title', 'id');
 		$country  = $this->country->all()->lists('title', 'id');
-		$article  = $this->articles->findOrFail($id)
-									->with('address')
-									->with('article_category')
-									->first();
+		$article  = $this->articles->find($id);
+									//->with('address')
+									//->with('article_category')
+									//->first();
 		$articleLang = $this->articleLanguages
-							->whereArticle_id($id)
+							->with('articles')
+							->whereArticleId($id)
 							->first();
-		//print "<pre>"; print_r($article->id);print "</pre>";		
-		//print($article[0]);
+		
 		$url = "www.localhost.com";				
 		return view('articles.edit', compact('category','division', 'district', 'thana', 'country','article', 'articleLang', 'url')); 
 	}
@@ -185,9 +186,10 @@ class ArticlesController extends Controller {
 		print $id;
 		//dd($request);
 		$ExistingArticle = $this->articles->findOrFail($id);
-		$ExistingArticleLang = $this->articleLanguages->whereArticle_id($id)->first();
+		$ExistingArticleLang = $this->articleLanguages->whereArticleId($id);
 		$ExistingAddress = $this->address->findOrFail( $ExistingArticle->address_id );
 		
+		print "Addres" . $ExistingAddress->id;
 		$activate = 0;
 		if( $request['active'] )
 			$activate = 1;
@@ -198,8 +200,8 @@ class ArticlesController extends Controller {
 		$address['division_id'] = $request['division'];
 		$address['country_id']  = $request['country'];
 		$address['is_active']  	= $activate;
-		$ExistingAddress->update( $address );
-
+		$this->address->where('id', $ExistingAddress->id)->update( $address);
+		
 		$articles = [];
 		$articles['article_category_id']	= $request['category'];
 		$articles['title'] 					= $request['title'];
@@ -210,7 +212,8 @@ class ArticlesController extends Controller {
 		$articles['website'] 				= $request['website'];
 		$articles['phone'] 					= $request['phone'];
 		$articles['is_active'] 				= $activate;
-		$ExistingArticle->update( $articles );
+		$articles['address_id'] 			= $ExistingAddress->id;
+		$this->articles->where('id', $id)->update( $articles );
 
 		$articleLangs = [];
 		$articleLangs['title']				= $request['bengaliTitle'];
@@ -220,9 +223,9 @@ class ArticlesController extends Controller {
 		$articleLangs['meta_description'] 	= $request['bengaliDescription'];
 		$articleLangs['language_id'] 		= 1;
 		$articleLangs['is_active'] 			= $activate;
+		$articleLangs['article_id']			= $id;
 
-
-		$ExistingArticleLang->update( $articleLangs );
+		$this->articleLanguages->where('article_id', $id)->update( $articleLangs );
 
 		return redirect()->route('articles.index');
 		

@@ -28,7 +28,7 @@ Route::resource('user', 'UserController');
 Route::resource('category', 'ArticleCategoryController');
 Route::get('articles/getlists/{id}/{name}', 'ArticlesController@getLists');
 Route::resource('articles', 'ArticlesController');
-
+Route::resource('events', 'EventsController');
 
 //Route::get('user/sort/{role}', 'UserController@indexSort');
 

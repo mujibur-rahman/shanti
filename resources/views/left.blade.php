@@ -70,6 +70,24 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="#"><span class="title">Events</span><span class="fa arrow"></span></a>
+                    <ul class="sub-menu collapse">
+                        <li>
+                            <a href="{{ url('/events') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Event lists
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/events/create') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Add New event
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
             </ul>
         </div>
