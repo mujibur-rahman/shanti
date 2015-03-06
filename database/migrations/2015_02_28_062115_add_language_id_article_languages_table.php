@@ -31,7 +31,7 @@ class AddLanguageIdArticleLanguagesTable extends Migration {
 	{
 		Schema::table('article_languages', function(Blueprint $table)
 		{
-			$table->dropForeign('language_id_foreign');
+			$table->dropForeign('article_languages_language_id_foreign');
 		});
 	}
 

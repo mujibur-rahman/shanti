@@ -50,8 +50,8 @@ class CreateArticlesTable extends Migration {
 	public function down()
 	{
 		Schema::table('articles', function(Blueprint $table){
-			$table->dropForeign('article_category_id_foreign');
-			$table->dropForeign('address_id_foreign');
+			$table->dropForeign('articles_article_category_id_foreign');
+			$table->dropForeign('articles_address_id_foreign');
 		});
 		Schema::drop('articles');
 	}

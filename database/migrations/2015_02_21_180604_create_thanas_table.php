@@ -35,7 +35,7 @@ class CreateThanasTable extends Migration {
 	public function down()
 	{
 		Schema::table('thanas', function(Blueprint $table){
-			$table->dropForeign('district_id_foreign');
+			$table->dropForeign('thanas_district_id_foreign');
 		});
 		Schema::drop('thanas');
 	}

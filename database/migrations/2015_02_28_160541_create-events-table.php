@@ -55,8 +55,8 @@ class CreateEventsTable extends Migration {
 	public function down()
 	{
 		Schema::table('events', function(Blueprint $table){
-			$table->dropForeign('article_category_id_foreign');
-			$table->dropForeign('address_id_foreign');
+			$table->dropForeign('events_article_category_id_foreign');
+			$table->dropForeign('events_address_id_foreign');
 		});
 		Schema::drop('events');
 	}

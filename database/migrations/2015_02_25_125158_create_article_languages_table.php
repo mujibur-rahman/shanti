@@ -39,7 +39,7 @@ class CreateArticleLanguagesTable extends Migration {
 	public function down()
 	{
 		Schema::table('article_languages', function(Blueprint $table){
-			$table->dropForeign(article_id_foreign);
+			$table->dropForeign('article_languages_article_id_foreign');
 		});
 		Schema::drop('article_languages');
 	}

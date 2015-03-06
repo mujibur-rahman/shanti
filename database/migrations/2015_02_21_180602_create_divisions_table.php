@@ -36,7 +36,7 @@ class CreateDivisionsTable extends Migration {
 	public function down()
 	{
 		Schema::table('divisions', function(Blueprint $table){
-			$table->dropForeign('country_id_foreign');
+			$table->dropForeign('divisions_country_id_foreign');
 		});
 		Schema::drop('divisions');
 	}

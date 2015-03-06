@@ -68,3 +68,22 @@ Just a tip you can also do php artisan serve from your application path. In your
 <p>
         {!! link_to_route('projects.create', 'Create Project') !!}
     </p>
+
+
+
+Drop foreign
+It turns out; when you create a foreign key like this:
+
+$table->integer('pick_detail_id')->unsigned();
+$table->foreign('pick_detail_id')->references('id')->on('pick_details');
+
+Laravel uniquely names the foreign key reference like this:
+
+<table_name>_<foreign_table_name>_<column_name>_foreign
+despatch_discrepancies_pick_detail_id_foreign (in my case)
+
+Therefore, when you want to drop a column with foreign key reference, you have to do it like this:
+
+$table->dropForeign('despatch_discrepancies_pick_detail_id_foreign');
+$table->dropColumn('pick_detail_id');
+

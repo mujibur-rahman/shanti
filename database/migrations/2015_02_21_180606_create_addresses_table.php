@@ -47,10 +47,10 @@ class CreateAddressesTable extends Migration {
 	public function down()
 	{
 		Schema::table('addresses', function(Blueprint $table){
-			$table->dropForeign('thana_id_foreign');
-			$table->dropForeign('district_id_foreign');
-			$table->dropForeign('division_id_foreign');
-			$table->dropForeign('country_id_foreign');
+			$table->dropForeign('addresses_thana_id_foreign');
+			$table->dropForeign('addresses_district_id_foreign');
+			$table->dropForeign('addresses_division_id_foreign');
+			$table->dropForeign('addresses_country_id_foreign');
 		});
 		Schema::drop('addresses');
 	}

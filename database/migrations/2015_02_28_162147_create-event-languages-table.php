@@ -43,8 +43,8 @@ class CreateEventLanguagesTable extends Migration {
 	{
 		Schema::table('event_languages', function(Blueprint $table)
 		{
-			$table->dropForeign('language_id_foreign');
-			$table->dropForeign('event_id_foreign');
+			$table->dropForeign('event_languages_language_id_foreign');
+			$table->dropForeign('event_languages_event_id_foreign');
 		});
 		Schema::drop('event_languages');
 	}

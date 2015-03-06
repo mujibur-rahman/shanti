@@ -45,12 +45,12 @@ class CreateArticleCategoriesLanguageTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('article_categories_language');
-		Schema::table("article_categories_language", function(Blueprint $table){
-			$table->dropForeign('article_category_id_foreign');
-			$table->dropForeign('language_id_foreign');
-		});
 		
+		Schema::table("article_categories_language", function(Blueprint $table){
+			$table->dropForeign('article_categories_language_article_category_id_foreign');
+			$table->dropForeign('article_categories_language_language_id_foreign');
+		});
+		Schema::drop('article_categories_language');	
 	}
 
 }
