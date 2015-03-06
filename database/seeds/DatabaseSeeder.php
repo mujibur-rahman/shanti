@@ -18,24 +18,24 @@ class DatabaseSeeder extends Seeder {
 
 		// $this->call('UserTableSeeder');
 
-		// Role::create([
-		// 	'title' => 'Administrator',
-		// 	'slug' => 'admin'
-		// ]);
+		Role::create([
+			'title' => 'Administrator',
+			'slug' => 'admin'
+		]);
 
-		// Role::create([
-		// 	'title' => 'Moderator',
-		// 	'slug' => 'moderate'
-		// ]);
+		Role::create([
+			'title' => 'Moderator',
+			'slug' => 'moderate'
+		]);
 
-		// Role::create([
-		// 	'title' => 'User',
-		// 	'slug' => 'user'
-		// ]);
-		// Language::create([
-		// 		'title' => 'Bengali',
-		// 		'is_active' => 1
-		// 	]);
+		Role::create([
+			'title' => 'User',
+			'slug' => 'user'
+		]);
+		Language::create([
+				'title' => 'Bengali',
+				'is_active' => 1
+			]);
 		User::create([
 			'name' => 'Mujibur Rahman',
 			'email' => 'mujib.rahman.bd@gmail.com',
@@ -44,15 +44,15 @@ class DatabaseSeeder extends Seeder {
 			'isactive' => 1
 		]);
 		
-		// Language::create([
-		// 		'title' => 'Swedish',
-		// 		'is_active' => 1
-		// 	]);
-		// Countries::create([
-		// 	'title' => 'Bangladesh',
-		// 	'is_active' => 1,
-		// 	'flag_image' => ''
- 		// 	]);
+		Language::create([
+				'title' => 'Swedish',
+				'is_active' => 1
+			]);
+		Countries::create([
+			'title' => 'Bangladesh',
+			'is_active' => 1,
+			'flag_image' => ''
+ 			]);
 	}
 
 }
