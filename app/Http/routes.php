@@ -25,6 +25,7 @@ Route::post('user/showlimit', 'UserController@showlimit');
 
 //Route::resource('users', 'UsersController');
 Route::resource('user', 'UserController');
+Route::resource('ads', 'AdsController');
 Route::resource('category', 'ArticleCategoryController');
 Route::get('articles/getlists/{id}/{name}', 'ArticlesController@getLists');
 Route::resource('articles', 'ArticlesController');

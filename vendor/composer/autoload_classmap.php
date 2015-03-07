@@ -7,7 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddLanguageIdArticleLanguagesTable' => $baseDir . '/database/migrations/2015_02_28_062115_add_language_id_article_languages_table.php',
+    'CreateAdPositionsTable' => $baseDir . '/database/migrations/2015_03_06_155658_create_ad_positions_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2015_02_21_180606_create_addresses_table.php',
+    'CreateAdsTable' => $baseDir . '/database/migrations/2015_03_06_165521_create_ads_table.php',
     'CreateArticleCategoriesLanguageTable' => $baseDir . '/database/migrations/2015_02_21_101746_create_article_categories_language_table.php',
     'CreateArticleCategoryTable' => $baseDir . '/database/migrations/2015_02_20_103332_create_article_category_table.php',
     'CreateArticleLanguagesTable' => $baseDir . '/database/migrations/2015_02_25_125158_create_article_languages_table.php',

@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EventStoreRequests;
-
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Models\ArticleCategory;
 use App\Models\Divisions;
 use App\Models\Districts;
@@ -179,8 +179,6 @@ class EventsController extends Controller {
 	 */
 	public function update(EventStoreRequests $request, $id)
 	{
-		print $id;
-		//dd($request);
 		$ExistingEvents = $this->events->findOrFail($id);
 		$ExistingEventLang = $this->eventLanguages->whereEventId($id);
 		$ExistingAddress = $this->address->findOrFail( $ExistingEvents->address_id );
@@ -196,7 +194,7 @@ class EventsController extends Controller {
 		$address['division_id'] = $request['division'];
 		$address['country_id']  = $request['country'];
 		$address['is_active']  	= $activate;
-		$this->address->where('id', $ExistingAddress->id)->update( $address);
+		$this->address->where('id', $ExistingAddress->id)->update( $address );
 		
 		$event = [];
 		$event['article_category_id']	= $request['category'];

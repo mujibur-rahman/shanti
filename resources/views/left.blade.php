@@ -88,6 +88,24 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="#"><span class="title">Ads</span><span class="fa arrow"></span></a>
+                    <ul class="sub-menu collapse">
+                        <li>
+                            <a href="{{ url('/ads') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Ads list
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/ads/create') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Add New ads
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
             </ul>
         </div>
