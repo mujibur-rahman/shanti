@@ -1,0 +1,130 @@
+<h1 class="article-3">FEATURED DEALS</h1>
+@foreach($featuredArticles as $article)
+<div class="article-style-3">
+	<h2>{!! $article->title !!}</h2>
+	<div class="picbox"><img src="/images/articles/{{ $article->media }}" class="img-responsive"></div>
+	<br>
+	<div class="row">
+		<div class="col-md-8"><b>{{ $article->featured_title }}</b></div>
+		<div class="col-md-4 text-right">
+			<span class="sek-color"><b>{{ $article->price }} BDT</b></span> 
+			<del>{{ $article->strike_price }} BDT</del>
+		</div>
+	</div>
+	<p>{{ $article->featured_details }}</p>
+	<div class="clearfix"></div>
+</div>
+@endforeach
+<br />
+<h1 class="article-3">GOING ON IN TOWN</h1>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingOne">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">LAST MINUTE</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+		<div class="panel-body">
+			@foreach( $events as $event )
+				<div class="article-style-3">
+					<h2>{{ $event->title }}</h2>
+					<div class="picbox"><img src="/images/events/{{ $event->media }}" class="img-responsive"></div>
+					<br>
+					<div class="row">
+						<div class="col-md-8"><b>{{ $event->featured_title }}</b></div>
+						<div class="col-md-4 text-right">
+							<span class="sek-color"><b>{{ $event->price }} BDT</b></span> 
+							<del>{{ $event->strike_price }} BDT</del></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-6"><i class="fa fa-map-marker fa-lg"></i> {{ $event->address->location }}</div>
+						<div class="col-md-6"><i class="fa fa-clock-o fa-lg"></i> {{ \Carbon::parse($event->opening_date)->format('H:i:s') }}</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			@endforeach
+		</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingTwo">
+		<h4 class="panel-title">
+		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+		FIND EVENTS
+		</a>
+		</h4>
+		</div>
+		<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			<div class="panel-body">
+				<form>
+					<div class="form-group"></div>
+					<div class="checkbox">
+					    <label>
+					      <input type="checkbox"> See only free events
+					    </label>
+					</div>
+					<div class="checkbox">
+					    <label>
+					      <input type="checkbox"> See only recommended
+					    </label>
+					</div>
+					<hr>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">When</label>
+					    <select class="form-control">
+						  <option>1</option>
+						  <option>2</option>
+						  <option>3</option>
+						  <option>4</option>
+						  <option>5</option>
+						</select>
+					</div>
+					<hr>
+					<div class="input-group">
+						<input type="text" class="form-control" aria-label="...">
+							<div class="input-group-btn">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span></button>
+								<ul class="dropdown-menu dropdown-menu-right" role="menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Separated link</a></li>
+							</ul>
+							</div><!-- /btn-group -->
+					</div><!-- /input-group -->
+					<br>
+				</form>
+				<div class="text-center">
+					<button type="button" class="btn btn-style-2">FIND</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingThree">
+		<h4 class="panel-title">
+		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">FEATURED EVENTS	</a>
+		</h4>
+		</div>
+		<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			<div class="panel-body">
+				@foreach($featuredEvents as $fevent)
+					<div class="featured-event">
+						<h1>{{ $fevent->title }}</h1>
+						<p>{{ $fevent->address->location }} <i class="fa fa-map-marker fa-2x"></i></p>
+						<p>{{ $fevent->info_title }}...</p>
+						<p><i class="fa fa-calendar fa-2x"></i> {{ \Carbon::parse($fevent->opening_date)->format('D d M Y') }}<i class="fa fa-clock-o fa-2x"></i> The whole day</p>
+					</div>
+				@endforeach
+			</div>
+		</div>
+	</div>
+</div>
+<button type="button" class="btn btn-style-1 btn-block">ALL FEATURED EVENTS</button>
+<div class="add-container-1"><img src="img/3rdcol-add-1.png" class="img-responsive"></div>
+<div class="add-container-1"><img src="img/3rdcol-add-2.png" class="img-responsive"></div>
+<div class="add-container-1"><img src="img/3rdcol-add-3.png" class="img-responsive"></div>

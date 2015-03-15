@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');
 // Route::get('/', function(){
 // 	return View::make('home');
 // });
-Route::get('home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+Route::get('home', 'HomeController@dashboard');
 Route::get('dashboard', 'HomeController@dashboard');
 
 

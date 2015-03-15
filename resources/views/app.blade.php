@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title> :: ShantiDhaka :: </title>
 
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/shanti_admin.css') }}" rel="stylesheet">
+	<link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('admin/css/shanti_admin.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -67,9 +67,9 @@
 	</div>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="{{ asset('js/holder.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/josh.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/metisMenu.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('admin/js/holder.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('admin/js/josh.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('admin/js/metisMenu.js') }}"></script>
 	@yield('scripts')
 </body>
 </html>

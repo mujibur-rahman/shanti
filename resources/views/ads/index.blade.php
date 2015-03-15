@@ -47,15 +47,15 @@
                                               @foreach($ads as $ad)
                                                   <tr>
                                                      <td> 
+                                                      
                                                       @if($ad->ad_position->type == "Image")
-                                                       <img src='/images/{{ $ad->image }}' width="100px" height="100px" />
+                                                        <img src="images/{{ $ad->image }}" width="80px" height="80px" />
                                                       @else
                                                         flash {{ $ad->image }}
                                                       @endif
                                                       </td>
-                                                      <td>
-                                                        {{ $ad->ad_position->title }}</td>
-                                                      <td>{{ $ad->ad_position->type }} ...</td>
+                                                      <td>{{ $ad->ad_position->title }}</td>
+                                                      <td>{{ $ad->ad_position->type }}</td>
                                                       <td>
                                                         {{ $ad->link }}
                                                       </td>

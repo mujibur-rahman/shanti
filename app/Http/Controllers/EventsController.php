@@ -92,8 +92,14 @@ class EventsController extends Controller {
 	{
 		//dd($request);
 		$activate = 0;
+		$featured = 0;
+		$last_minute = 0;
 		if( $request['active'] )
 			$activate = 1;
+		if( $request['featured'] )
+			$featured = 1;
+		if( $request['last_minute'] )
+			$last_minute = 1;
 		$address = $this->address->create([
 			'location' 		=> 	$request['address'],
 			'thana_id' 		=> 	$request['thana'],
@@ -103,6 +109,14 @@ class EventsController extends Controller {
 			'is_active' 	=> 	$activate
 		]);
 		$lastAddressId = $address->id;
+		$destinationPath = "images/events/";
+		if( $request->hasFile('media') ){
+			$date = date('Y-m-d H.i.s') ;
+			$unix_date = strtotime($date) + rand(5, 15);
+			$fileName =  $request->file('media')->getClientOriginalName();
+			$request->file('media')->move($destinationPath, $unix_date . '-' . $fileName);
+			$media = $unix_date . '-' . $fileName;
+		}
 		$event = $this->events->create([
 			'article_category_id' 	=> $request['category'],
 			'title' 				=> $request['title'],
@@ -119,6 +133,13 @@ class EventsController extends Controller {
 			//'email'		=> 		$request['email'],
 			'is_active' 			=> $activate,
 			'address_id' 			=> $lastAddressId,
+			'media'					=> 	$media,
+			'last_minute'			=>	$last_minute,
+			'featured'				=>	$featured,
+			'featured_title'		=>	$request['featured_title'],
+			'price'					=>	$request['price'],
+			'strike_price'			=>	$request['strike_price'],
+			'featured_details'		=> 	$request['featured_details']
 			]);
 		$lastInsertedEventId = $event->id;
 		$this->eventLanguages->create([
@@ -182,11 +203,17 @@ class EventsController extends Controller {
 		$ExistingEvents = $this->events->findOrFail($id);
 		$ExistingEventLang = $this->eventLanguages->whereEventId($id);
 		$ExistingAddress = $this->address->findOrFail( $ExistingEvents->address_id );
-		
-		print "Addres" . $ExistingAddress->id;
+		$media = '';
 		$activate = 0;
+		$featured = 0;
+		$last_minute = 0;
 		if( $request['active'] )
 			$activate = 1;
+		if( $request['featured'] )
+			$featured = 1;
+		if( $request['last_minute'] )
+			$last_minute = 1;
+
 		$address  = [];
 		$address['location']  	= $request['address'];
 		$address['thana_id']  	= $request['thana'];
@@ -196,6 +223,15 @@ class EventsController extends Controller {
 		$address['is_active']  	= $activate;
 		$this->address->where('id', $ExistingAddress->id)->update( $address );
 		
+		$destinationPath = "images/events/";
+		if( $request->hasFile('media') ){
+			$date = date('Y-m-d H.i.s') ;
+			$unix_date = strtotime($date) + rand(5, 15);
+			$fileName =  $request->file('media')->getClientOriginalName();
+			$request->file('media')->move($destinationPath, $unix_date . '-' . $fileName);
+			$media = $unix_date . '-' . $fileName;
+		}
+
 		$event = [];
 		$event['article_category_id']	= $request['category'];
 		$event['title'] 				= $request['title'];
@@ -211,6 +247,14 @@ class EventsController extends Controller {
 		$event['ending_date'] 			= $request['endingDate'];
 		$event['is_active'] 			= $activate;
 		$event['address_id'] 			= $ExistingAddress->id;
+		if( $media )
+			$event['media']				= 	$media;
+		$event['last_minute']			=	$last_minute;
+		$event['featured']				=	$featured;
+		$event['featured_title']		=	$request['featured_title'];
+		$event['price']					=	$request['price'];
+		$event['strike_price']			=	$request['strike_price'];
+		$event['featured_details']		= 	$request['featured_details'];
 		$this->events->where('id', $id)->update( $event );
 
 		$eventLangs = [];
@@ -221,7 +265,7 @@ class EventsController extends Controller {
 		$eventLangs['meta_description'] = $request['bengaliDescription'];
 		$eventLangs['language_id'] 		= 1;
 		$eventLangs['is_active'] 		= $activate;
-		$eventLangs['event_id']		= $id;
+		$eventLangs['event_id']			= $id;
 
 		$this->eventLanguages->where('event_id', $id)->update( $eventLangs );
 

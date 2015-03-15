@@ -133,7 +133,7 @@ class ArticleCategoryController extends Controller {
 		$article['meta_keyword'] = $request['keyword'];
 		$article['meta_description'] = $request['description'];
 		$article['isactive'] = $activate;
-		$this->articleCategory->update( $article );
+		$this->articleCategory->where('id', $id)->update( $article );
 		//After updating article category then same entry should go to article category language table.
 		$articleLang['title'] = $request['bengaliTitle'];
 		$articleLang['meta_keyword'] = $request['bengaliKeyword'];
@@ -141,7 +141,7 @@ class ArticleCategoryController extends Controller {
 		$articleLang['isactive'] = $activate;
 		$articleLang['article_category_id'] = $id;
 		$articleLang['language_id'] = 1;
-		$this->articleCategoriesLanguage->update( $articleLang );
+		$this->articleCategoriesLanguage->where('article_category_id', $id)->update( $articleLang );
 
 		return redirect()->route('category.index');
 	}

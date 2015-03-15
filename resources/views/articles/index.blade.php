@@ -38,6 +38,7 @@
                                                   <th>Category</th>
                                                   <th>Title</th>
                                                   <th>Address</th>
+                                                  <th>Featured</th>
                                                   <th colspan="2">Actions</th>
                                               </tr>
                                           </thead>
@@ -49,6 +50,11 @@
                                                       <td>{{ substr($article->title, 0, 30) }} ...</td>
                                                       <td>
                                                         {{ $article->address->location}}, {{ $article->address->thana->title }}, {{ $article->address->district->title }}, {{ $article->address->division->title }}, {{ $article->address->country->title }}
+                                                      </td>
+                                                       <td>
+                                                        @if($article->featured)
+                                                          Yes
+                                                        @endif
                                                       </td>
                                                       <td width="10">{!! link_to_route('articles.edit', 'Edit', array($article->id), array('class' => 'btn btn-warning')) !!}</td>
                                                       <td width="10">

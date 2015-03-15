@@ -96,8 +96,19 @@ class ArticlesController extends Controller {
 	public function store(ArticleStoreRequest $request)
 	{
 		$activate = 0;
+		$featured = 0;
+		$more_from_tag = 0;
+		$list_tag = 0;
+
 		if( $request['active'] )
 			$activate = 1;
+		if( $request['featured'] )
+			$featured = 1;
+		if( $request['more_from_dhaka'] )
+			$more_from_tag = 1;
+		if( $request['list_tag'] )
+			$list_tag = 1;
+
 		$address = $this->address->create([
 			'location' 		=> 	$request['address'],
 			'thana_id' 		=> 	$request['thana'],
@@ -108,20 +119,34 @@ class ArticlesController extends Controller {
 		]);
 
 		$lastAddressId = $address->id;
-
+		$destinationPath = "images/articles/";
+		if( $request->hasFile('media') ){
+			$date = date('Y-m-d H.i.s') ;
+			$unix_date = strtotime($date) + rand(5, 15);
+			$fileName =  $request->file('media')->getClientOriginalName();
+			$request->file('media')->move($destinationPath, $unix_date . '-' . $fileName);
+			$media = $unix_date . '-' . $fileName;
+		}
 		$article = $this->articles->create([
-			'article_category_id' 	=> $request['category'],
-			'title' 				=> $request['title'],
-			'short_detail' 			=> $request['shortDetails'],
-			'details' 				=> $request['details'],
-			'meta_keyword' 			=> $request['keyword'],
-			'meta_description' 		=> $request['description'],
-			'website' 				=> $request['website'],
-			'phone' 				=> $request['phone'],
+			'article_category_id' 	=> 	$request['category'],
+			'title' 				=> 	$request['title'],
+			'short_detail' 			=> 	$request['shortDetails'],
+			'details' 				=> 	$request['details'],
+			'meta_keyword' 			=> 	$request['keyword'],
+			'meta_description' 		=> 	$request['description'],
+			'website' 				=> 	$request['website'],
+			'phone' 				=> 	$request['phone'],
 			//'email'		=> 		$request['email'],
-			'is_active' 			=> $activate,
-			'address_id' 			=> $lastAddressId,
-			''
+			'is_active' 			=> 	$activate,
+			'address_id' 			=> 	$lastAddressId,
+			'media'					=> 	$media,
+			'featured'				=>	$featured,
+			'featured_title'		=>	$request['featured_title'],
+			'price'					=>	$request['price'],
+			'strike_price'			=>	$request['strike_price'],
+			'featured_details'		=> 	$request['featured_details'],
+			'more_from_dhaka'		=> 	$more_from_tag,
+			'list_tag'				=> 	$list_tag
 			]);
 		$lastInsertedArticleId = $article->id;
 
@@ -183,16 +208,22 @@ class ArticlesController extends Controller {
 	 */
 	public function update(ArticleStoreRequest $request, $id)
 	{
-		print $id;
-		//dd($request);
 		$ExistingArticle = $this->articles->findOrFail($id);
 		$ExistingArticleLang = $this->articleLanguages->whereArticleId($id);
 		$ExistingAddress = $this->address->findOrFail( $ExistingArticle->address_id );
-		
-		print "Addres" . $ExistingAddress->id;
+		$media = '';
+		$featured = 0;
 		$activate = 0;
+		$more_from_tag = 0;
+		$list_tag = 0;
 		if( $request['active'] )
 			$activate = 1;
+		if( $request['featured'] )
+			$featured = 1;
+		if( $request['more_from_dhaka'] )
+			$more_from_tag = 1;
+		if( $request['list_tag'] )
+			$list_tag = 1;
 		$address  = [];
 		$address['location']  	= $request['address'];
 		$address['thana_id']  	= $request['thana'];
@@ -202,6 +233,15 @@ class ArticlesController extends Controller {
 		$address['is_active']  	= $activate;
 		$this->address->where('id', $ExistingAddress->id)->update( $address);
 		
+		$destinationPath = "images/articles/";
+		if( $request->hasFile('media') ){
+			$date = date('Y-m-d H.i.s') ;
+			$unix_date = strtotime($date) + rand(5, 15);
+			$fileName =  $request->file('media')->getClientOriginalName();
+			$request->file('media')->move($destinationPath, $unix_date . '-' . $fileName);
+			$media = $unix_date . '-' . $fileName;
+		}
+
 		$articles = [];
 		$articles['article_category_id']	= $request['category'];
 		$articles['title'] 					= $request['title'];
@@ -213,6 +253,16 @@ class ArticlesController extends Controller {
 		$articles['phone'] 					= $request['phone'];
 		$articles['is_active'] 				= $activate;
 		$articles['address_id'] 			= $ExistingAddress->id;
+		if( $media )
+			$articles['media']				= 	$media;
+		$articles['featured']				=	$featured;
+		$articles['featured_title']			=	$request['featured_title'];
+		$articles['price']					=	$request['price'];
+		$articles['strike_price']			=	$request['strike_price'];
+		$articles['featured_details']		= 	$request['featured_details'];
+		$articles['more_from_dhaka']		= 	$more_from_tag;
+		$articles['list_tag']				= 	$list_tag;
+
 		$this->articles->where('id', $id)->update( $articles );
 
 		$articleLangs = [];

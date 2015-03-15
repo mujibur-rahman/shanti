@@ -35,7 +35,7 @@
 	                            </div>
 	                            <div class="table-responsives"> 
 	                                <div class="content clearfix">
-	                                {!! Form::open(array('route' => 'events.store')) !!}
+	                                {!! Form::open(array('route' => 'events.store', 'files'=> true)) !!}
 	                                <div class="row">
 		                                <div class="col-sm-12">
 		                                	<fieldset>
@@ -188,6 +188,12 @@
 			                                            {!! Form::textarea('bengaliDetails', null, array('style' => 'width: 100%; height: 100px;')) !!}
 			                                        </div>
 			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('media', 'Image:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
 			                                </fieldset>
 		                                </div>
 		                                <hr />
@@ -218,18 +224,63 @@
 			                                            {!! Form::textarea('bengaliDescription', null, array('style' => 'width: 100%; height: 100px;')) !!}
 			                                        </div>
 			                                    </div>
+			                                    
 			                                </fieldset>
 		                                </div>
+		                               
+		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Featured deals</legend>
+		                                		<div class="col-sm-12"> 
+		                                			<div class="col-sm-6"> 
+				                                		<div class="form-group">
+					                                        {!! Form::label('last_minute', 'Last minute:', array('class' => 'col-sm-3 control-label')) !!}
+					                                        <div class="col-sm-2" style="margin-top: 4px;">
+					                                            {!! Form::checkbox('last_minute', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+					                                        </div>
+					                                    </div>
+				                                	</div>
+			                               	 		<div class="col-sm-6">
+				                                		<div class="form-group">
+					                                        {!! Form::label('featured', 'Featured:', array('class' => 'col-sm-2 control-label')) !!}
+					                                        <div class="col-sm-2" style=" margin-top: 4px;">
+					                                            {!! Form::checkbox('featured', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+					                                        </div>
+					                                    </div>
+				                               	 	</div>
+				                                </div>
+				                               <div class="col-sm-12"> 
+			                                    <div class="form-group">
+			                                        {!! Form::label('featured_title', 'Title:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-top: 4px;">
+			                                            {!! Form::text('featured_title', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                   </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('price', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('strike_price', 'Old price:', array('class' => 'col-sm-2 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-top: 4px;">
+			                                            {!! Form::text('strike_price', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-10" style="margin-top: 4px;">
+				                                            {!! Form::text('featured_details', null, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                    </div>
+			                                	</div>
+			                                </fieldset>
+			                            </div>
 		                                <hr />
 		                                <div class="col-sm-12">
-		                                	<div class="form-group">
-		                                        {!! Form::label('active', 'Active:', array('class' => 'col-sm-1 control-label')) !!}
-		                                        <div class="col-sm-11">
-		                                            {!! Form::checkbox('active', '1', true, array('class' => 'pos-rel p-l-30')); !!}
-		                                        </div>
-		                                    </div>
-		                                </div>
-										<div class="col-sm-12">
 		                                	<fieldset>
 		                                		<legend>Miscellaneous</legend>
 		                                		<div class="form-group">
@@ -252,6 +303,16 @@
 			                                    </div>
 			                                </fieldset>
 		                                </div>
+		                                <hr />
+		                                <div class="col-sm-12">
+		                                	<div class="form-group">
+		                                        {!! Form::label('active', 'Active:', array('class' => 'col-sm-1 control-label')) !!}
+		                                        <div class="col-sm-10" style="margin-left: 10px;">
+		                                            {!! Form::checkbox('active', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <hr />
 		                                <div class="col-sm-12" style="margin-top: 4px;">
 		                                	<div class="form-group">
 	                                        <label class="col-sm-4 control-label"></label>

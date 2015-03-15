@@ -35,7 +35,7 @@
 	                            </div>
 	                            <div class="table-responsives"> 
 	                                <div class="content clearfix">
-	                                {!! Form::open(array('route' => 'articles.store')) !!}
+	                                {!! Form::open(array('route' => 'articles.store', 'files'=> true)) !!}
 	                                <div class="row">
 		                                <div class="col-sm-12">
 		                                	<fieldset>
@@ -120,6 +120,12 @@
 									    <div class="col-sm-12">
 									    	<fieldset>
 		                                		<legend>Article details</legend>
+		                                		<div class="form-group">
+			                                        {!! Form::label('media', 'Image:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
 											    <div class="form-group">
 			                                        {!! Form::label('shortDetails', 'Short:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
@@ -178,13 +184,42 @@
 		                                </div>
 		                                <hr />
 		                                <div class="col-sm-12">
-		                                	<div class="form-group">
-		                                        {!! Form::label('active', 'Active:', array('class' => 'col-sm-1 control-label')) !!}
-		                                        <div class="col-sm-11">
-		                                            {!! Form::checkbox('active', '1', true, array('class' => 'pos-rel p-l-30')); !!}
-		                                        </div>
-		                                    </div>
-		                                </div>
+		                                	<fieldset>
+		                                		<legend>Featured deals</legend>
+		                                		<div class="form-group">
+			                                        {!! Form::label('featured', 'Featured:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::checkbox('featured', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('featured_title', 'Title:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('featured_title', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('price', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('strike_price', 'Old price:', array('class' => 'col-sm-2 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-top: 4px;">
+			                                            {!! Form::text('strike_price', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-10" style="margin-top: 4px;">
+				                                            {!! Form::text('featured_details', null, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                    </div>
+			                                	</div>
+			                                </fieldset>
+			                            </div>
 										<div class="col-sm-12">
 		                                	<fieldset>
 		                                		<legend>Miscellaneous</legend>
@@ -204,6 +239,34 @@
 			                                        {!! Form::label('phone', 'Phone:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
 			                                            {!! Form::text('phone', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('more_from_dhaka', 'More tag:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-9" style="margin-top: 4px;">
+				                                            {!! Form::checkbox('more_from_dhaka', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+				                                        </div>
+			                                    	</div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+			                                    	<div class="form-group">
+				                                        {!! Form::label('list_tag', 'List tag:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-9" style="margin-top: 4px;">
+				                                            {!! Form::checkbox('list_tag', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+				                                        </div>
+			                                    	</div>
+			                                    </div>
+			                                </fieldset>
+		                                </div>
+		                                <hr />
+		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Active</legend>
+			                                	<div class="form-group">
+			                                        {!! Form::label('active', 'Active:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
+			                                            {!! Form::checkbox('active', '1', true, array('class' => 'pos-rel p-l-30')); !!}
 			                                        </div>
 			                                    </div>
 			                                </fieldset>
@@ -261,14 +324,14 @@
 	    config['height'] = 200;
 		CKEDITOR.replace( 'details', config);
 		CKEDITOR.replace( 'bengaliDetails', config);
-	    $("#title").keyup(function(){
-				var str = sansAccent($(this).val());
-				str = str.replace(/[^a-zA-Z0-9\s]/g,"");
-				str = str.toLowerCase();
-				str = str.replace(/\s/g,'-');
-				//$("#permalien").val(str);
-				console.log('Mujibur: '+ str);        
-			});
+	 //    $("#title").keyup(function(){
+		// 	var str = sansAccent($(this).val());
+		// 	str = str.replace(/[^a-zA-Z0-9\s]/g,"");
+		// 	str = str.toLowerCase();
+		// 	str = str.replace(/\s/g,'-');
+		// 	//$("#permalien").val(str);
+		// 	console.log('Mujibur: '+ str);        
+		// });
 
 
 

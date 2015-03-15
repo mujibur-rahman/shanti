@@ -6,7 +6,10 @@ class Articles extends Model {
 
 	protected $table = "articles";
 
-	protected $fillable = ['article_category_id','title', 'short_detail', 'details', 'is_active', 'address_id', 'meta_keyword', 'meta_description', 'website', 'phone', 'entrance'];
+	protected $fillable = ['article_category_id','title', 'short_detail', 'details', 'is_active', 'address_id', 'meta_keyword', 'meta_description', 'website', 'phone', 'entrance', 
+		'media', 'featured', 'featured_title', 'price', 'strike_price', 'featured_details',
+		'more_from_dhaka', 'list_tag'
+	];
 
 	public function address(){
 		return $this->belongsTo('App\Models\Addresses', 'address_id', 'id')
@@ -21,3 +24,4 @@ class Articles extends Model {
 	}
 
 }
+

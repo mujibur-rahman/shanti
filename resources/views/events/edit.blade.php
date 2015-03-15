@@ -36,7 +36,7 @@
 
 	                            <div class="table-responsives"> 
 	                                <div class="content clearfix">
-	                                {!! Form::model($event, array('method' => 'PATCH', 'route' => array('events.update', $event->id) )) !!}
+	                                {!! Form::model($event, array('method' => 'PATCH', 'files' => true, 'route' => array('events.update', $event->id) )) !!}
 	                                <div class="row">
 		                                <div class="col-sm-12">
 		                                	<fieldset>
@@ -190,6 +190,12 @@
 			                                            {!! Form::textarea('bengaliDetails', $eventLang->details, array('style' => 'width: 100%; height: 100px;')) !!}
 			                                        </div>
 			                                    </div>
+			                                     <div class="form-group">
+			                                        {!! Form::label('media', 'Image:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
 			                                </fieldset>
 		                                </div>
 		                                <hr />
@@ -222,7 +228,65 @@
 			                                    </div>
 			                                </fieldset>
 		                                </div>
-		                               
+		                               <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Featured deals</legend>
+		                                		<div class="col-sm-12"> 
+		                                			<div class="col-sm-6"> 
+				                                		<div class="form-group">
+					                                        {!! Form::label('last_minute', 'Last minute:', array('class' => 'col-sm-3 control-label')) !!}
+					                                        <div class="col-sm-2" style="margin-top: 4px;">
+					                                        	@if($event->last_minute)
+					                                           		{!! Form::checkbox('last_minute', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+					                                           	@else
+					                                           		{!! Form::checkbox('last_minute', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+					                                            @endif
+					                                        </div>
+					                                    </div>
+				                                	</div>
+			                               	 		<div class="col-sm-6">
+				                                		<div class="form-group">
+					                                        {!! Form::label('featured', 'Featured:', array('class' => 'col-sm-2 control-label')) !!}
+					                                        <div class="col-sm-2" style=" margin-top: 4px;">
+					                                            @if($event->featured)
+					                                           		{!! Form::checkbox('featured', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+					                                           	@else
+					                                           		{!! Form::checkbox('featured', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+					                                            @endif
+					                                        </div>
+					                                    </div>
+				                               	 	</div>
+				                                </div>
+				                               <div class="col-sm-12"> 
+			                                    <div class="form-group">
+			                                        {!! Form::label('featured_title', 'Title:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-top: 4px;">
+			                                            {!! Form::text('featured_title', $event->featured_title, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                   </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('price', $event->price, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('strike_price', 'Old price:', array('class' => 'col-sm-2 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-top: 4px;">
+			                                            {!! Form::text('strike_price', $event->strike_price, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-10" style="margin-top: 4px;">
+				                                            {!! Form::text('featured_details', $event->featured_details, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                    </div>
+			                                	</div>
+			                                </fieldset>
+			                            </div>
 										<div class="col-sm-12">
 		                                	<fieldset>
 		                                		<legend>Miscellaneous</legend>

@@ -136,6 +136,8 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider', 
+		'Intervention\Image\ImageServiceProvider',
+		'Devfactory\Imagecache\ImagecacheServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -194,12 +196,13 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'Html'      => 'Illuminate\Html\HtmlFacade',
 		//Mujib: Todo:'HTML'      => 'Illuminate\Html\HtmlFacade',
 		'Paginator' => 'Illuminate\Support\Facades\Paginator',
-
+		'Imagecache'      => 'Devfactory\Imagecache\Facades\ImagecacheFacade',
+		'Image' => 'Intervention\Image\Facades\Image',
+		'Carbon' => 'Carbon\Carbon',
 	],
 
 ];

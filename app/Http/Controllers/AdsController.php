@@ -34,6 +34,7 @@ class AdsController extends Controller {
 						->with('ad_position')
 						->whereIsActive(1)
 						->paginate($limit);
+
 		return view('ads.index', compact('ads'));
 
 	}
@@ -94,19 +95,9 @@ class AdsController extends Controller {
 		]);
 
 		if($request['type'] == 'Image'){
-			/*
-			UploadedFile {#27 ▼
-			  -test: false
-			  -originalName: "dj-danger.jpg"
-			  -mimeType: "image/jpeg"
-			  -size: 12793
-			  -error: 0
-			}
-			dd($request->file('image'));
-			*/
 			$fileName =  $request->file('image')->getClientOriginalName();
-			$request->file('image')->move($destinationPath, $ads->id.'-'.$fileName);
-			$content = $fileName;
+			$request->file('image')->move($destinationPath, $ads->id . '-' . $fileName);
+			$content = $ads->id . '-' . $fileName;
 		}else if($request['type'] == 'Flash' ) {
 			$content = $request['flash'];
 		}else{
@@ -160,19 +151,23 @@ class AdsController extends Controller {
 		$lifetime 	= 0;
 		$pending 	= 0;
 		$content = "";
-
+		$destinationPath = "images/";
 		if( $request['active'] ) 		$activate = 1;
 		if( $request['is_paid'] ) 		$paid = 1;
 		if( $request['is_lifetime'] ) 	$lifetime = 1;
 		if( $request['is_pending'] ) 	$pending = 1;
 
 		if($request['type'] == 'Image'){
-			$content = $request['image'];
+
+			$fileName =  $request->file('image')->getClientOriginalName();
+			$request->file('image')->move($destinationPath, $ExistingAds->id . '-' . $fileName);
+			$content = $ExistingAds->id . '-' .$fileName;
 		}else if($request['type'] == 'Flash' ) {
 			$content = $request['flash'];
 		}else{
 			$content = '';
 		}
+		
 		$position = [];
 		$position['title'] 				= 	$request['title'];
 		$position['type'] 				= 	$request['type'];
@@ -213,7 +208,9 @@ class AdsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$ads = $this->ads->findOrFail($id);
+		$ads->delete();
+		return redirect()->route('ads.index');
 	}
 
 }

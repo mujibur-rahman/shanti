@@ -36,7 +36,7 @@
 
 	                            <div class="table-responsives"> 
 	                                <div class="content clearfix">
-	                                {!! Form::model($article, array('method' => 'PATCH', 'route' => array('articles.update', $article->id) )) !!}
+	                                {!! Form::model($article, array('method' => 'PATCH', 'files' => true, 'route' => array('articles.update', $article->id) )) !!}
 	                                <div class="row">
 		                                <div class="col-sm-12">
 		                                	<fieldset>
@@ -121,6 +121,12 @@
 									    <div class="col-sm-12">
 									    	<fieldset>
 		                                		<legend>Article details</legend>
+		                                		<div class="form-group">
+			                                        {!! Form::label('media', 'Image:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 5px;">
+			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
 											    <div class="form-group">
 			                                        {!! Form::label('shortDetails', 'Short:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
@@ -177,7 +183,49 @@
 			                                    </div>
 			                                </fieldset>
 		                                </div>
-		                               
+		                               <hr />
+		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Featured deals</legend>
+		                                		<div class="form-group">
+			                                        {!! Form::label('featured', 'Featured:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
+			                                        	@if($article->featured)
+			                                           		{!! Form::checkbox('featured', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+			                                           	@else
+			                                           		{!! Form::checkbox('featured', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+			                                            @endif
+			                                            
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('featured_title', 'Title:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('featured_title', $article->featured_title, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('price', $article->price, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('strike_price', 'Old price:', array('class' => 'col-sm-2 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-top: 4px;">
+			                                            {!! Form::text('strike_price', $article->strike_price, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-10" style="margin-top: 4px;">
+				                                            {!! Form::text('featured_details', $article->featured_details, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                    </div>
+			                                	</div>
+			                                </fieldset>
+			                            </div>
 										<div class="col-sm-12">
 		                                	<fieldset>
 		                                		<legend>Miscellaneous</legend>

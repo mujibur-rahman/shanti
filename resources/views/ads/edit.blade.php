@@ -35,7 +35,7 @@
 	                            </div>
 	                            <div class="table-responsives"> 
 	                                <div class="content clearfix">
-	                                {!! Form::model($ad, array('method' => 'PATCH', 'route' => array('ads.update', $ad->id) )) !!}
+	                                {!! Form::model($ad, array('method' => 'PATCH', 'files' => true,  'route' => array('ads.update', $ad->id) )) !!}
 	                                <div class="row">
 		                                <div class="col-sm-12">
 				                            <fieldset>
@@ -87,8 +87,15 @@
 			                                			<div class="col-sm-2">
 				                                        	{!! Form::label('image', 'Image:', array('class' => 'control-label')) !!}
 				                                    	</div>
-				                                        <div class="col-sm-5" >
+				                                        <div class="col-sm-4" >
 				                                            {!! Form::file('image', null, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                         <div class="col-sm-5" >
+				                                             @if($ad->ad_position->type == "Image")
+		                                                       <img src="/images/{{ $ad->image }}" />
+		                                                      @else
+		                                                        flash {{ $ad->image }}
+		                                                      @endif
 				                                        </div>
 				                                    </div>
 			                                	</div>
@@ -298,7 +305,6 @@
 @section('scripts')
 	{!! Html::script('ckeditor/ckeditor.js') !!}
 	<script language="javascript">
-
 	  var config = {
 			codeSnippet_theme: 'monokai',
 			language: 'en',
@@ -320,43 +326,42 @@
 		};
 
 	 	CKEDITOR.replace( 'details', config);
-	 
-	     //  	$('#entrance').change(function( event ){
-	    	// 	var type = this.value;
-	    	// 	$('#fees').removeAttr('disabled');
-	    	// 	$('#fees').val('');
-	    	// 	if(type == 1 || type == ''){
-	    	// 		$('#fees').val('0.00');
-	    	// 		$('#fees').attr('disabled', 'true');
-	    	// 	}
+	 	    
+		$('.col-sm-5').css({
+			top: - ($('.col-sm-5').height() - 80) + 'px',
+			position: 'absolute',
+			right: '0px'
+		});
+		$('.col-sm-5 img').css({
+			width: '280px',
+			height: '220px'
+		});
+    	$('#type').change(function(event) {
+    		var type = $('#type').val();
+    		if(type == "Image"){
+    			$('#image-box').show();
+    			$('#flash-box').hide();
+    		}
+    		else if(type == "Flash"){
+    			$('#image-box').hide();
+    			$('#flash-box').show();
+    		}
+    		else{
+    			$('#image-box').hide();
+    			$('#flash-box').hide();
+    		}
+    	});
+    	if('{{ $ad->ad_position->type }}' == "Image"){
+    		$('#image-box').show();
+    		$('#flash-box').hide();
 
-	    	// });
-	    	$('#type').change(function(event) {
-	    		var type = $('#type').val();
-	    		if(type == "Image"){
-	    			$('#image-box').show();
-	    			$('#flash-box').hide();
-	    		}
-	    		else if(type == "Flash"){
-	    			$('#image-box').hide();
-	    			$('#flash-box').show();
-	    		}
-	    		else{
-	    			$('#image-box').hide();
-	    			$('#flash-box').hide();
-	    		}
-	    	});
-	    	if('{{ $ad->ad_position->type }}' == "Image"){
-	    		$('#image-box').show();
-	    		$('#flash-box').hide();
-
-	    	}else if('{{ $ad->ad_position->type }}' == "Flash" ){
-	    		$('#image-box').hide();
-	    		$('#flash-box').show();
-	    	}else{
-	    		$('#image-box').hide();
-	    		$('#flash-box').hide();
-	    	}
+    	}else if('{{ $ad->ad_position->type }}' == "Flash" ){
+    		$('#image-box').hide();
+    		$('#flash-box').show();
+    	}else{
+    		$('#image-box').hide();
+    		$('#flash-box').hide();
+    	}
 	  </script>
  	   {!! Html::style('datetimepicker/jquery.datetimepicker.css') !!}
 	   {!! Html::script('datetimepicker/jquery.datetimepicker.js') !!}
