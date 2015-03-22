@@ -31,7 +31,10 @@ Route::resource('category', 'ArticleCategoryController');
 Route::get('articles/getlists/{id}/{name}', 'ArticlesController@getLists');
 Route::resource('articles', 'ArticlesController');
 Route::resource('events', 'EventsController');
-
+Route::get('category/article/{id}', 'HomeController@articleCategory');
+Route::get('details/article/{id}', 'HomeController@articleDetails');
+Route::get('details/event/{id}', 'HomeController@eventDetails');
+Route::get('list/fevents', 'HomeController@feventsLists');
 //Route::get('user/sort/{role}', 'UserController@indexSort');
 
 Route::controllers([

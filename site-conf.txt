@@ -87,3 +87,15 @@ Therefore, when you want to drop a column with foreign key reference, you have t
 $table->dropForeign('despatch_discrepancies_pick_detail_id_foreign');
 $table->dropColumn('pick_detail_id');
 
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$ public/$1 [L,R=301]
+
+</IfModule>
+
+DB_HOST=localhost
+DB_DATABASE=shanti_admin
+DB_USERNAME=shanti_admin
+DB_PASSWORD=Dhaka9007!

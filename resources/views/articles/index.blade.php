@@ -38,7 +38,7 @@
                                                   <th>Category</th>
                                                   <th>Title</th>
                                                   <th>Address</th>
-                                                  <th>Featured</th>
+                                                  <th colspan="4">Status</th>
                                                   <th colspan="2">Actions</th>
                                               </tr>
                                           </thead>
@@ -51,9 +51,24 @@
                                                       <td>
                                                         {{ $article->address->location}}, {{ $article->address->thana->title }}, {{ $article->address->district->title }}, {{ $article->address->division->title }}, {{ $article->address->country->title }}
                                                       </td>
-                                                       <td>
+                                                      <td title="For Featured tag">
                                                         @if($article->featured)
-                                                          Yes
+                                                          F
+                                                        @endif
+                                                      </td>
+                                                      <td title="Reviewing tag">
+                                                        @if($article->is_reviewing)
+                                                          R
+                                                        @endif
+                                                      </td>
+                                                      <td title="For more from Dhaka">
+                                                        @if($article->more_from_dhaka)
+                                                          M
+                                                        @endif
+                                                      </td>
+                                                      <td title="For Listing tag">
+                                                        @if($article->list_tag)
+                                                          L
                                                         @endif
                                                       </td>
                                                       <td width="10">{!! link_to_route('articles.edit', 'Edit', array($article->id), array('class' => 'btn btn-warning')) !!}</td>

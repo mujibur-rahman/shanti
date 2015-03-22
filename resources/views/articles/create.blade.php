@@ -126,6 +126,7 @@
 			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
 			                                        </div>
 			                                    </div>
+			                                     <div class="col-sm-12"></div>
 											    <div class="form-group">
 			                                        {!! Form::label('shortDetails', 'Short:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
@@ -256,6 +257,18 @@
 				                                            {!! Form::checkbox('list_tag', '1', false, array('class' => 'pos-rel p-l-30')); !!}
 				                                        </div>
 			                                    	</div>
+			                                    </div>
+			                                </fieldset>
+		                                </div>
+		                                <hr />
+		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Is reviewing?</legend>
+			                                	<div class="form-group">
+			                                        {!! Form::label('review', 'Review:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
+			                                            {!! Form::checkbox('review', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+			                                        </div>
 			                                    </div>
 			                                </fieldset>
 		                                </div>

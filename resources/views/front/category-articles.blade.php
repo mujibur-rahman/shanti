@@ -59,13 +59,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4"><div class="footer-add-container">
-				<img src="img/footer-add-pic-1.png"></div>
+				<img src="/img/footer-add-pic-1.png"></div>
 			</div>
 			<div class="col-md-4"><div class="footer-add-container">
-				<img src="img/footer-add-pic-2.png"></div>
+				<img src="/img/footer-add-pic-2.png"></div>
 			</div>
 			<div class="col-md-4"><div class="footer-add-container">
-				<img src="img/footer-add-pic-3.png"></div>
+				<img src="/img/footer-add-pic-3.png"></div>
 			</div>
 		</div>
 	</div>

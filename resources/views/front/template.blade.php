@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="header">
-					<img src="img/header-banner-bg.png">
+					<img src="/img/header-banner-bg.png">
 						<div class="logo">ShantiDhaka.com</div>
 						<div class="language">
 							<div class="btn-group" role="group" aria-label="...">
@@ -52,9 +52,9 @@
 					<div class="navbar-inner">
 						<!-- Menu -->
 						<ul class="nav navbar-nav l_tinynav1" id="nav">
-						<li><a href="index.html" title="">HOMES</a></li>
-						<li><a href="services.html" title="">RESTAURANT & BAR</a></li>      
-						<li><a href="about.html" title="">CLUB & CONCERT</a></li>           
+						<li><a href="/" title="">HOME &nbsp;</a></li>
+						<li><a href="/category/article/1" title="">RESTAURANT & BAR</a></li>      
+						<li><a href="/category/article/3" title="">CLUB & CONCERT</a></li>           
 						<li><a href="portfolio.html" title="">SCENE & CULTURE</a></li> 
 						<li><a href="project.html" title="">SHOPPING</a></li>    
 						<li><a href="components.html" title="">CITY LIFE</a></li>

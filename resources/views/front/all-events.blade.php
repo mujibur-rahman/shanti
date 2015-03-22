@@ -11,11 +11,8 @@
 			<div class="row" style="margin-top:25px;">
 				<div class="col-md-8">
 					<div class="row">
-						<div class="col-md-8">
-							@include('front.category-list')
-						</div>
-						<div class="col-md-4">
-							@include('front.reviews')
+						<div class="col-md-12">
+							@include('front.feature-event-lists')
 						</div>
 					</div>
 					<div class="row">
@@ -29,7 +26,7 @@
 				</div>
 
 				<div class="col-md-4">
-					@include('front.feature-deal')
+					@include('front.event-search')
 				</div>
 			</div>
 
@@ -59,13 +56,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4"><div class="footer-add-container">
-				<img src="img/footer-add-pic-1.png"></div>
+				<img src="/img/footer-add-pic-1.png"></div>
 			</div>
 			<div class="col-md-4"><div class="footer-add-container">
-				<img src="img/footer-add-pic-2.png"></div>
+				<img src="/img/footer-add-pic-2.png"></div>
 			</div>
 			<div class="col-md-4"><div class="footer-add-container">
-				<img src="img/footer-add-pic-3.png"></div>
+				<img src="/img/footer-add-pic-3.png"></div>
 			</div>
 		</div>
 	</div>

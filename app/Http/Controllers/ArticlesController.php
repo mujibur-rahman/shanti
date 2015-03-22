@@ -99,7 +99,8 @@ class ArticlesController extends Controller {
 		$featured = 0;
 		$more_from_tag = 0;
 		$list_tag = 0;
-
+		$media = '';
+		$review = 0;
 		if( $request['active'] )
 			$activate = 1;
 		if( $request['featured'] )
@@ -108,7 +109,8 @@ class ArticlesController extends Controller {
 			$more_from_tag = 1;
 		if( $request['list_tag'] )
 			$list_tag = 1;
-
+		if( $request['review'] )
+			$review = 1;
 		$address = $this->address->create([
 			'location' 		=> 	$request['address'],
 			'thana_id' 		=> 	$request['thana'],
@@ -137,6 +139,7 @@ class ArticlesController extends Controller {
 			'website' 				=> 	$request['website'],
 			'phone' 				=> 	$request['phone'],
 			//'email'		=> 		$request['email'],
+			'is_reviewing'			=>  $review,
 			'is_active' 			=> 	$activate,
 			'address_id' 			=> 	$lastAddressId,
 			'media'					=> 	$media,
@@ -216,6 +219,7 @@ class ArticlesController extends Controller {
 		$activate = 0;
 		$more_from_tag = 0;
 		$list_tag = 0;
+		$review = 0;
 		if( $request['active'] )
 			$activate = 1;
 		if( $request['featured'] )
@@ -224,6 +228,8 @@ class ArticlesController extends Controller {
 			$more_from_tag = 1;
 		if( $request['list_tag'] )
 			$list_tag = 1;
+		if( $request['review'] )
+			$review = 1;
 		$address  = [];
 		$address['location']  	= $request['address'];
 		$address['thana_id']  	= $request['thana'];
@@ -253,6 +259,7 @@ class ArticlesController extends Controller {
 		$articles['phone'] 					= $request['phone'];
 		$articles['is_active'] 				= $activate;
 		$articles['address_id'] 			= $ExistingAddress->id;
+		$articles['is_reviewing']			= $review;
 		if( $media )
 			$articles['media']				= 	$media;
 		$articles['featured']				=	$featured;

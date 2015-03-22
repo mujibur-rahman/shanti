@@ -127,6 +127,7 @@
 			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
 			                                        </div>
 			                                    </div>
+			                                     <div class="col-sm-12"></div>
 											    <div class="form-group">
 			                                        {!! Form::label('shortDetails', 'Short:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
@@ -247,10 +248,53 @@
 			                                            {!! Form::text('phone', $article->phone, array('class' => 'form-control required')) !!}
 			                                        </div>
 			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('more_from_dhaka', 'More tag:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-9" style="margin-top: 4px;">
+				                                            @if($article->more_from_dhaka)
+			                                           		{!! Form::checkbox('more_from_dhaka', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+				                                           	@else
+				                                           		{!! Form::checkbox('more_from_dhaka', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+				                                            @endif
+				                                        </div>
+			                                    	</div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+			                                    	<div class="form-group">
+				                                        {!! Form::label('list_tag', 'List tag:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-9" style="margin-top: 4px;">
+				                                           
+				                                            @if($article->list_tag)
+			                                           		{!! Form::checkbox('list_tag', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+				                                           	@else
+				                                           		{!! Form::checkbox('list_tag', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+				                                            @endif
+				                                        </div>
+			                                    	</div>
+			                                    </div>
+			                                </fieldset>
+		                                </div>
+		                                <hr />
+		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Is reviewing?</legend>
+			                                	<div class="form-group">
+			                                        {!! Form::label('review', 'Review:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
+			                                           @if($article->is_reviewing)
+		                                           		{!! Form::checkbox('review', '1', true, array('class' => 'pos-rel p-l-30')); !!}
+			                                           	@else
+			                                           		{!! Form::checkbox('review', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+			                                            @endif
+			                                        </div>
+			                                    </div>
 			                                </fieldset>
 		                                </div>
 		                                 <hr />
 		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Active</legend>
 		                                	<div class="form-group">
 		                                        {!! Form::label('active', 'Active:', array('class' => 'col-sm-1 control-label')) !!}
 		                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
@@ -261,6 +305,7 @@
 		                                            @endif
 		                                        </div>
 		                                    </div>
+		                                	</fieldset>
 		                                </div>
 		                                <hr />
 		                                <div class="col-sm-12" style="margin-top: 4px;">

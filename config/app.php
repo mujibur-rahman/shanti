@@ -138,6 +138,7 @@ return [
 		'Illuminate\Html\HtmlServiceProvider', 
 		'Intervention\Image\ImageServiceProvider',
 		'Devfactory\Imagecache\ImagecacheServiceProvider',
+		'Roumen\Disqus\DisqusServiceProvider',
 
 		/*
 		 * Application Service Providers...

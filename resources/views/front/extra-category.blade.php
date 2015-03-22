@@ -1,5 +1,7 @@
 <div class="col-md-12">
-	
+	@if( count($moreTagArticles) <= 0 )
+		No articles found for this category
+	@endif
 	@foreach($moreTagArticles as $more)
 		<div class="col-md-6">
 			<div class="row">
@@ -8,7 +10,7 @@
 					<div class="article-style-4">
 					<h2>{{$more->title}}</h2>
 					<p><b>{{$more->article_category->title}}</b> &nbsp; {{ strip_tags($more->short_detail) }}
-						<a href="/articles/{{ $more->id }}">More..</a></p>
+						<a href="/details/article/{{ $more->id }}">More..</a></p>
 					</div>
 				</div>
 			</div>

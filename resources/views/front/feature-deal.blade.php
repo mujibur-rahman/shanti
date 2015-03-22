@@ -1,8 +1,12 @@
 <h1 class="article-3">FEATURED DEALS</h1>
 @foreach($featuredArticles as $article)
 <div class="article-style-3">
-	<h2>{!! $article->title !!}</h2>
-	<div class="picbox"><img src="/images/articles/{{ $article->media }}" class="img-responsive"></div>
+	<a href="http://{{ preg_replace('#^https?://#', '', $article->website) }}" target="_blank"><h2>{!! $article->title !!}</h2></a>
+	<div class="picbox">
+		<a href="http://{{ preg_replace('#^https?://#', '', $article->website) }}" target="_blank">
+			<img src="/images/articles/{{ $article->media }}" class="img-responsive" />
+		</a>
+	</div>
 	<br>
 	<div class="row">
 		<div class="col-md-8"><b>{{ $article->featured_title }}</b></div>
@@ -28,8 +32,12 @@
 		<div class="panel-body">
 			@foreach( $events as $event )
 				<div class="article-style-3">
-					<h2>{{ $event->title }}</h2>
-					<div class="picbox"><img src="/images/events/{{ $event->media }}" class="img-responsive"></div>
+					<a href="http://{{ preg_replace('#^https?://#', '', $event->website) }}" target="_blank"><h2>{{ $event->title }}</h2></a>
+					<div class="picbox">
+						<a href="http://{{ preg_replace('#^https?://#', '', $event->website) }}" target="_blank">
+							<img src="/images/events/{{ $event->media }}" class="img-responsive" />
+						</a>
+						</div>
 					<br>
 					<div class="row">
 						<div class="col-md-8"><b>{{ $event->featured_title }}</b></div>
@@ -113,18 +121,23 @@
 		<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 			<div class="panel-body">
 				@foreach($featuredEvents as $fevent)
-					<div class="featured-event">
-						<h1>{{ $fevent->title }}</h1>
-						<p>{{ $fevent->address->location }} <i class="fa fa-map-marker fa-2x"></i></p>
-						<p>{{ $fevent->info_title }}...</p>
-						<p><i class="fa fa-calendar fa-2x"></i> {{ \Carbon::parse($fevent->opening_date)->format('D d M Y') }}<i class="fa fa-clock-o fa-2x"></i> The whole day</p>
-					</div>
+					<a href="/details/event/{{ $fevent->id }}" style="text-decoration: none;">
+						<div class="featured-event">
+							<h1>{{ $fevent->title }}</h1>
+							<p>{{ $fevent->address->location }} <i class="fa fa-map-marker fa-2x"></i></p>
+							<p>{{ $fevent->info_title }}...</p>
+							<p><i class="fa fa-calendar fa-2x"></i> {{ \Carbon::parse($fevent->opening_date)->format('D d M Y') }}<i class="fa fa-clock-o fa-2x"></i> The whole day</p>
+						</div>
+					</a>
 				@endforeach
 			</div>
 		</div>
 	</div>
 </div>
-<button type="button" class="btn btn-style-1 btn-block">ALL FEATURED EVENTS</button>
-<div class="add-container-1"><img src="img/3rdcol-add-1.png" class="img-responsive"></div>
-<div class="add-container-1"><img src="img/3rdcol-add-2.png" class="img-responsive"></div>
-<div class="add-container-1"><img src="img/3rdcol-add-3.png" class="img-responsive"></div>
+<a href="/list/fevents" style="text-decoration: none;" target="_top">
+	<button type="button" class="btn btn-style-1 btn-block">ALL FEATURED EVENTS</button>
+</a>
+
+<div class="add-container-1"><img src="/img/3rdcol-add-1.png" class="img-responsive"></div>
+<div class="add-container-1"><img src="/img/3rdcol-add-2.png" class="img-responsive"></div>
+<div class="add-container-1"><img src="/img/3rdcol-add-3.png" class="img-responsive"></div>
