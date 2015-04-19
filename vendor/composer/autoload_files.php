@@ -16,4 +16,5 @@ return array(
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/roumen/disqus/src/Roumen/Disqus/disqusapi/disqusapi.php',
+    $vendorDir . '/barryvdh/laravel-debugbar/src/helpers.php',
 );

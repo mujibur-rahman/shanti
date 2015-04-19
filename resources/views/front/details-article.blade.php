@@ -43,9 +43,9 @@
 											@endif
 
 												<p><b>
-													{{ $article->short_detail }}
+													{{ strip_tags($article->short_detail) }}
 												</b></p>
-												{{ $article->details }}												
+												{{ strip_tags($article->details) }}												
 											</div>
 											<div class="col-md-4">
 												<br><br>

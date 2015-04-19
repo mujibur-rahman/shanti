@@ -139,6 +139,7 @@ return [
 		'Intervention\Image\ImageServiceProvider',
 		'Devfactory\Imagecache\ImagecacheServiceProvider',
 		'Roumen\Disqus\DisqusServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -204,6 +205,7 @@ return [
 		'Imagecache'      => 'Devfactory\Imagecache\Facades\ImagecacheFacade',
 		'Image' => 'Intervention\Image\Facades\Image',
 		'Carbon' => 'Carbon\Carbon',
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 	],
 
 ];

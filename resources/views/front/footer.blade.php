@@ -27,16 +27,16 @@
 		</div>
 		<div class="col-md-4">
 			<p>FOLLOW US ON</p>
-			<p><a href="#"><img src="img/icon-facebook.png"></a> <a href="#"><img src="img/icon-twitter.png"></a></p>
+			<p><a href="#"><img src="/img/icon-facebook.png"></a> <a href="#"><img src="/img/icon-twitter.png"></a></p>
 			<p>Our Apps</p>
-			<p><a href=""><img src="img/footer-icon-appstor.png"></a>
-			<a href=""><img src="img/footer-icon-googleplay.png"></a></p>
+			<p><a href=""><img src="/img/footer-icon-appstor.png"></a>
+			<a href=""><img src="/img/footer-icon-googleplay.png"></a></p>
 		</div>
 	</div>
 	<div class="row bottom-footer">
 		<div>
 			<div class="col-md-6"><p>© All about Stockholm 2014</p></div>
-			<div class="col-md-6 text-right">Find everything in Stockholm <img src="img/footer-icon-afton.png"></div>
+			<div class="col-md-6 text-right">Find everything in Stockholm <img src="/img/footer-icon-afton.png"></div>
 		</div>
 	</div>
 </div>

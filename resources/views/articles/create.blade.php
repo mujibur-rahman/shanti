@@ -186,6 +186,20 @@
 		                                <hr />
 		                                <div class="col-sm-12">
 		                                	<fieldset>
+		                                		<legend>Related Tags</legend>
+			                                	<div class="form-group">
+			                                       
+			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
+			                                        	@foreach($tags as $tag)
+			                                            {!! Form::checkbox('tags[]', $tag->id, false, array('class' => 'pos-rel p-l-30')); !!} {{ $tag->tag}} &nbsp;
+			                                            @endforeach
+			                                        </div>
+			                                    </div>
+			                                </fieldset>
+		                                </div>
+		                                <hr />
+		                                <div class="col-sm-12">
+		                                	<fieldset>
 		                                		<legend>Featured deals</legend>
 		                                		<div class="form-group">
 			                                        {!! Form::label('featured', 'Featured:', array('class' => 'col-sm-1 control-label')) !!}
@@ -221,6 +235,8 @@
 			                                	</div>
 			                                </fieldset>
 			                            </div>
+			                            
+		                                 <hr />
 										<div class="col-sm-12">
 		                                	<fieldset>
 		                                		<legend>Miscellaneous</legend>
@@ -268,6 +284,18 @@
 			                                        {!! Form::label('review', 'Review:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
 			                                            {!! Form::checkbox('review', '1', false, array('class' => 'pos-rel p-l-30')); !!}
+			                                        </div>
+			                                    </div>
+			                                </fieldset>
+		                                </div>
+		                                <hr />
+		                                <div class="col-sm-12">
+		                                	<fieldset>
+		                                		<legend>Editor choice?</legend>
+			                                	<div class="form-group">
+			                                        {!! Form::label('editorChoice', 'Choice:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
+			                                            {!! Form::checkbox('editorChoice', '1', false, array('class' => 'pos-rel p-l-30')); !!}
 			                                        </div>
 			                                    </div>
 			                                </fieldset>

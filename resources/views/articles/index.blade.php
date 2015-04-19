@@ -80,15 +80,15 @@
                                                   </tr>
                                               @endforeach
                                           </tbody>
-                                          @if ($articles->count() > 10)
+                                         
                                           <tfoot>
                                               <tr>
-                                                  <td colspan="5">
+                                                  <td colspan="9">
                                                       {!! $articles !!}
                                                   </td>
                                               </tr>
                                           </tfoot>
-                                          @endif
+                                          
                                       </table>
                                         @else
                                             There are no article

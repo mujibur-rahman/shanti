@@ -75,15 +75,14 @@
                                                   </tr>
                                               @endforeach
                                           </tbody>
-                                          @if ($ads->count() > 10)
+                                          
                                           <tfoot>
                                               <tr>
-                                                  <td colspan="5">
+                                                  <td colspan="7">
                                                       {!! $ads !!}
                                                   </td>
                                               </tr>
                                           </tfoot>
-                                          @endif
                                       </table>
                                         @else
                                             There are no events

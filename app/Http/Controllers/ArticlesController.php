@@ -20,7 +20,8 @@ use App\Models\Articles;
 use App\Models\ArticleLanguages;
 use App\Models\Language;
 use App\Models\Addresses;
-
+use App\Models\Tag;
+use App\Models\ArticleTags;
 class ArticlesController extends Controller {
 
 	private $articleCategory;
@@ -32,6 +33,9 @@ class ArticlesController extends Controller {
 	private $articleLanguages;
 	private $languages;
 	private $address;
+	private $tags;
+	private $atags;
+
 	 /**
      * Constructor.
      *
@@ -40,7 +44,7 @@ class ArticlesController extends Controller {
     public function  __construct(ArticleCategory $articleCategory, 
     	Divisions $divisions, Districts $districts, Thanas $thanas,
     	Countries $country, Articles $articles, ArticleLanguages $articleLanguages,
-    	Language $language, Addresses $address)
+    	Language $language, Addresses $address, Tag $tags, ArticleTags $atags)
     {
         $this->articleCategory = $articleCategory;
         $this->country = $country;
@@ -51,6 +55,8 @@ class ArticlesController extends Controller {
        	$this->articleLanguages = $articleLanguages;
        	$this->articles = $articles;
        	$this->address = $address;
+       	$this->tags = $tags;
+       	$this->atags = $atags;
         $this->middleware('auth');
     }
 
@@ -83,8 +89,9 @@ class ArticlesController extends Controller {
 		$district = $this->districts->all()->lists('title', 'id');
 		$thana = $this->thanas->all()->lists('title', 'id');
 		$country = $this->country->all()->lists('title', 'id');
+		$tags = $this->tags->all();
 		$url = "www.localhost.com";
-		return view('articles.create', compact('category','division', 'district', 'thana', 'country','url'));
+		return view('articles.create', compact('category','division', 'district', 'thana', 'country','url', 'tags'));
 		//$url = "www.localhost.com";//Medias::getUrl($this->user_gestion);
 	}
 
@@ -101,6 +108,7 @@ class ArticlesController extends Controller {
 		$list_tag = 0;
 		$media = '';
 		$review = 0;
+		$editor_choice = 0;
 		if( $request['active'] )
 			$activate = 1;
 		if( $request['featured'] )
@@ -111,6 +119,9 @@ class ArticlesController extends Controller {
 			$list_tag = 1;
 		if( $request['review'] )
 			$review = 1;
+		if( $request['editorChoice'] )
+			$editor_choice = 1;
+		
 		$address = $this->address->create([
 			'location' 		=> 	$request['address'],
 			'thana_id' 		=> 	$request['thana'],
@@ -149,7 +160,8 @@ class ArticlesController extends Controller {
 			'strike_price'			=>	$request['strike_price'],
 			'featured_details'		=> 	$request['featured_details'],
 			'more_from_dhaka'		=> 	$more_from_tag,
-			'list_tag'				=> 	$list_tag
+			'list_tag'				=> 	$list_tag,
+			'editorChoice'			=> $editor_choice
 			]);
 		$lastInsertedArticleId = $article->id;
 
@@ -163,7 +175,16 @@ class ArticlesController extends Controller {
 			'language_id' 			=> 1, //Todo: Mujib: Used 1 for Bengali 
 			'is_active' 			=> $activate
 		]);
-		return redirect()->route('articles.index');
+		if(count($request['tags']) > 0){
+			foreach ($request['tags'] as $key => $tag) {
+				$this->atags->create([
+					'article_id' => $article->id,
+					'tag_id' => $tag
+					]);
+			}
+		}
+
+		//return redirect()->route('articles.index');
 	}
 
 	/**
@@ -198,9 +219,11 @@ class ArticlesController extends Controller {
 							->with('articles')
 							->whereArticleId($id)
 							->first();
-		
+		$tags = $this->tags->all();
+		$atags =$this->atags->whereArticleId($id)->get();
+
 		$url = "www.localhost.com";				
-		return view('articles.edit', compact('category','division', 'district', 'thana', 'country','article', 'articleLang', 'url')); 
+		return view('articles.edit', compact('category','division', 'district', 'thana', 'country','article', 'articleLang', 'url', 'tags', 'atags')); 
 	}
 
 	/**
@@ -214,12 +237,14 @@ class ArticlesController extends Controller {
 		$ExistingArticle = $this->articles->findOrFail($id);
 		$ExistingArticleLang = $this->articleLanguages->whereArticleId($id);
 		$ExistingAddress = $this->address->findOrFail( $ExistingArticle->address_id );
+
 		$media = '';
 		$featured = 0;
 		$activate = 0;
 		$more_from_tag = 0;
 		$list_tag = 0;
 		$review = 0;
+		$editor_choice = 0;
 		if( $request['active'] )
 			$activate = 1;
 		if( $request['featured'] )
@@ -230,6 +255,8 @@ class ArticlesController extends Controller {
 			$list_tag = 1;
 		if( $request['review'] )
 			$review = 1;
+		if( $request['editorChoice'] )
+			$editor_choice = 1;
 		$address  = [];
 		$address['location']  	= $request['address'];
 		$address['thana_id']  	= $request['thana'];
@@ -269,6 +296,7 @@ class ArticlesController extends Controller {
 		$articles['featured_details']		= 	$request['featured_details'];
 		$articles['more_from_dhaka']		= 	$more_from_tag;
 		$articles['list_tag']				= 	$list_tag;
+		$articles['editorChoice']			= 	$editor_choice;
 
 		$this->articles->where('id', $id)->update( $articles );
 
@@ -283,6 +311,17 @@ class ArticlesController extends Controller {
 		$articleLangs['article_id']			= $id;
 
 		$this->articleLanguages->where('article_id', $id)->update( $articleLangs );
+		$this->atags->whereArticleId($id)
+							->delete();
+		if(count($request['tags']) > 0){
+			foreach ($request['tags'] as $key => $tag) {
+				$this->atags->create([
+					'article_id' => $id,
+					'tag_id' => $tag
+					]);
+
+			}
+		}
 
 		return redirect()->route('articles.index');
 		

@@ -12,7 +12,7 @@
 				<div class="col-md-8">
 					<div class="row">
 						<div class="col-md-8">
-							@include('front.category-list')
+							@include('front.category-per-list')
 						</div>
 						<div class="col-md-4">
 							@include('front.reviews')

@@ -16,18 +16,16 @@
 										<div class="pic-credit text-right">Foto: Carolina Byrmo</div>
 										<h1>{{ $article->title }}</h1>
 										<div class="row">
-											<div class="col-md-8">	
-												
+											<div class="col-md-8">
 											<div class="row">
 													<div class="col-md-6">
-														<p>
-														</p><div class="fz-ratings">
-													<a href=""><i class="fa fa-star fa-2x"></i></a>
-													<a href=""><i class="fa fa-star fa-2x"></i></a>
-													<a href=""><i class="fa fa-star fa-2x"></i></a>
-													<a href=""><i class="fa fa-star fa-2x"></i></a>
-													<a href=""><i class="fa fa-star fa-2x"></i></a>
-												</div>
+														<div class="fz-ratings">
+															<a href=""><i class="fa fa-star fa-2x"></i></a>
+															<a href=""><i class="fa fa-star fa-2x"></i></a>
+															<a href=""><i class="fa fa-star fa-2x"></i></a>
+															<a href=""><i class="fa fa-star fa-2x"></i></a>
+															<a href=""><i class="fa fa-star fa-2x"></i></a>
+														</div>
 												READERS GRADE <b>4</b><br>
 												NUMBER OF VOTES <span class="badge badge-style-1 ">3</span><br>
 												<i>Click on the symble</i>

@@ -10,5 +10,6 @@
 		<div class="clearfix"></div>
 	@endforeach
 </div>
-
-<button type="button" class="btn btn-style-1 btn-block">ALL REVIEWS</button>
+<a href="/list/reviews" style="text-decoration: none;" target="_top">
+	<button type="button" class="btn btn-style-1 btn-block">ALL REVIEWS</button>
+</a>

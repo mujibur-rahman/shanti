@@ -59,7 +59,6 @@
                                                   </tr>
                                               @endforeach
                                           </tbody>
-                                          @if ($events->count() > 10)
                                           <tfoot>
                                               <tr>
                                                   <td colspan="5">
@@ -67,7 +66,7 @@
                                                   </td>
                                               </tr>
                                           </tfoot>
-                                          @endif
+                                         
                                       </table>
                                         @else
                                             There are no events

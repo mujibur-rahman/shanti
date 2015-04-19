@@ -1,17 +1,18 @@
 <div class="col-md-12"><div class="article-style"><h1>RELATED</h1></div></div>
+@foreach($articleRelated as $ar)
 <div class="col-md-6">
 	<div class="article-style-2">
-		<div class="picbox"><img src="/img/article-common-pic-1.png" class="img-responsive"></div>
-		<h2>Tentative burger on the trendy street</h2>
-		<p>After a visit to Burgers &amp; Beer Tasting The Council may establish the following: It fits the word junk food better than the term fast food.</p>
+		<div class="picbox"><img src="/images/articles/{{ $ar->media }}" class="img-responsive"></div>
+		<a href="/details/article/{{ $ar->id }}"><h2>{{ $ar->title }}</h2></a>
+		<p>{{ strip_tags($ar->short_detail) }}</p>
 		<div class="clearfix"></div>
 	</div>
 </div>
+@endforeach
+@if(count($articleRelated) <= 0)
 <div class="col-md-6">
 	<div class="article-style-2">
-		<div class="picbox"><img src="/img/article-common-pic-2.png" class="img-responsive"></div>
-		<h2>Tentative burger on the trendy street</h2>
-		<p>After a visit to Burgers &amp; Beer Tasting The Council may establish the following: It fits the word junk food better than the term fast food.</p>
-		<div class="clearfix"></div>
+	No related post found
 	</div>
 </div>
+@endif

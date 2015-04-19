@@ -4,7 +4,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\EventStoreRequests;
+use App\Http\Requests\HomeAjaxRequest;
+use App\Http\Requests\HomeRequest;
+//use App\Http\Requests\EventStoreRequests;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Models\ArticleCategory;
 use App\Models\Divisions;
@@ -19,7 +22,9 @@ use App\Models\Addresses;
 use App\Models\Articles;
 use App\Models\Ads;
 use App\Models\AdPositions;
-
+use App\Http\Middleware\VerifyCsrfToken;
+use App\Models\Tag;
+use App\Models\ArticleTags;
 class HomeController extends Controller {
 
 	/*
@@ -45,6 +50,8 @@ class HomeController extends Controller {
 	private $articleLanguages;
 	private $ads;
 	private $adPosition;
+	private $tags;
+	private $atags;
 	/**
 	 * Create a new controller instance.
 	 *
@@ -54,7 +61,7 @@ class HomeController extends Controller {
     	Divisions $divisions, Districts $districts, Thanas $thanas,
     	Countries $country, Events $events, EventLanguages $eventLanguages,
     	Language $language, Addresses $address, Articles $articles, 
-    	ArticleLanguages $articleLanguages, Ads $ads, AdPositions $adPosition)
+    	ArticleLanguages $articleLanguages, Ads $ads, AdPositions $adPosition,Tag $tags, ArticleTags $atags)
     {
         $this->articleCategory = $articleCategory;
         $this->country = $country;
@@ -69,6 +76,8 @@ class HomeController extends Controller {
        	$this->articles = $articles;
        	$this->ads = $ads;
 		$this->adPosition = $adPosition;
+		$this->tags = $tags;
+       	$this->atags = $atags;
         //$this->middleware('auth');
     }
 
@@ -87,6 +96,53 @@ class HomeController extends Controller {
 
     }
 
+    public function categoryList(){
+    	return $this->articleCategory->all()->lists('title', 'id');
+    }
+
+    public function moreArticles( ){
+    	$articles = $this->articles->with('article_category')
+									->whereIsActive(1)
+									//->whereFeatured(0)
+									//->whereMoreFromDhaka(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
+									->orderBy('created_at', 'desc')
+									->orderBy('id', 'desc')
+									//->get()
+									->paginate( 2 );
+		$ar = [];
+		foreach ($articles as $key => $value) {
+			$ar[$key] = $value;
+		}
+		//print_r($ar);
+		return response()->json([
+				'articles' => $ar
+			]);
+    }
+
+    public function moreCategoryArticles(HomeAjaxRequest $request, $id){
+    	$articles = $this->articles->with('article_category')
+									->whereIsActive(1)
+									//->whereFeatured(0)
+									//->whereMoreFromDhaka(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
+									->whereArticleCategoryId( $id )
+									->orderBy('created_at', 'desc')
+									->orderBy('id', 'desc')
+									//->get()
+									->paginate( 2 );
+		$ar = [];
+		foreach ($articles as $key => $value) {
+			$ar[$key] = $value;
+		}
+		//print_r($ar);
+		return response()->json([
+				'articles' => $ar
+			]);	
+    }
+
 	/**
 	 * Show the application dashboard to the user.
 	 *
@@ -94,29 +150,30 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = $this->articles->with('article_category')
+		$arti = $this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereFeatured(0)
-									->whereMoreFromDhaka(0)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereFeatured(0)
+									//->whereMoreFromDhaka(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
+									->orderBy('created_at', 'desc')
 									->orderBy('id', 'desc')
-									->get()
-									->take(2);
+									->get();
+									//->take(2);
 		$featuredArticles = $this->articles->with('article_category')
 									->whereIsActive(1)
 									->whereFeatured(1)
-									->whereMoreFromDhaka(0)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereMoreFromDhaka(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
 									->get()
-									->take(2);
+									->take(10);
 		$moreTagArticles = 	$this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereFeatured(0)
+									//->whereFeatured(0)
 									->whereMoreFromDhaka(1)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
 									->get()
 									->take(10);
 		$ads = $this->getAds();
@@ -126,7 +183,7 @@ class HomeController extends Controller {
 								->with('article_category')
 								->with('address')
 								->whereIsActive(1)
-								->whereFeatured(0)
+								//->whereFeatured(0)
 								->whereLastMinute(1)
 								->get([
 										'events.id',
@@ -144,23 +201,23 @@ class HomeController extends Controller {
 								->with('address')
 								->whereIsActive(1)
 								->whereFeatured(1)
-								->whereLastMinute(0)
+								//->whereLastMinute(0)
 								->get()
 								->take(2);
 		$listArticles = $this->articles->with('article_category')
 									->whereIsActive(1)
 									->whereListTag(1)
-									->whereMoreFromDhaka(0)
-									->whereFeatured(0)
-									->whereIsReviewing(0)
+									//->whereMoreFromDhaka(0)
+									//->whereFeatured(0)
+									//->whereIsReviewing(0)
 									->get()
 									->take(3);
 
 		$reviewArticles = $this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereListTag(0)
-									->whereMoreFromDhaka(0)
-									->whereFeatured(0)
+									//->whereListTag(0)
+									//->whereMoreFromDhaka(0)
+									//->whereFeatured(0)
 									->whereIsReviewing(1)
 									->get()
 									->take(3);
@@ -171,8 +228,23 @@ class HomeController extends Controller {
 									->orderBy('page_view_count', 'desc')
 									->get()
 									->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$articles = $arti->take(2);
+		$total = count($arti);
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
 
-		return view('front.index', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles'));
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);
+								
+
+		return view('front.index', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles', 'total', 'categoryLists', 'listEvent', 'editorChoice'));
 
 	}
 
@@ -180,9 +252,9 @@ class HomeController extends Controller {
 		return $this->articles->with('article_category')
 									->whereIsActive(1)
 									->whereFeatured(1)
-									->whereMoreFromDhaka(0)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereMoreFromDhaka(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
 									->get()
 									->take(2);
 	}
@@ -191,7 +263,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
-					->whereFeatured(0)
+					//->whereFeatured(0)
 					->whereLastMinute(1)
 					->get([
 							'events.id',
@@ -212,27 +284,27 @@ class HomeController extends Controller {
 					->with('address')
 					->whereIsActive(1)
 					->whereFeatured(1)
-					->whereLastMinute(0)
+					//->whereLastMinute(0)
 					->get()
 					->take(2);
 	}
 	public function moreTaggedArticles(){
 		return $this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereFeatured(0)
+									//->whereFeatured(0)
 									->whereMoreFromDhaka(1)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
 									->get()
 									->take(10);
 	}
 	public function moreTaggedArticlesByCategoryId( $id ){
 		return $this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereFeatured(0)
+									//->whereFeatured(0)
 									->whereMoreFromDhaka(1)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
 									->whereArticleCategoryId( $id )
 									->get()
 									->take(10);
@@ -241,9 +313,9 @@ class HomeController extends Controller {
 		return $this->articles->with('article_category')
 									->whereIsActive(1)
 									->whereListTag(1)
-									->whereMoreFromDhaka(0)
-									->whereFeatured(0)
-									->whereIsReviewing(0)
+									//->whereMoreFromDhaka(0)
+									//->whereFeatured(0)
+									//->whereIsReviewing(0)
 									->get()
 									->take(3);
 	}
@@ -276,7 +348,44 @@ class HomeController extends Controller {
 		$article->where('id', $id)->update([
 											'page_view_count' => $total
 										]);
-		return view('front.details-article', compact('article', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads'));
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
+
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		//$tags = $this->atags->whereArticleId($id)->get();
+		
+		//$users = \DB::select('select article_id, tag_id from article_tag where article_id=' . $id)->get();
+		$at = \DB::table('article_tag')->where('article_id', '=', $id)->get();
+		$ts = [];
+		foreach ($at as $key => $value) {
+			array_push($ts, $value->tag_id);
+		}
+		$art_tag = \DB::table('article_tag')
+											->distinct()
+											->select(\DB::raw('article_id'))
+											->whereIn('tag_id', $ts)
+											->get();
+		$art = [];
+		foreach ($art_tag as $key => $value) {
+			if( $value->article_id != $id ){
+				array_push($art, $value->article_id);
+			} 
+			
+		}
+		krsort($art);
+		$articleRelated = $this->articles->whereIn('id', $art)->get()->take(2);
+
+		//print "<pre>";print_r($art);print "</pre>";
+					
+		return view('front.details-article', compact('article', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent', 'editorChoice', 'articleRelated'));
 	}
 	public function articleCategory( $id ){
 		$ads 				= $this->getAds();
@@ -288,28 +397,41 @@ class HomeController extends Controller {
 		$mostReads 			= $this->mostReadArticles();
 		$reviewArticles = $this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereListTag(0)
-									->whereMoreFromDhaka(0)
-									->whereFeatured(0)
+									//->whereListTag(0)
+									//->whereMoreFromDhaka(0)
+									//->whereFeatured(0)
 									->whereIsReviewing(1)
 									->get()
 									->take(3);
-		$articles = $this->articles->with('article_category')
+		$arLists = $this->articles->with('article_category')
 									->whereIsActive(1)
-									->whereFeatured(0)
-									->whereMoreFromDhaka(0)
-									->whereListTag(0)
-									->whereIsReviewing(0)
+									//->whereFeatured(0)
+									//->whereMoreFromDhaka(0)
+									//->whereListTag(0)
+									//->whereIsReviewing(0)
 									->whereArticleCategoryId( $id )
 									->orderBy('id', 'desc')
-									->get()
-									->take(5);
-									
-		return view('front.category-articles', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles') );
+									->get();
+									//->take(5);
+		$articles = $arLists->take(2);
+		$total = count($arLists);
+		$categoryId = $id;	
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);	
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);						
+		return view('front.category-articles', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles', 'total', 'categoryId', 'categoryLists', 'listEvent', 'editorChoice') );
 	}
 
 	public function eventDetails( $id ){
-		print( "Event: " . $id );
+		
 		$ads 				= $this->getAds();
 		$featuredArticles 	= $this->featuredArticles();
 		$events 			= $this->getEvents();
@@ -330,7 +452,18 @@ class HomeController extends Controller {
 		$event->where('id', $id)->update([
 											'page_view_count' => $total
 										]);
-		return view('front.details-event', compact('event', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads'));
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		return view('front.details-event', compact('event', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent','editorChoice'));
 	}
 	public function featuredEventsPaging(){
 		return $this->events
@@ -338,8 +471,8 @@ class HomeController extends Controller {
 					->with('address')
 					->whereIsActive(1)
 					->whereFeatured(1)
-					->whereLastMinute(0)
-					->paginate(10);
+					//->whereLastMinute(0)
+					->paginate(1);
 	}
 	public function feventsLists(){
 		$ads 				= $this->getAds();
@@ -349,10 +482,137 @@ class HomeController extends Controller {
 		$moreTagArticles 	= $this->moreTaggedArticles();
 		$listArticles 		= $this->listTaggedArticles();
 		$mostReads 			= $this->mostReadArticles();
-
-		return view('front.all-events', compact('featuredArticles','ads', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads'));
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		return view('front.all-events', compact('featuredArticles','ads', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent','editorChoice'));
 	}
 
+	public function reviewListsPaging(){
+		return $this->articles
+					->with('article_category')
+					->with('address')
+					->whereIsActive(1)
+					->whereIsReviewing(1)
+					//->whereLastMinute(0)
+					->paginate(1);
+	}
+
+	public function reviewListsByCategory( $cid ){
+		return $this->articles
+					->with('article_category')
+					->with('address')
+					->whereIsActive(1)
+					->whereIsReviewing(1)
+					//->whereLastMinute(0)
+					->whereArticleCategoryId( $cid )
+					->paginate(1);
+	}
+
+	public function reviewsList(){
+
+		$ads 				= $this->getAds();
+		$featuredArticles 	= $this->featuredArticles();
+		$events 			= $this->getEvents();
+		$reviewLists 		= $this->reviewListsPaging();
+		$moreTagArticles 	= $this->moreTaggedArticles();
+		$listArticles 		= $this->listTaggedArticles();
+		$mostReads 			= $this->mostReadArticles();
+		$category 			= $this->categoryList();
+		$selectCat 			= "";
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		return view('front.all-reviews', compact('featuredArticles','ads', 'events', 'reviewLists', 'moreTagArticles', 'listArticles', 'mostReads', 'category', 'selectCat','categoryLists', 'listEvent', 'editorChoice'));
+	}
+
+	public function reviewsSearch(ReviewRequest $request){
+		//dd($request);
+		$ads 				= $this->getAds();
+		$featuredArticles 	= $this->featuredArticles();
+		$events 			= $this->getEvents();
+		$reviewLists 		= ( $request['category'] ? $this->reviewListsByCategory($request['category']) : 
+			$this->reviewListsPaging() );
+		$moreTagArticles 	= $this->moreTaggedArticles();
+		$listArticles 		= $this->listTaggedArticles();
+		$mostReads 			= $this->mostReadArticles();
+		$category 			= $this->categoryList();
+		$selectCat			= ($request['category'] ? $request['category'] : "");
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		return view('front.all-reviews', compact('featuredArticles','ads', 'events', 'reviewLists', 'moreTagArticles', 'listArticles', 'mostReads', 'category', 'selectCat','categoryLists', 'listEvent', 'editorChoice'));
+
+	}
+
+	public function wildcardSearch(HomeRequest $request){
+		$q = $request["q"];
+		$category = $request["category"];
+		$ads 				= $this->getAds();
+		$featuredArticles 	= $this->featuredArticles();
+		$events 			= $this->getEvents();
+		$featuredEvents 	= $this->featuredEvents();
+		$moreTagArticles 	= $this->moreTaggedArticles();
+		$listArticles 		= $this->listTaggedArticles();
+		$mostReads 			= $this->mostReadArticles();
+		$reviewArticles = $this->articles->with('article_category')
+									->whereIsActive(1)
+									->whereIsReviewing(1)
+									->get()
+									->take(3);
+
+		$ar = $this->articles->whereIsActive(1);
+		if($category != "all"){
+			$ar = $ar->whereArticleCategoryId( $category );
+		}
+		if( $q != "" ){
+			$ar = $ar->where('title', 'LIKE', "%{$q}%")
+					->orWhere('short_detail', 'LIKE', "%{$q}%")
+					->orWhere('details', 'LIKE', "%{$q}%");
+		}
+		$articles = $ar->orderBy('created_at', 'desc')->orderBy('id', 'desc')->paginate(3);
+		$total = 2;
+		$categoryId = $category;	
+		$categoryLists = $this->articleCategory->whereIsactive(1)->get();	
+		$listEvent = $this->events
+								->with('article_category')
+								->with('address')
+								->whereIsActive(1)
+								->get([
+										'events.id',
+										'events.media',
+										'events.title'
+									]);					
+		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		return view('front.search-list', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles', 'total', 'categoryId', 'categoryLists', 'q', 'listEvent', 'editorChoice') );
+	}
+	public function moreWildcardSearch(HomeRequest $request){
+		print_r( $request );
+	}
 	public function dashboard(){
 		return view('dashboard');
 	}

@@ -55,15 +55,14 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                        @if ($categories->count() > 10)
+                                        
                                         <tfoot>
                                             <tr>
-                                                <td colspan="4">
+                                                <td colspan="5">
                                                     {!! $categories !!}
                                                 </td>
                                             </tr>
                                         </tfoot>
-                                        @endif
                                     </table>
                                 @else
                                     There are no category for article

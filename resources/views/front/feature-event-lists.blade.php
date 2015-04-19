@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="more-info-container">
-			@foreach($featuredEvents as $fevent)
+			@foreach($featuredEvents as $key => $fevent)
 
-				@if( count($featuredEvents) % 2 == 1)
+				@if( $key % 2 == 1)
 				<div class="more-info-box">
 					<div class="more-info-iconbox"><a href="/details/event/{{$fevent->id}}"><i class="fa fa-chevron-right fa-3x"></i></a></div>
 					<h1>More information</h1>
@@ -57,15 +57,8 @@
 <div class="row">
 	<div class="col-md-12 text-center">
 		<nav>
-			<ul class="pagination pagination-lg">
-				<li><a href="#" aria-label="Previous"><span aria-hidden="true">« Back</span></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"><span aria-hidden="true">» Next</span></a></li>
-			</ul>
+			<!--Pagination-->
+			{!! $featuredEvents !!}
 		</nav>
 	</div>
 </div>

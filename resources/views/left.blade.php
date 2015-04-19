@@ -35,6 +35,24 @@
                 </li>
 
                 <li>
+                    <a href="#"><span class="title">Tags</span><span class="fa arrow"></span></a>
+                    <ul class="sub-menu collapse">
+                        <li>
+                            <a href="{{ url('/tags') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Tags
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/tags/create') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Add New Tag
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
                     <a href="#"><span class="title">Category</span><span class="fa arrow"></span></a>
                     <ul class="sub-menu collapse">
                         <li>
