@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    #RewriteRule ^(.*)$ public/$1 [L]
+    # Right htaccess rules
+    RewriteRule ^(.*)$ public/$1 [L]
     # Redirect Trailing Slashes...
-    RewriteRule ^(.*)/$ public/$1 [L,R=301]
+    # RewriteRule ^(.*)/$ public/$1 [L,R=301]
 
 </IfModule>
