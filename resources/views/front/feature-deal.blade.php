@@ -57,7 +57,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<!--div class="panel panel-default">
 		<div class="panel-heading" role="tab" id="headingTwo">
 		<h4 class="panel-title">
 		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -102,8 +102,8 @@
 								<li class="divider"></li>
 								<li><a href="#">Separated link</a></li>
 							</ul>
-							</div><!-- /btn-group -->
-					</div><!-- /input-group -->
+							</div>
+					</div>
 					<br>
 				</form>
 				<div class="text-center">
@@ -111,7 +111,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div-->
 
 	<div class="panel panel-default">
 		<div class="panel-heading" role="tab" id="headingThree">

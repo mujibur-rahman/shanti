@@ -6,7 +6,7 @@
 		</div>
 		<i class="fa fa-plus fa-lg color-yellow m-t-10"></i> <i class="fa fa-plus fa-lg color-yellow"></i> <i class="fa fa-plus fa-lg color-yellow"></i>
 		<a href="/details/article/{{ $review->id }}"><h2>{{ $review->title }}</h2></a>
-		<p>{{ $review->short_detail }}</p>
+		<p>{{ strip_tags($review->short_detail) }}</p>
 		<div class="clearfix"></div>
 	@endforeach
 </div>
