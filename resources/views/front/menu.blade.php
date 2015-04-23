@@ -11,7 +11,7 @@
 						<li><a href="/category/article/4" title="">SCENE & CULTURE</a></li> 
 						<li><a href="/category/article/5" title="">SHOPPING</a></li>    
 						<li><a href="/category/article/6" title="">CITY LIFE</a></li>
-						<li><a href="#" title="">BLOGS</a></li> 
+						<li><a href="http://www.shantidhaka.com/blog/" target="_blank" title="">BLOGS</a></li> 
 						<li><a href="/category/article/7" title="">GUIDES</a></li> 
 						<li><a href="/category/article/8" title=""> &nbsp; MORE <span class="caret"></span></a>
 							<!-- Submenu -->
