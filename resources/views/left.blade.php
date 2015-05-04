@@ -123,6 +123,24 @@
                         </li>
                     </ul>
                 </li>
+		
+		<li>
+                    <a href="#"><span class="title">Footer Slider</span><span class="fa arrow"></span></a>
+                    <ul class="sub-menu collapse">
+                        <li>
+                            <a href="{{ url('/footersliders') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Footer slider list
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/footersliders/create') }}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Add new footer slider
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
             </ul>

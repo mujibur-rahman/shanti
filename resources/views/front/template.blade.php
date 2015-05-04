@@ -64,6 +64,9 @@
 	<!-- body container finish-->
 
 	@yield('slider')
+	<div class="container">
+		@include('front.footerads')
+	</div>
 	<!--Footer-->
 	@include('front.footer')
 	<!--Footer finish-->

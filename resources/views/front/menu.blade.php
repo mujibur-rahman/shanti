@@ -16,24 +16,12 @@
 						<li><a href="/category/article/8" title=""> &nbsp; MORE <span class="caret"></span></a>
 							<!-- Submenu -->
 							<ul>
-							<li><a href="components.html" title="">Submenu Item 1</a></li>
-							<li><a href="components.html" title="">Submenu Item 2</a></li>
-							<li><a href="components.html" title="">Submenu Item 3</a></li>
+							<li><a href="/category/article/15" title="">Children</a></li>
+							<li><a href="/category/article/16" title="">Advertising</a></li>
 							</ul>
 							<!-- Submenu End -->  
 						</li> 
 						</ul>
-						<select id="tinynav1" class="tinynav tinynav1">
-							<option value="index.html" selected="selected">Home</option>
-							<option value="services.html">Services</option>
-							<option value="about.html">About</option><option value="portfolio.html">Portfolio</option>
-							<option value="project.html">Project</option>
-							<option value="components.html">Components</option>
-							<option value="components.html">- Submenu Item 1</option>
-							<option value="components.html">- Submenu Item 2</option>
-							<option value="index.html">- Submenu Item 3</option>
-							<option value="contact.html">Contact</option>
-						</select>
 						<!-- Menu End --> 
 						</div>  
 					</nav>
