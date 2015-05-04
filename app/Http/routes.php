@@ -41,8 +41,9 @@ Route::get('list/reviews', 'HomeController@reviewsList');
 //Route::get('user/sort/{role}', 'UserController@indexSort');
 //Route::post('list/reviews1', 'HomeController@reviewsSearch');
 //Route::post('list/reviews1', array('uses'=>'App\Http\Controllers\HomeController@reviewsSearch'));
-
+Route::resource('footersliders', 'FooterSlidersController');
 Route::get('categorysearch', 'HomeController@wildcardSearch');
+Route::get('eventsearch', 'HomeController@eventSearch');
 
 Route::get('reviewsearch', array(
   'uses' => 'HomeController@reviewsSearch',

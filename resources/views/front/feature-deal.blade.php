@@ -138,7 +138,7 @@
 <a href="/list/fevents" style="text-decoration: none;" target="_top">
 	<button type="button" class="btn btn-style-1 btn-block">ALL FEATURED EVENTS</button>
 </a>
-
+<!---Facebook/Ads -->
 <div class="add-container-1"><img src="/img/3rdcol-add-1.png" class="img-responsive"></div>
 <div class="add-container-1"><img src="/img/3rdcol-add-2.png" class="img-responsive"></div>
 <div class="add-container-1"><img src="/img/3rdcol-add-3.png" class="img-responsive"></div>
