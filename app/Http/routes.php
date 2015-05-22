@@ -10,7 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::get('missing', 'HomeController@missing');
+Route::get('language', 'HomeController@language');
 //Route::get('/', 'WelcomeController@index');
 // Route::get('/', function(){
 // 	return View::make('home');

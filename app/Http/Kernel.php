@@ -16,6 +16,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		//Mujibur Todo:'App\Http\Middleware\VerifyCsrfToken',
+		'App\Http\Middleware\App'
 	];
 
 	/**
