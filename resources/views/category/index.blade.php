@@ -27,7 +27,6 @@
                 </div>
                         <div class="panel-body">
                            <div class="dataTables_wrapper no-footer" id="table_wrapper">
-                            @include('category/search')
                             <div class="table-responsive"> 
 
                                 @if ($categories->count())
@@ -35,8 +34,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
+                                                <th>Bengali</th>
                                 				<th>Description</th>
-                                                <th colspan="3">Actions</th>
+                                                <th colspan="2">Actions</th>
                                             </tr>
                                         </thead>
 
@@ -44,14 +44,15 @@
                                             @foreach ($categories as $category)
                                                 <tr>
                                                     <td>{{ $category->title }}</td>
+                                                    <td>{{ $category->bnTitle }}</td>
                                 					<td>{{ substr($category->meta_description, 0, 30) }} ...</td>
                                                     <td width="10">{!! link_to_route('category.show', 'View', array($category->id), array('class' => 'btn btn-info')) !!}</td>
                                                     <td width="10">{!! link_to_route('category.edit', 'Edit', array($category->id), array('class' => 'btn btn-warning')) !!}</td>
-                                                    <td width="10">
+                                                    <!--td width="10">
                                                         {!! Form::open(array('method' => 'DELETE', 'route' => array('category.destroy', $category->id))) !!}
                                                             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
                                                         {!! Form::close() !!}
-                                                    </td>
+                                                    </td-->
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -29,13 +29,18 @@
 						<div class="logo">ShantiDhaka.com</div>
 						<div class="language">
 							
-								<ul class="nav nav-pills">
-									<li style="padding-right:10px;">Select Language</li>
+								<ul>
+									<!--li style="padding-right:10px;">Select Language</li>
 									<li>
 										<select class="form-control">
 										  <option>Bangla</option>
 										  <option>English</option>
 										</select>
+									</li-->
+
+									<li class="imgflag" style="list-style: none;">
+									<a href="{!! url('language') !!}"><img width="32" height="32" alt="en" src="{!! asset('/img/' . (session('locale') == 'bg' ? 'bengali' : 'english') . '-flag.png') !!}"></a>
+
 									</li>
 								</ul>
 							

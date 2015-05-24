@@ -1,7 +1,10 @@
 @foreach($ads as $ad)
 <div class="right-add-container">
 	@if($ad->ad_position->type == "Image")
-		<a href="http://{{ $ad->link }}" target="_blank" title="{{ $ad->title}}"><img src="/images/{{ $ad->image }}"></a>
+		<a href="http://{{ $ad->link }}" target="_blank" title="{{ $ad->short_desc}}">
+			{{ $ad->short_desc }}
+			<img src="/images/{{ $ad->image }}" />
+		</a>
 	@else
 		<!--object type="application/x-shockwave-flash"
 			data="your-flash-file.swf"

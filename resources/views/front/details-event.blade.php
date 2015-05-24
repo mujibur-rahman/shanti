@@ -9,12 +9,12 @@
 				<div class="col-md-12">
 					<div class="article-style-5">
 						<div class="row">
-						<div class="col-md-6"><div class="pic-header">EVENTS <small> Home / {{ $event->article_category->title }}</small></div></div>
+						<div class="col-md-6"><div class="pic-header">EVENTS <small> Home / {{ (session('locale') == "en" ? $event->article_category->title : $event->article_category->bnTitle ) }}</small></div></div>
 							<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($event->created_at)->format('D H:i') }}</div></div>
 						</div>
 						<div class="picbox"><img src="/images/events/{{ $event->media }}" class="img-responsive"></div>
 						<div class="pic-credit text-right">Foto: Carolina Byrmo</div>
-						<h1>{{ $event->title }}</h1>
+						<h1>{{ (session('locale') == "en" ? $event->title : $event->bnTitle ) }}</h1>
 						<br />
 						<div class="row">
 								<div class="col-md-4"><i class="fa fa-calendar fa-2x"></i>  
@@ -48,9 +48,9 @@
 								</div>
 
 								<p><b>
-									{{ strip_tags($event->short_detail) }}
+		{{ (session('locale') == "en" ? strip_tags($event->short_detail) : strip_tags($event->bnShort_detail) ) }}
 								</b></p>
-								{{ strip_tags($event->details) }}
+		{{ (session('locale') == "en" ? strip_tags($event->details) : strip_tags($event->bnDetails) ) }}
 							</div>
 							<div class="col-md-4">
 								<br><br>

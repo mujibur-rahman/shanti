@@ -7,7 +7,7 @@ class Events extends Model {
 	protected $table = "events";
 	protected $fillable = ['article_category_id','title', 'info_title', 'details', 'is_active', 'address_id', 'meta_keyword', 'meta_description', 'website', 'phone', 'entrance', 'entrance_fees', 'opening_date', 'ending_date',
 		'media', 'last_minute', 'featured', 'featured_title', 'price', 'strike_price',
-		'featured_details'
+		'featured_details','bnTitle','bnInfo_title', 'bnDetails'
 	];
 
 	public function address(){

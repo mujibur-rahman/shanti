@@ -70,7 +70,8 @@ class ArticleCategoryController extends Controller {
 			'title' => $request['title'],
 			'meta_keyword' => $request['keyword'],
 			'meta_description' => $request['description'],
-			'isactive' => $activate
+			'isactive' => $activate,
+			'bnTitle' => $request['bengaliTitle']
 			]);
 		$cat_id = $category->id; //last inserted ID
 
@@ -133,6 +134,7 @@ class ArticleCategoryController extends Controller {
 		$article['meta_keyword'] = $request['keyword'];
 		$article['meta_description'] = $request['description'];
 		$article['isactive'] = $activate;
+		$article['bnTitle'] = $request['bengaliTitle'];
 		$this->articleCategory->where('id', $id)->update( $article );
 		//After updating article category then same entry should go to article category language table.
 		$articleLang['title'] = $request['bengaliTitle'];

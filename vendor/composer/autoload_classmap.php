@@ -6,12 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddBnTitleToArticleCategory' => $baseDir . '/database/migrations/2015_05_23_035442_add_bnTitle_to_article_category.php',
+    'AddBnTitleToArticles' => $baseDir . '/database/migrations/2015_05_23_034726_add_bnTitle_to_articles.php',
+    'AddBnTitleToEvents' => $baseDir . '/database/migrations/2015_05_23_035204_add_bnTitle_to_events.php',
     'AddEditorChoiceArticlesTable' => $baseDir . '/database/migrations/2015_04_19_103857_add_editor_choice_articles_table.php',
     'AddExtraFlagArticlesTable' => $baseDir . '/database/migrations/2015_03_15_072439_add_extra_flag_articles_table.php',
     'AddFieldBangaTagTagsTable' => $baseDir . '/database/migrations/2015_04_19_060137_add_field_bangaTag_Tags_table.php',
     'AddLanguageIdArticleLanguagesTable' => $baseDir . '/database/migrations/2015_02_28_062115_add_language_id_article_languages_table.php',
     'AddMediaToArticlesTable' => $baseDir . '/database/migrations/2015_03_14_130054_add_media_to_articles_table.php',
     'AddMediaToEventsTable' => $baseDir . '/database/migrations/2015_03_14_154619_add_media_to_events_table.php',
+    'AddPositionAdsTable' => $baseDir . '/database/migrations/2015_05_24_042111_add_position_ads_table.php',
     'CreateAdPositionsTable' => $baseDir . '/database/migrations/2015_03_06_155658_create_ad_positions_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2015_02_21_180606_create_addresses_table.php',
     'CreateAdsTable' => $baseDir . '/database/migrations/2015_03_06_165521_create_ads_table.php',
@@ -24,6 +28,7 @@ return array(
     'CreateDivisionsTable' => $baseDir . '/database/migrations/2015_02_21_180602_create_divisions_table.php',
     'CreateEventLanguagesTable' => $baseDir . '/database/migrations/2015_02_28_162147_create-event-languages-table.php',
     'CreateEventsTable' => $baseDir . '/database/migrations/2015_02_28_160541_create-events-table.php',
+    'CreateFooterSlidersTable' => $baseDir . '/database/migrations/2015_04_26_161326_create_footer_sliders_table.php',
     'CreateLanguagesTable' => $baseDir . '/database/migrations/2015_02_21_095928_create_languages_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2015_02_20_055845_create_roles_table.php',

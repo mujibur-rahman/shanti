@@ -69,10 +69,10 @@ class ArticlesController extends Controller {
 	{
 		$limit = 10;
 		$articles = $this->articles
-									->with('address')
-									//->with('article_category')
-									->whereIsActive(1)
-									->paginate($limit);
+					->with('address')
+					//->with('article_category')
+					->whereIsActive(1)
+					->paginate($limit);
 		//dd($articles);
 		return view('articles.index', compact('articles'));
 	}
@@ -142,26 +142,29 @@ class ArticlesController extends Controller {
 		}
 		$article = $this->articles->create([
 			'article_category_id' 	=> 	$request['category'],
-			'title' 				=> 	$request['title'],
+			'title' 			=> 	$request['title'],
 			'short_detail' 			=> 	$request['shortDetails'],
-			'details' 				=> 	$request['details'],
+			'details' 			=> 	$request['details'],
 			'meta_keyword' 			=> 	$request['keyword'],
 			'meta_description' 		=> 	$request['description'],
-			'website' 				=> 	$request['website'],
-			'phone' 				=> 	$request['phone'],
+			'website' 			=> 	$request['website'],
+			'phone' 			=> 	$request['phone'],
 			//'email'		=> 		$request['email'],
-			'is_reviewing'			=>  $review,
+			'is_reviewing'			=>  	$review,
 			'is_active' 			=> 	$activate,
 			'address_id' 			=> 	$lastAddressId,
-			'media'					=> 	$media,
-			'featured'				=>	$featured,
+			'media'				=> 	$media,
+			'featured'			=>	$featured,
 			'featured_title'		=>	$request['featured_title'],
-			'price'					=>	$request['price'],
+			'price'				=>	$request['price'],
 			'strike_price'			=>	$request['strike_price'],
 			'featured_details'		=> 	$request['featured_details'],
 			'more_from_dhaka'		=> 	$more_from_tag,
-			'list_tag'				=> 	$list_tag,
-			'editorChoice'			=> $editor_choice
+			'list_tag'			=> 	$list_tag,
+			'editorChoice'			=>	$editor_choice,
+			'bnTitle'			=>	$request['bengaliTitle'],
+			'bnShort_detail'		=>	$request['bengaliShortDetails'],
+			'bnDetails'			=>	$request['bengaliDetails']
 			]);
 		$lastInsertedArticleId = $article->id;
 
@@ -172,7 +175,7 @@ class ArticlesController extends Controller {
 			'details' 				=> $request['bengaliDetails'],
 			'meta_keyword' 			=> $request['bengaliKeyword'],
 			'meta_description' 		=> $request['bengaliDescription'],
-			'language_id' 			=> 1, //Todo: Mujib: Used 1 for Bengali 
+			'language_id' 			=> 2, //Todo: Mujib: Used 2 for Bengali 
 			'is_active' 			=> $activate
 		]);
 		if(count($request['tags']) > 0){
@@ -276,37 +279,40 @@ class ArticlesController extends Controller {
 		}
 
 		$articles = [];
-		$articles['article_category_id']	= $request['category'];
-		$articles['title'] 					= $request['title'];
-		$articles['short_detail'] 			= $request['shortDetails'];
-		$articles['details'] 				= $request['details'];
-		$articles['meta_keyword'] 			= $request['keyword'];
-		$articles['meta_description'] 		= $request['description'];
-		$articles['website'] 				= $request['website'];
-		$articles['phone'] 					= $request['phone'];
-		$articles['is_active'] 				= $activate;
-		$articles['address_id'] 			= $ExistingAddress->id;
-		$articles['is_reviewing']			= $review;
+		$articles['article_category_id']		= 	$request['category'];
+		$articles['title'] 				= 	$request['title'];
+		$articles['short_detail'] 			= 	$request['shortDetails'];
+		$articles['details'] 				= 	$request['details'];
+		$articles['meta_keyword'] 			= 	$request['keyword'];
+		$articles['meta_description'] 			= 	$request['description'];
+		$articles['website'] 				= 	$request['website'];
+		$articles['phone'] 				= 	$request['phone'];
+		$articles['is_active'] 				= 	$activate;
+		$articles['address_id'] 			= 	$ExistingAddress->id;
+		$articles['is_reviewing']			= 	$review;
 		if( $media )
-			$articles['media']				= 	$media;
+			$articles['media']			= 	$media;
 		$articles['featured']				=	$featured;
 		$articles['featured_title']			=	$request['featured_title'];
-		$articles['price']					=	$request['price'];
+		$articles['price']				=	$request['price'];
 		$articles['strike_price']			=	$request['strike_price'];
-		$articles['featured_details']		= 	$request['featured_details'];
-		$articles['more_from_dhaka']		= 	$more_from_tag;
+		$articles['featured_details']			= 	$request['featured_details'];
+		$articles['more_from_dhaka']			= 	$more_from_tag;
 		$articles['list_tag']				= 	$list_tag;
 		$articles['editorChoice']			= 	$editor_choice;
+		$articles['bnTitle']				=	$request['bengaliTitle'];
+		$articles['bnShort_detail']			=	$request['bengaliShortDetails'];
+		$articles['bnDetails']				=	$request['bengaliDetails'];
 
 		$this->articles->where('id', $id)->update( $articles );
 
 		$articleLangs = [];
 		$articleLangs['title']				= $request['bengaliTitle'];
-		$articleLangs['short_detail'] 		= $request['bengaliShortDetails'];
+		$articleLangs['short_detail'] 			= $request['bengaliShortDetails'];
 		$articleLangs['details'] 			= $request['bengaliDetails'];
-		$articleLangs['meta_keyword'] 		= $request['bengaliKeyword'];
-		$articleLangs['meta_description'] 	= $request['bengaliDescription'];
-		$articleLangs['language_id'] 		= 1;
+		$articleLangs['meta_keyword'] 			= $request['bengaliKeyword'];
+		$articleLangs['meta_description'] 		= $request['bengaliDescription'];
+		$articleLangs['language_id'] 			= 2;
 		$articleLangs['is_active'] 			= $activate;
 		$articleLangs['article_id']			= $id;
 

@@ -8,8 +8,8 @@
 					<div class="more-info-iconbox"><a href="/details/event/{{$fevent->id}}"><i class="fa fa-chevron-right fa-3x"></i></a></div>
 					<h1>More information</h1>
 					<p>
-						<b><span class="label label-style-1">Events</span> {{ $fevent->title }}</b><br>
-						{{ $fevent->info_title }} 
+						<b><span class="label label-style-1">Events</span> {{ (session('locale') == "en" ? $fevent->title  : $fevent->bnTitle ) }}</b><br>
+						{{ (session('locale') == "en" ? $fevent->info_title  : $fevent->bnInfo_title ) }}
 					</p>
 					<div class="row">
 						<div class="col-md-4"><i class="fa fa-calendar fa-2x"></i>  {{ \Carbon::parse($fevent->opening_date)->format('D d M Y') }} </div>
@@ -23,9 +23,9 @@
 					<div class="more-info-iconbox"><a href="/details/event/{{$fevent->id}}"><i class="fa fa-chevron-right fa-3x"></i></a></div>
 					<h1>More information</h1>
 					<p>
-						<b><span class="label label-style-1">Events</span> {{ $fevent->title }}</b><br>
-						{{ $fevent->info_title }}
-						<br /><i class="fa fa-map-marker fa-lg"></i> {{ $fevent->address->location }} <br>	
+						<b><span class="label label-style-1">Events</span> {{ (session('locale') == "en" ? $fevent->title  : $fevent->bnTitle ) }}</b><br>
+						{{ (session('locale') == "en" ? $fevent->info_title  : $fevent->bnInfo_title ) }}
+						<br /><i class="fa fa-map-marker fa-lg"></i> {{ $fevent->address->location }} <br>
 						<div class="fz-ratings">
 							<a href=""><i class="fa fa-star fa-2x"></i></a>
 							<a href=""><i class="fa fa-star fa-2x"></i></a>

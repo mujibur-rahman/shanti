@@ -1,7 +1,9 @@
 <h1 class="article-3">FEATURED DEALS</h1>
 @foreach($featuredArticles as $article)
 <div class="article-style-3">
-	<a href="http://{{ preg_replace('#^https?://#', '', $article->website) }}" target="_blank"><h2>{!! $article->title !!}</h2></a>
+	<a href="http://{{ preg_replace('#^https?://#', '', $article->website) }}" target="_blank"><h2>
+	{{ (session('locale') == "en" ? $article->title : $article->bnTitle ) }}
+	</h2></a>
 	<div class="picbox">
 		<a href="http://{{ preg_replace('#^https?://#', '', $article->website) }}" target="_blank">
 			<img src="/images/articles/{{ $article->media }}" class="img-responsive" />
@@ -32,7 +34,7 @@
 		<div class="panel-body">
 			@foreach( $events as $event )
 				<div class="article-style-3">
-					<a href="http://{{ preg_replace('#^https?://#', '', $event->website) }}" target="_blank"><h2>{{ $event->title }}</h2></a>
+					<a href="http://{{ preg_replace('#^https?://#', '', $event->website) }}" target="_blank"><h2>{{ (session('locale') == "en" ? $event->title : $event->bnTitle ) }}</h2></a>
 					<div class="picbox">
 						<a href="http://{{ preg_replace('#^https?://#', '', $event->website) }}" target="_blank">
 							<img src="/images/events/{{ $event->media }}" class="img-responsive" />
@@ -124,9 +126,9 @@
 				@foreach($featuredEvents as $fevent)
 					<a href="/details/event/{{ $fevent->id }}" style="text-decoration: none;">
 						<div class="featured-event">
-							<h1>{{ $fevent->title }}</h1>
+							<h1>{{ (session('locale') == "en" ? $fevent->title : $fevent->bnTitle ) }}</h1>
 							<p>{{ $fevent->address->location }} <i class="fa fa-map-marker fa-2x"></i></p>
-							<p>{{ $fevent->info_title }}...</p>
+							<p>{{ (session('locale') == "en" ? $fevent->info_title : $fevent->bnInfo_title ) }}...</p>
 							<p><i class="fa fa-calendar fa-2x"></i> {{ \Carbon::parse($fevent->opening_date)->format('D d M Y') }}<i class="fa fa-clock-o fa-2x"></i> The whole day</p>
 						</div>
 					</a>
@@ -139,6 +141,18 @@
 	<button type="button" class="btn btn-style-1 btn-block">ALL FEATURED EVENTS</button>
 </a>
 <!---Facebook/Ads -->
-<div class="add-container-1"><img src="/img/3rdcol-add-1.png" class="img-responsive"></div>
 <div class="add-container-1"><img src="/img/3rdcol-add-2.png" class="img-responsive"></div>
-<div class="add-container-1"><img src="/img/3rdcol-add-3.png" class="img-responsive"></div>
+@foreach($bottomAds as $ad)
+	@if($ad->ad_position->type == "Image")
+	<div class="add-container-1"><a href="http://{{ $ad->link }}" target="_blank" title="{{ $ad->short_desc }}">{{ $ad->short_desc }}
+		<img src="/images/{{ $ad->image }}" class="img-responsive" /></a></div>
+	@else
+		<!--object type="application/x-shockwave-flash"
+			data="your-flash-file.swf"
+			width="0" height="0">
+		<param name="movie" value="your-flash-file.swf" />
+		<param name="quality" value="high"/>
+		</object-->sds
+		{{ $ad->image }}
+	@endif
+@endforeach

@@ -9,9 +9,9 @@
 						<i class="fa fa-chevron-right fa-3x"></i></a>
 					</div>
 					<p>
-						<b><span class="label label-style-1">{{ $review->article_category->title }}</span> 
-							{{ $review->title }}</b><br>
-							{{ strip_tags($review->short_detail) }}
+						<b><span class="label label-style-1">{{ (session('locale') == "en" ? $review->article_category->title  : $review->article_category->bnTitle ) }} </span>
+							{{ (session('locale') == "en" ? $review->title  : $review->bnTitle ) }}</b><br>
+							{{ (session('locale') == "en" ? strip_tags($review->details) : strip_tags($review->bnDetails) ) }}
 						<div>
 							<a href=""><i class="fa fa-plus fa-lg color-yellow"></i></a>
 							<a href=""><i class="fa fa-plus fa-lg color-yellow"></i></a>
@@ -27,9 +27,9 @@
 						<i class="fa fa-chevron-right fa-3x"></i></a>
 					</div
 					<p>				
-						<b><span class="label label-style-1">{{ $review->article_category->title }}</span> 
-							{{ $review->title }}</b><br>
-							{{ strip_tags($review->short_detail) }}
+						<b><span class="label label-style-1">{{ (session('locale') == "en" ? $review->article_category->title  : $review->article_category->bnTitle ) }}</span> 
+							{{ (session('locale') == "en" ? $review->title  : $review->bnTitle ) }}</b><br>
+							{{ (session('locale') == "en" ? strip_tags($review->details) : strip_tags($review->bnDetails) ) }}
 						<div>
 							<a href=""><i class="fa fa-plus fa-lg color-yellow"></i></a>
 							<a href=""><i class="fa fa-plus fa-lg color-yellow"></i></a>

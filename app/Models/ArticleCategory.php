@@ -16,6 +16,6 @@ class ArticleCategory extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['page_view_count', 'meta_keyword', 'meta_description', 'title', 'isactive'];
+	protected $fillable = ['page_view_count', 'meta_keyword', 'meta_description', 'title', 'isactive', 'bnTitle'];
 
 }

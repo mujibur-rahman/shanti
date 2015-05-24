@@ -11,7 +11,7 @@
 			{!! Form::open(array('url'=>'/reviewsearch', 'method' => 'post')) !!}
 				<div class="input-select">
 				<select class="form-control" name="category" id="category">
-					<option>Select</option>						
+					<option>Select</option>
 					@foreach($category as $k => $v)
 						@if($selectCat && $selectCat == $k)
 							<option selected value="{{ $k }}">{{ $v }}</option>
