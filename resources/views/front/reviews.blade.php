@@ -5,8 +5,14 @@
 			<a href="/details/article/{{ $review->id }}"><img src="/images/articles/{{ $review->media}}" class="img-responsive" /></a>
 		</div>
 		<i class="fa fa-plus fa-lg color-yellow m-t-10"></i> <i class="fa fa-plus fa-lg color-yellow"></i> <i class="fa fa-plus fa-lg color-yellow"></i>
-		<a href="/details/article/{{ $review->id }}"><h2>{{ $review->title }}</h2></a>
-		<p>{{ strip_tags($review->short_detail) }}</p>
+		<a href="/details/article/{{ $review->id }}">
+			<h2>
+			{{ (session('locale') == "en" ? $review->title : $review->bnTitle) }}
+			</h2>
+		</a>
+		<p>
+			{{ (session('locale') == "en" ? strip_tags($review->short_detail) : strip_tags($review->bnShort_detail)) }}
+		</p>
 		<div class="clearfix"></div>
 	@endforeach
 </div>

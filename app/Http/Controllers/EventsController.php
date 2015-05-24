@@ -139,7 +139,10 @@ class EventsController extends Controller {
 			'featured_title'		=>	$request['featured_title'],
 			'price'					=>	$request['price'],
 			'strike_price'			=>	$request['strike_price'],
-			'featured_details'		=> 	$request['featured_details']
+			'featured_details'		=> 	$request['featured_details'],
+			'bnTitle' 			=>	$request['bengaliTitle'],
+			'bnInfo_title'			=>	$request['bengaliInfoTitle'],
+			'bnDetails'			=>	$request['bengaliDetails']
 			]);
 		$lastInsertedEventId = $event->id;
 		$this->eventLanguages->create([
@@ -149,7 +152,7 @@ class EventsController extends Controller {
 			'details' 				=> $request['bengaliDetails'],
 			'meta_keyword' 			=> $request['bengaliKeyword'],
 			'meta_description' 		=> $request['bengaliDescription'],
-			'language_id' 			=> 1, //Todo: Mujib: Used 1 for Bengali 
+			'language_id' 			=> 2, //Todo: Mujib: Used 2 for Bengali 
 			'is_active' 			=> $activate
 		]);
 		return redirect()->route('events.index');
@@ -248,22 +251,25 @@ class EventsController extends Controller {
 		$event['is_active'] 			= $activate;
 		$event['address_id'] 			= $ExistingAddress->id;
 		if( $media )
-			$event['media']				= 	$media;
+			$event['media']			= 	$media;
 		$event['last_minute']			=	$last_minute;
-		$event['featured']				=	$featured;
+		$event['featured']			=	$featured;
 		$event['featured_title']		=	$request['featured_title'];
-		$event['price']					=	$request['price'];
+		$event['price']				=	$request['price'];
 		$event['strike_price']			=	$request['strike_price'];
 		$event['featured_details']		= 	$request['featured_details'];
+		$event['bnTitle'] 			=	$request['bengaliTitle'];
+		$event['bnInfo_title']			=	$request['bengaliInfoTitle'];
+		$event['bnDetails']			=	$request['bengaliDetails'];
 		$this->events->where('id', $id)->update( $event );
 
 		$eventLangs = [];
 		$eventLangs['title']			= $request['bengaliTitle'];
 		$eventLangs['info_title'] 		= $request['bengaliInfoTitle'];
 		$eventLangs['details'] 			= $request['bengaliDetails'];
-		$eventLangs['meta_keyword'] 	= $request['bengaliKeyword'];
-		$eventLangs['meta_description'] = $request['bengaliDescription'];
-		$eventLangs['language_id'] 		= 1;
+		$eventLangs['meta_keyword'] 		= $request['bengaliKeyword'];
+		$eventLangs['meta_description'] 	= $request['bengaliDescription'];
+		$eventLangs['language_id'] 		= 2;
 		$eventLangs['is_active'] 		= $activate;
 		$eventLangs['event_id']			= $id;
 

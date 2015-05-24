@@ -39,13 +39,13 @@
                                         <div class="form-group">
                                             {!! Form::label('title', 'Title:', array('class' => 'col-sm-2 control-label')) !!}
                                             <div class="col-sm-10">
-                                                {!! Form::text('title', null, array('class' => 'form-control required')) !!}
+                                                {!! Form::text('title', null, array('class' => 'form-control required', 'placeholder'=>'Category title')) !!}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             {!! Form::label('bengaliTitle', 'Bengali:', array('class' => 'col-sm-2 control-label')) !!}
                                             <div class="col-sm-10">
-                                                {!! Form::text('bengaliTitle', null, array('class' => 'form-control required')) !!}
+                                                {!! Form::text('bengaliTitle', null, array('class' => 'form-control required', 'placeholder'=>'Category bengali title')) !!}
                                             </div>
                                         </div>
                                         <div class="form-group">

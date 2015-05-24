@@ -126,9 +126,16 @@
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
 			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
 			                                        </div>
+			                                        <div id="article-img" style="position: absolute;
+									right: 10px;
+									z-index: 9999;
+									top: -112px; cursor: pointer;">
+									<div onClick="hideImage();">X</div>
+			                                        	<img id="article" style="width: 200px;height: 200px;" src="/images/articles/{{ $article->media}}" />
+ 			                                        </div>
 			                                    </div>
 			                                     <div class="col-sm-12"></div>
-											    <div class="form-group">
+								<div class="form-group">
 			                                        {!! Form::label('shortDetails', 'Short:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
 			                                            {!! Form::textarea('shortDetails', $article->short_detail, array('style' => 'width: 100%; height: 104px;')) !!}
@@ -459,5 +466,9 @@
 	    		}
 	    	});
 	    });
+
+	function hideImage(){
+		jQuery('#article').toggle();
+	}
 	  </script>
 @endsection

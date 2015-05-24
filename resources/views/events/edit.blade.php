@@ -166,7 +166,7 @@
 				                               
 			                                    <div class="form-group" style="clear: both;">
 			                                    </div>
-											    <div class="form-group">
+								<div class="form-group">
 			                                        {!! Form::label('infoTitle', 'Information:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
 			                                            {!! Form::text('infoTitle', $event->info_title, array('class' => 'form-control required')) !!}
@@ -195,6 +195,13 @@
 			                                        <div class="col-sm-10" style="margin-left: 5px;">
 			                                            {!! Form::file('media', null, array('class' => 'form-control required')) !!}
 			                                        </div>
+			                                        <div id="article-img" style="position: absolute;
+									right: 10px;
+									z-index: 9999;
+									top: 614px; cursor: pointer;">
+									<div onClick="hideImage();">X</div>
+			                                        	<img style="width: 200px;height:200px;" id="article" src="/images/events/{{ $event->media}}" />
+ 			                                        </div>
 			                                    </div>
 			                                </fieldset>
 		                                </div>
@@ -467,5 +474,11 @@
 				 	closeOnTimeSelect:true,
 				});			
 		  });
+		function hideImage(){
+			//jQuery('#article-img').hide();
+			jQuery('#article').toggle();
+		}
+
+
 	  </script>
 @endsection

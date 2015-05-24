@@ -31,9 +31,9 @@ class AdsController extends Controller {
 	{
 		$limit = 10;
 		$ads = $this->ads
-						->with('ad_position')
-						->whereIsActive(1)
-						->paginate($limit);
+				->with('ad_position')
+				->whereIsActive(1)
+				->paginate($limit);
 
 		return view('ads.index', compact('ads'));
 
@@ -86,12 +86,13 @@ class AdsController extends Controller {
 			'link' 				=>	$request['website'],
 			'meta_keyword' 		=>	$request['keyword'],
 			'meta_description' 	=>	$request['description'],
-			'is_paid' 			=>	$paid,
+			'is_paid' 		=>	$paid,
 			'is_lifetime' 		=>	$lifetime,
 			'is_pending' 		=>	$pending,
 			'ad_position_id' 	=>	$lastAdPositionId,
-			'user_id' 			=>	\Auth::user()->id,
-			'is_active' 		=> 	$activate
+			'user_id' 		=>	\Auth::user()->id,
+			'is_active' 		=> 	$activate,
+			'position' 		=>	$request['position']
 		]);
 
 		if($request['type'] == 'Image'){
@@ -157,7 +158,7 @@ class AdsController extends Controller {
 		if( $request['is_lifetime'] ) 	$lifetime = 1;
 		if( $request['is_pending'] ) 	$pending = 1;
 
-		if($request['type'] == 'Image'){
+		if($request['type'] == 'Image' && $request->file('image')){
 
 			$fileName =  $request->file('image')->getClientOriginalName();
 			$request->file('image')->move($destinationPath, $ExistingAds->id . '-' . $fileName);
@@ -179,20 +180,22 @@ class AdsController extends Controller {
 		$this->adPosition->where('id', $ExistingAdsPosition->id)->update( $position );
 
 		$ad = [];
-		$ad['image'] 			= 	$content;
+		if($request->file('image'))
+			$ad['image'] 			= 	$content;
 		$ad['short_desc'] 		= 	$request['short_desc'];
 		$ad['details'] 			= 	$request['details'];
 		$ad['start_date'] 		= 	$request['startDate'];
 		$ad['end_date'] 		=	$request['endDate'];
 		$ad['link'] 			=	$request['website'];
-		$ad['meta_keyword'] 	=	$request['keyword'];
-		$ad['meta_description'] =	$request['description'];
+		$ad['meta_keyword'] 		=	$request['keyword'];
+		$ad['meta_description'] 	=	$request['description'];
 		$ad['is_paid'] 			=	$paid;
 		$ad['is_lifetime'] 		=	$lifetime;
 		$ad['is_pending'] 		=	$pending;
-		$ad['ad_position_id'] 	=	$ExistingAdsPosition->id;
+		$ad['ad_position_id'] 		=	$ExistingAdsPosition->id;
 		$ad['user_id'] 			=	\Auth::user()->id;
 		$ad['is_active'] 		= 	$activate;
+		$ad['position']			=	$request['position'];
 
 		$this->ads->where('id', $id)->update( $ad );
 

@@ -49,13 +49,13 @@
 				                                <div class="form-group">
 			                                        {!! Form::label('title', 'Title:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 10px;">
-			                                            {!! Form::text('title', null, array('class' => 'form-control required')) !!}
+			                                            {!! Form::text('title', null, array('class' => 'form-control required', 'placeholder'=>'Article title')) !!}
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
 			                                        {!! Form::label('bengaliTitle', 'Bengali:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 10px;">
-			                                            {!! Form::text('bengaliTitle', null, array('class' => 'form-control required')) !!}
+			                                            {!! Form::text('bengaliTitle', null, array('class' => 'form-control required', 'placeholder'=>'Article bengali title')) !!}
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
@@ -74,7 +74,7 @@
 			                                	<div class="form-group">
 			                                        {!! Form::label('addres', 'Address:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-11">
-			                                            {!! Form::text('address', null, array('class' => 'form-control required')) !!}
+			                                            {!! Form::text('address', null, array('class' => 'form-control required', 'placeholder'=>'Adress')) !!}
 			                                        </div>
 			                                    </div>
 											</div>
@@ -210,13 +210,13 @@
 			                                    <div class="form-group">
 			                                        {!! Form::label('featured_title', 'Title:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
-			                                            {!! Form::text('featured_title', null, array('class' => 'form-control required')) !!}
+			                                            {!! Form::text('featured_title', null, array('class' => 'form-control required', 'placeholder'=>'Featured deals title')) !!}
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
 			                                        {!! Form::label('price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
-			                                            {!! Form::text('price', null, array('class' => 'form-control required')) !!}
+			                                            {!! Form::text('price', null, array('class' => 'form-control required', 'placeholder'=>'Featured deals price')) !!}
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group">
@@ -229,7 +229,7 @@
 				                                    <div class="form-group">
 				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
 				                                        <div class="col-sm-10" style="margin-top: 4px;">
-				                                            {!! Form::text('featured_details', null, array('class' => 'form-control required')) !!}
+				                                            {!! Form::text('featured_details', null, array('class' => 'form-control required', 'placeholder'=>'Featured article details')) !!}
 				                                        </div>
 				                                    </div>
 			                                	</div>

@@ -5,11 +5,11 @@
 	@foreach($moreTagArticles as $more)
 		<div class="col-md-6">
 			<div class="row">
-				<div class="col-md-5"><img src="/images/articles/{{$more->media}}" class="img-responsive"></div>
-				<div class="col-md-7">
+				<div class="col-md">
 					<div class="article-style-4">
-					<h2>{{$more->title}}</h2>
-					<p><b>{{$more->article_category->title}}</b> &nbsp; {{ strip_tags($more->short_detail) }}
+					<h2>{{ (session('locale') == "en" ? $more->title : $more->bnTitle ) }}</h2>
+					<p><img src="/images/articles/{{$more->media}}" style="float: left; padding-right: 10px; padding-bottom: 10px; width: 200px; height: 150px;" class="img-responsive"><b>{{ (session('locale') == "en" ? $more->article_category->title : $more->article_category->bnTitle ) }}
+						</b> &nbsp;{{ (session('locale') == "en" ? strip_tags($more->short_detail) : strip_tags($more->bnShort_detail) ) }}
 						<a href="/details/article/{{ $more->id }}">More..</a></p>
 					</div>
 				</div>

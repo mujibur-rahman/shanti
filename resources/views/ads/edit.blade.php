@@ -128,7 +128,17 @@
 				                                            {!! Form::textarea('details', $ad->details, array('style' => 'width: 100%; height: 100px;')) !!}
 				                                        </div>
 				                                    </div>
-			                                	</div>
+			                                </div>
+			                                <div class="col-sm-12">
+                                				<div class="form-group">
+		                                			<div class="col-sm-2">
+			                                        {!! Form::label('position', 'Position:', array('class' => 'control-label')) !!}
+			                                        </div>
+			                                        <div class="col-sm-4">
+			                                           {!! Form::select('position', array('' => 'Select', 'Top' => 'Top', 'Bottom' => 'Bottom', 'Top-Right' => 'Top-Right', 'Bottom-Right' => 'Bottom-Right'), $ad->position, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+				                        </div>
 			                                </fieldset>
 		                                </div>
 		                                <hr />
