@@ -764,7 +764,11 @@ class HomeController extends Controller {
 		return view('front.all-events', compact('featuredArticles','ads', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent','editorChoice', 'footersliders', 'bottomAds'));
 	}
 	public function dashboard(){
-		return view('dashboard');
+		if(\Auth::user()->isactive){
+			return view('dashboard');
+		}else{
+			return view('404');
+		}
 	}
 
 	/**
