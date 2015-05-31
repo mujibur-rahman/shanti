@@ -94,6 +94,9 @@ class UserController extends Controller {
 			'role_id' => $request['role'],
 			'isactive' => $activate
 		]);
+	if( $activate ){
+		//mail send
+	}
         return redirect()->route('user.index');
 	}
 

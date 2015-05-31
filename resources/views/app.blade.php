@@ -61,7 +61,9 @@
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		@yield('content')
 		@if( Auth::check() )
-			@include('left')
+			@if(Auth::user()->isactive)
+				@include('left')
+			@endif
 		@endif
 		@yield('right')
 	</div>

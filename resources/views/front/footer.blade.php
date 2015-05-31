@@ -11,7 +11,7 @@
 	<div class="row top-footer">
 		<div class="col-md-4">
 			<p>Contact Us</p>
-			<p>Editor: Erik Gustafsson ( erik.g@minimedia.se )
+			<p>Editor: Erik Gustafsson ( info@shantiadmin.com )
 			CEO John Goliath
 			Address: West Railway Street 21, Stockholm
 			Courier and delivery addres  s: Pale Holmgatan 18, Stockholm
@@ -21,9 +21,7 @@
 		</div>
 		<div class="col-md-4">
 			<p>TELL US</p>
-			<p>Do you have tips on clubs, events or concerts?  Send your email to tipsa@aos.se</p>
-			<p>SELL</p>
-			<p>To get in touch with our sales team, Phone: 08-555 00 690E-mail: aos@annonsdax.sed Web: www.alltomstockholm.se/annonswebb</p>
+			<p>Do you have tips on clubs, events or concerts?  Send your email to info@shantiadmin.com</p>
 		</div>
 		<div class="col-md-4">
 			<p>FOLLOW US ON</p>
@@ -35,8 +33,8 @@
 	</div>
 	<div class="row bottom-footer">
 		<div>
-			<div class="col-md-6"><p>© All about Stockholm 2014</p></div>
-			<div class="col-md-6 text-right">Find everything in Stockholm <img src="/img/footer-icon-afton.png"></div>
+			<div class="col-md-6"><p>© All about Dhaka 2014</p></div>
+			<div class="col-md-6 text-right">Find everything in Dhaka <img src="/img/footer-icon-afton.png"></div>
 		</div>
 	</div>
 </div>

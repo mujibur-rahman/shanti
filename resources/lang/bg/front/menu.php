@@ -6,7 +6,7 @@ return [
 	'club' => 'ক্লাব ও কনসার্ট',
 	'science' => 'বিজ্ঞান ও সংস্কৃতি',
 	'shopping' => 'কেনাকাটা',
-	'blog' => 'BLOGS',
+	'blog' => 'BLOG',
 	'citylife' => 'শহরের জীবন',
 	'guide' => 'গাইড',
 	'child' => 'CHILDREN',
