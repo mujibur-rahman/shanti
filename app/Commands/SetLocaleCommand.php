@@ -3,7 +3,7 @@
 use App\Commands\Command;
 
 use Request;
-
+use Illuminate\Session\SessionManager;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class SetLocaleCommand extends Command implements SelfHandling {

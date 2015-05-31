@@ -785,8 +785,6 @@ class HomeController extends Controller {
 	 */
 	public function language(ChangeLocaleCommand $changeLocaleCommand)
 	{
-		echo "Session" . session('locale');
-		print_r($changeLocaleCommand);
 		$this->dispatch($changeLocaleCommand);
 		return redirect()->back();
 	}

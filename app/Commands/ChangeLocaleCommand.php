@@ -1,7 +1,7 @@
 <?php namespace App\Commands;
 
 use App\Commands\Command;
-
+use Illuminate\Session\SessionManager;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class ChangeLocaleCommand extends Command implements SelfHandling {

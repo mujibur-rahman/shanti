@@ -9,13 +9,13 @@ return [
 	'blog' => 'BLOGS',
 	'citylife' => 'শহরের জীবন',
 	'guide' => 'গাইড',
-	'child' => 'CHILDREN',
-	'advertise' => 'ADVERTISING',
-	'museum' => 'MUSUEM',
-	'activities' => 'activities',
-	'brunch' => 'BRUNCH',
-	'weekend' => 'WEEKEND',
-	'children' => 'CHILD',
-	'kickoff' => 'KICKOFF & CONFERENCE',
-	'lunch' => 'LUNCH'
+	'child' => 'সন্তান',
+	'advertise' => 'বিজ্ঞাপন',
+	'museum' => 'যাদুঘর',
+	'activities' => 'ক্রিয়াকলাপ',
+	'brunch' => 'ব্রাঞ্চ',
+	'weekend' => 'সপ্তাহান্তিক অবকাশ',
+	'children' => 'ছেলেমেয়ে',
+	'kickoff' => 'কিচ্কফ & পরামর্শসভা',
+	'lunch' => 'মধ্যাহ্নভোজ'
 ];

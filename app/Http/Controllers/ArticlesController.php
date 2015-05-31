@@ -187,7 +187,7 @@ class ArticlesController extends Controller {
 			}
 		}
 
-		//return redirect()->route('articles.index');
+		return redirect()->route('articles.index');
 	}
 
 	/**

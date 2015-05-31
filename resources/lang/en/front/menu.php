@@ -12,7 +12,7 @@ return [
 	'child' => 'CHILDREN',
 	'advertise' => 'ADVERTISING',
 	'museum' => 'MUSUEM',
-	'activities' => 'activities',
+	'activities' => 'ACTIVITIES',
 	'brunch' => 'BRUNCH',
 	'weekend' => 'WEEKEND',
 	'children' => 'CHILD',
