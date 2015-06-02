@@ -113,20 +113,19 @@ class FooterSlidersController extends Controller {
 		$content = "";
 		$destinationPath = "images/";
 		if( $request['active'] ) 		$activate = 1;
-		
-	
-
+		if($request->file('image')){
 			$fileName =  $request->file('image')->getClientOriginalName();
 			$request->file('image')->move($destinationPath, $ExistingFooterslider->id . '-' . $fileName);
-	$content = $ExistingFooterslider->id . '-' .$fileName;
-		
-	
+			$content = $ExistingFooterslider->id . '-' .$fileName;
+		}else{
+			$content = $ExistingFooterslider->image;
+		}
 
 		$footerslider = [];
-		$footerslider['image'] 			= 	$content;
+		$footerslider['image'] 		= 	$content;
 		$footerslider['title'] 		= 	$request['title'];
 		
-		$footerslider['is_active'] 		= 	$activate;
+		$footerslider['is_active'] 	= 	$activate;
 
 		$this->footersliders->where('id', $id)->update( $footerslider );
 

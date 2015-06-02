@@ -51,8 +51,8 @@
 <div class="row">
 	<div class="col-md-12 text-center">
 		<nav>
-			<!--Pagination-->
-			{!! $reviewLists !!}
+			@include('pagination.default', ['paginator' => $reviewLists])
+			<!--{!! $reviewLists !!}-->
 		</nav>
 	</div>
 </div>

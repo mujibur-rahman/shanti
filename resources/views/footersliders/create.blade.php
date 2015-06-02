@@ -45,7 +45,7 @@
 					                            <div class="col-sm-12">
 			                                		<div class="form-group">
 			                                			<div class="col-sm-2">
-				                                        	{!! Form::label('title', 'Title:', array('class' => 'control-label')) !!}
+				                                        	{!! Form::label('title', 'URL:', array('class' => 'control-label')) !!}
 				                                    	</div>
 				                                        <div class="col-sm-9" >
 				                                            {!! Form::text('title', null, array('class' => 'form-control required')) !!}

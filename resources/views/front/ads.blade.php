@@ -2,7 +2,6 @@
 <div class="right-add-container">
 	@if($ad->ad_position->type == "Image")
 		<a href="http://{{ $ad->link }}" target="_blank" title="{{ $ad->short_desc}}">
-			{{ $ad->short_desc }}
 			<img src="/images/{{ $ad->image }}" />
 		</a>
 	@else

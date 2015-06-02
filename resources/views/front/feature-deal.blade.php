@@ -144,7 +144,7 @@
 <div class="add-container-1"><img src="/img/3rdcol-add-2.png" class="img-responsive"></div>
 @foreach($bottomAds as $ad)
 	@if($ad->ad_position->type == "Image")
-	<div class="add-container-1"><a href="http://{{ $ad->link }}" target="_blank" title="{{ $ad->short_desc }}">{{ $ad->short_desc }}
+	<div class="add-container-1"><a href="http://{{ $ad->link }}" target="_blank" title="{{ $ad->short_desc }}">
 		<img src="/images/{{ $ad->image }}" class="img-responsive" /></a></div>
 	@else
 		<!--object type="application/x-shockwave-flash"
