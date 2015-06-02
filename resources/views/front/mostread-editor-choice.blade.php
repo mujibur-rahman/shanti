@@ -17,7 +17,7 @@
 		<ol class="me-ol">
 			@foreach($editorChoice as $editor)
 				<li><a href="/details/article/{{ $editor->id }}">
-					{{ (session('locale') == "en" ? substr(strip_tags($editor->title), 0, 45) : substr(strip_tags($editor->bnTitle), 0, 150) ) }}
+					{{ (session('locale') == "en" ? substr(strip_tags($editor->title), 0, 35) : substr(strip_tags($editor->bnTitle), 0, 150) ) }}
 				</a></li>
 			@endforeach
 		</ol>
