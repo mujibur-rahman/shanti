@@ -9,7 +9,7 @@
 						<div class="col-md-12">
 							<div class="article-style-5">
 								<div class="row">
-								<div class="col-md-6"><div class="pic-header">{{ trans('front/site.article') }} <small> Home / {{ (session('locale') == "en" ? $article->article_category->title  : $article->article_category->bnTitle ) }}
+								<div class="col-md-6"><div class="pic-header">{{ trans('front/site.article') }} <small> / {{ trans('front/site.home') }} / {{ (session('locale') == "en" ? $article->article_category->title  : $article->article_category->bnTitle ) }}
 								</small></div></div>
 									<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($article->created_at)->format('D H:i') }}</div></div>
 								</div>

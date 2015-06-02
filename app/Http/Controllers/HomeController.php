@@ -406,10 +406,10 @@ class HomeController extends Controller {
 			array_push($ts, $value->tag_id);
 		}
 		$art_tag = \DB::table('article_tag')
-											->distinct()
-											->select(\DB::raw('article_id'))
-											->whereIn('tag_id', $ts)
-											->get();
+						->distinct()
+						->select(\DB::raw('article_id'))
+						->whereIn('tag_id', $ts)
+						->get();
 		$art = [];
 		foreach ($art_tag as $key => $value) {
 			if( $value->article_id != $id ){
@@ -419,6 +419,8 @@ class HomeController extends Controller {
 		}
 		krsort($art);
 		$articleRelated = $this->articles->whereIn('id', $art)->get()->take(2);
+		//print_r($articleRelated);  
+		//dd($articleRelated);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
@@ -428,14 +430,14 @@ class HomeController extends Controller {
 		return view('front.details-article', compact('article', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent', 'editorChoice', 'articleRelated', 'footersliders', 'bottomAds'));
 	}
 	public function articleCategory( $id ){
-		$ads                            = $this->getAds();
+		$ads                    = $this->getAds();
 		$featuredArticles       = $this->featuredArticles();
-		$events                         = $this->getEvents();
+		$events                 = $this->getEvents();
 		$featuredEvents         = $this->featuredEvents();
 		$moreTagArticles        = $this->moreTaggedArticlesByCategoryId($id);
 		$listArticles           = $this->listTaggedArticles();
-		$mostReads                      = $this->mostReadArticles();
-		$reviewArticles = $this->articles->with('article_category')
+		$mostReads              = $this->mostReadArticles();
+		$reviewArticles 	= $this->articles->with('article_category')
 									->whereIsActive(1)
 									//->whereListTag(0)
 									//->whereMoreFromDhaka(0)

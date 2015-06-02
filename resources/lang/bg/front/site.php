@@ -4,7 +4,7 @@ return [
 	'cat-title' => 'সকল বিভাগ',
 	'search-fav' => 'আপনার প্রিয় নির্বাচন করুন!',
 	'article' => 'সম্পাদকীয়',
-	'home' => 'Home',
+	'home' => 'হোম',
 	'contact' => 'Contact',
 	'blog' => 'Blog',
 	'register' => 'Register',
