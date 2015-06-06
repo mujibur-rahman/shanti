@@ -582,13 +582,13 @@ img {
 		padding: 10px;
 	}
 	.blog-post .pic-area .pic-box {
-		width: 235px;
-		height: auto;
-		margin: 10px 10px 0 20px;
-		padding: 7px;
-		background: #fff;
-		float: left;
-		display: inline;
+	  width: 235px !important;
+	  height: auto;
+	  margin: 10px 10px 0 33px;
+	  padding: 7px;
+	  background: #fff;
+	  float: left;
+	  display: inline;
 	}
 
 	.blog-post h1 {

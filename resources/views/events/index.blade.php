@@ -38,6 +38,7 @@
                                                   <th>Category</th>
                                                   <th>Title</th>
                                                   <th>Address</th>
+                                                  <th colspan="2">Status</th>
                                                   <th colspan="2">Actions</th>
                                               </tr>
                                           </thead>
@@ -50,6 +51,16 @@
                                                       <td>
                                                         {{ $event->address->location}}, {{ $event->address->thana->title }}, {{ $event->address->district->title }}, {{ $event->address->division->title }}, {{ $event->address->country->title }}
                                                       </td>
+                                                      <td title="For Last Minute tag">
+                                                        @if($event->last_minute)
+                                                          L
+                                                        @endif
+                                                      </td>
+                                                      <td title="Featured tag">
+                                                        @if($event->featured)
+                                                          F
+                                                        @endif
+                                                      </td>
                                                       <td width="10">{!! link_to_route('events.edit', 'Edit', array($event->id), array('class' => 'btn btn-warning')) !!}</td>
                                                       <td width="10">
                                                           {!! Form::open(array('method' => 'DELETE', 'route' => array('events.destroy', $event->id))) !!}
@@ -61,7 +72,7 @@
                                           </tbody>
                                           <tfoot>
                                               <tr>
-                                                  <td colspan="5">
+                                                  <td colspan="7">
                                                       {!! $events !!}
                                                   </td>
                                               </tr>

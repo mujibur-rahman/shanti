@@ -11,13 +11,13 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-md-8"><b>{{ $article->featured_title }}</b></div>
+		<div class="col-md-8"><b>{{ (session('locale') == "en" ? $article->featured_title : $article->bn_featured_title) }}</b></div>
 		<div class="col-md-4 text-right">
-			<span class="sek-color"><b>{{ $article->price }} BDT</b></span> 
-			<del>{{ $article->strike_price }} BDT</del>
+			<span class="sek-color"><b>{{ (session('locale') == "en" ? $article->price : $article->bn_price) }} BDT</b></span> 
+			<del>{{ (session('locale') == "en" ? $article->strike_price : $article->bn_strike_price) }} BDT</del>
 		</div>
 	</div>
-	<p>{{ $article->featured_details }}</p>
+	<p>{{ (session('locale') == "en" ? $article->featured_details : $article->bn_featured_details) }}</p>
 	<div class="clearfix"></div>
 </div>
 @endforeach

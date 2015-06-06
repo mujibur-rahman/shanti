@@ -1,8 +1,13 @@
 @extends('front.template')
 @section('metas')
-<meta name="description" content="Dhaka shanti dhaka">
-<meta name="author" content="">
-<title>Shanti Dhaka - index</title>
+@foreach($articles as $e)
+	<?php $keyword =  $e->meta_keyword;
+		$description = $e->meta_description;
+	?>
+@endforeach
+<meta property="og:site_name" content="shantidhaka.com"/>
+<meta property="og:title" content='{{ $keyword }}'/>
+<meta property="og:description" content="{{ $description }}"/>
 <!-- {{ trans('front/site.title') }} -->
 @endsection
 	@section('home')
