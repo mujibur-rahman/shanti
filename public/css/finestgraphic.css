@@ -591,6 +591,16 @@ img {
 	  display: inline;
 	}
 
+	.blog-post .pic-area .pic-box-blog {
+	  width: 235px;
+	  height: auto;
+	  margin: 10px 10px 0 30px;
+	  padding: 7px;
+	  background: #fff;
+	  float: left;
+	  display: inline;
+	}
+
 	.blog-post h1 {
 		font-weight: bold;
 		font-size: 18px;
