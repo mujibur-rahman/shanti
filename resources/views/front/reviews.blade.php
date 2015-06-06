@@ -4,7 +4,10 @@
 		<div class="picbox">
 			<a href="/details/article/{{ $review->id }}"><img src="/images/articles/{{ $review->media}}" class="img-responsive" /></a>
 		</div>
-		<i class="fa fa-plus fa-lg color-yellow m-t-10"></i> <i class="fa fa-plus fa-lg color-yellow"></i> <i class="fa fa-plus fa-lg color-yellow"></i>
+
+		@for($i=0;$i<$review->rating;$i++)
+			<i class="fa fa-plus fa-lg color-yellow"></i>
+		@endfor
 		<a href="/details/article/{{ $review->id }}">
 			<h2>
 			{{ (session('locale') == "en" ? $review->title : $review->bnTitle) }}

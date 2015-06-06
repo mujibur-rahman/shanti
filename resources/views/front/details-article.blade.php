@@ -1,4 +1,13 @@
 @extends('front.template')
+@section('metas')
+
+	<?php $keyword =  $article->meta_keyword;
+		$description = $article->meta_description;
+	?>
+
+<meta property="og:site_name" content="shantidhaka.com"/>
+<meta property="og:title" content='{{ $keyword }}'/>
+<meta property="og:description" content="{{ $description }}"/>
 	@section('details')
 		<!-- START: left container -->
 		<div class="col-md-9">
@@ -34,10 +43,12 @@
 											</div>
 											<div class="col-md-6">
 										<p>
+										@for($i=0;$i<$article->rating;$i++)
 										<i class="fa fa-plus fa-lg color-yellow m-t-10"></i>
-										<i class="fa fa-plus fa-lg color-yellow"></i>
-										<i class="fa fa-plus fa-lg color-yellow"></i><br>
-										AOS GRADE <b>3</b></p>
+									@endfor
+										
+										<br>
+										AOS GRADE <b>{!! $article->rating !!}</b></p>
 											</div>
 										</div>
 									@endif

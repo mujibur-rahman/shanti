@@ -96,6 +96,7 @@ class HomeController extends Controller {
 	return $this->ads
 			->with('ad_position')
 			->whereIsActive(1)
+			->whereIsPending(0)
 			->wherePosition('Top-Right')
 			->get([
 				'ads.id',
@@ -200,8 +201,9 @@ class HomeController extends Controller {
 									->whereMoreFromDhaka(1)
 									//->whereListTag(0)
 									//->whereIsReviewing(0)
+									->orderBy('id', 'desc')
 									->get()
-									->take(10);
+									->take(6);
 		$ads = $this->getAds();
 		//print "<pre>"; print_r($ads); print "</pre>";
 		//die();
@@ -247,16 +249,20 @@ class HomeController extends Controller {
 						//->whereMoreFromDhaka(0)
 						//->whereFeatured(0)
 						->whereIsReviewing(1)
+						->orderBy('id', 'desc')
 						->get()
-						->take(3);
+						->take(5);
 		
-		//print "<pre>"; print_r($listArticles); print "</pre>";
+		//print "<pre>"; print_r($listArticles)5; print "</pre>";
 		$mostReads = $this->articles
 					->whereIsActive(1)
 					->orderBy('page_view_count', 'desc')
 					->get()
 					->take(5);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$articles = $arti->take(2);
 		$total = count($arti);
 		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
@@ -276,8 +282,8 @@ class HomeController extends Controller {
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
-					
+						->get()
+						->take(6);
 
 		return view('front.index', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles', 'total', 'categoryLists', 'listEvent', 'editorChoice','footersliders', 'bottomAds'));
 
@@ -309,7 +315,9 @@ class HomeController extends Controller {
 							'events.strike_price',
 							'events.address_id',
 							'events.opening_date',
-							'events.bnTitle'
+							'events.bnTitle',
+							'events.meta_keyword',
+							'events.meta_description'
 						])
 					->take(2);
 	}
@@ -373,9 +381,9 @@ class HomeController extends Controller {
 		$mostReads                      = $this->mostReadArticles();
 
 		$article                        = $this->articles
-										->with('article_category')
-										->with('address')
-										->findOrFail( $id );
+							->with('article_category')
+							->with('address')
+							->findOrFail( $id );
 
 		$total = 1;
 		if( $article->page_view_count )
@@ -396,7 +404,10 @@ class HomeController extends Controller {
 							'events.title',
 							'events.bnTitle'
 						]);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		//$tags = $this->atags->whereArticleId($id)->get();
 		
 		//$users = \DB::select('select article_id, tag_id from article_tag where article_id=' . $id)->get();
@@ -425,7 +436,8 @@ class HomeController extends Controller {
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$bottomAds = $this->getBottomAds();
 		return view('front.details-article', compact('article', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent', 'editorChoice', 'articleRelated', 'footersliders', 'bottomAds'));
 	}
@@ -469,12 +481,16 @@ class HomeController extends Controller {
 							'events.title',
 							'events.bnTitle'
 						]);     
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$bottomAds = $this->getBottomAds();
 		return view('front.category-articles', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles', 'total', 'categoryId', 'categoryLists', 'listEvent', 'editorChoice', 'footersliders', 'bottomAds') );
 	}
@@ -512,13 +528,17 @@ class HomeController extends Controller {
 							'events.title',
 							'events.bnTitle'
 						]);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$articleRelated = [];
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$bottomAds = $this->getBottomAds();
 		return view('front.details-event', compact('event', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent','editorChoice', 'articleRelated', 'footersliders', 'bottomAds'));
 	}
@@ -529,7 +549,7 @@ class HomeController extends Controller {
 					->whereIsActive(1)
 					->whereFeatured(1)
 					//->whereLastMinute(0)
-					->paginate(1);
+					->paginate(5);
 	}
 	public function feventsLists(){
 		$ads                            = $this->getAds();
@@ -548,14 +568,20 @@ class HomeController extends Controller {
 							'events.id',
 							'events.media',
 							'events.title',
-							'events.bnTitle'
+							'events.bnTitle',
+							'events.meta_keyword',
+							'events.meta_description'
 						]);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$bottomAds = $this->getBottomAds();
 		return view('front.all-events', compact('featuredArticles','ads', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'categoryLists', 'listEvent','editorChoice', 'footersliders', 'bottomAds'));
 	}
@@ -603,12 +629,17 @@ class HomeController extends Controller {
 							'events.title',
 							'events.bnTitle'
 						]);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
+
 		$bottomAds = $this->getBottomAds();
 		return view('front.all-reviews', compact('featuredArticles','ads', 'events', 'reviewLists', 'moreTagArticles', 'listArticles', 'mostReads', 'category', 'selectCat','categoryLists', 'listEvent', 'editorChoice', 'footersliders', 'bottomAds'));
 	}
@@ -636,12 +667,16 @@ class HomeController extends Controller {
 							'events.title',
 							'events.bnTitle'
 						]);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$bottomAds = $this->getBottomAds();
 		return view('front.all-reviews', compact('featuredArticles','ads', 'events', 'reviewLists', 'moreTagArticles', 'listArticles', 'mostReads', 'category', 'selectCat','categoryLists', 'listEvent', 'editorChoice', 'footersliders', 'bottomAds'));
 
@@ -686,12 +721,16 @@ class HomeController extends Controller {
 							'events.title',
 							'events.bnTitle'
 						]);                                     
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$bottomAds = $this->getBottomAds();
 		return view('front.search-list', compact('articles', 'ads', 'featuredArticles', 'events', 'featuredEvents', 'moreTagArticles', 'listArticles', 'mostReads', 'reviewArticles', 'total', 'categoryId', 'categoryLists', 'q', 'listEvent', 'editorChoice', 'footersliders', 'bottomAds') );
 	}
@@ -718,7 +757,7 @@ class HomeController extends Controller {
 		$fe = $fe->orderBy('created_at', 'desc')
 			->orderBy('id', 'desc')
 			//->get();
-			->paginate(3);
+			->paginate(5);
 		return $fe;
 
 	}
@@ -754,12 +793,16 @@ class HomeController extends Controller {
 										'events.title',
 										'events.bnTitle'
 									]);
-		$editorChoice = $this->articles->whereEditorchoice(1)->get()->take(5);
+		$editorChoice = $this->articles->whereEditorchoice(1)
+						->orderBy('id', 'desc')
+						->get()
+						->take(5);
 		$footersliders = $this->footersliders
 						->whereIsActive(1)
 						->orderBy('created_at', 'desc')
 						->orderBy('id', 'desc')
-						->get();
+						->get()
+						->take(6);
 		$featuredEvents         = $this->featuredEventsSearch($free, $recommend, $searchDate);
 		//print_r($featuredEvents);
 		$bottomAds = $this->getBottomAds();

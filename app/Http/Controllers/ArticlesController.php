@@ -71,7 +71,7 @@ class ArticlesController extends Controller {
 		$articles = $this->articles
 					->with('address')
 					//->with('article_category')
-					->whereIsActive(1)
+					//->whereIsActive(1)
 					->paginate($limit);
 		//dd($articles);
 		return view('articles.index', compact('articles'));
@@ -123,8 +123,8 @@ class ArticlesController extends Controller {
 			$editor_choice = 1;
 		
 		$address = $this->address->create([
-			'location' 		=> 	$request['address'],
-			'thana_id' 		=> 	$request['thana'],
+			'location' 	=> 	$request['address'],
+			'thana_id' 	=> 	$request['thana'],
 			'district_id' 	=> 	$request['district'],
 			'division_id' 	=> 	$request['division'],
 			'country_id' 	=>	$request['country'],
@@ -149,7 +149,8 @@ class ArticlesController extends Controller {
 			'meta_description' 		=> 	$request['description'],
 			'website' 			=> 	$request['website'],
 			'phone' 			=> 	$request['phone'],
-			//'email'		=> 		$request['email'],
+			'email'				=> 	$request['email'],
+			'rating'			=> 	$request['rating'],
 			'is_reviewing'			=>  	$review,
 			'is_active' 			=> 	$activate,
 			'address_id' 			=> 	$lastAddressId,
@@ -159,6 +160,10 @@ class ArticlesController extends Controller {
 			'price'				=>	$request['price'],
 			'strike_price'			=>	$request['strike_price'],
 			'featured_details'		=> 	$request['featured_details'],
+			'bn_featured_title'		=>	$request['bn_featured_title'],
+			'bn_price'			=>	$request['bn_price'],
+			'bn_strike_price'		=>	$request['bn_strike_price'],
+			'bn_featured_details'		=>	$request['bn_featured_details'],
 			'more_from_dhaka'		=> 	$more_from_tag,
 			'list_tag'			=> 	$list_tag,
 			'editorChoice'			=>	$editor_choice,
@@ -222,10 +227,15 @@ class ArticlesController extends Controller {
 							->with('articles')
 							->whereArticleId($id)
 							->first();
-		$tags = $this->tags->all();
-		$atags =$this->atags->whereArticleId($id)->get();
-
-		$url = "www.localhost.com";				
+		
+		$arr = array();
+		$artags =$this->atags->whereArticleId($id)->get();
+		foreach ($artags as $key => $value) {
+			array_push($arr, $value->tag_id);
+		}
+		$tags = $this->tags->whereNotIn('id', $arr)->get();
+		$atags = $this->tags->whereIn('id', $arr)->get();
+		$url = "www.localhost.com";
 		return view('articles.edit', compact('category','division', 'district', 'thana', 'country','article', 'articleLang', 'url', 'tags', 'atags')); 
 	}
 
@@ -266,7 +276,7 @@ class ArticlesController extends Controller {
 		$address['district_id'] = $request['district'];
 		$address['division_id'] = $request['division'];
 		$address['country_id']  = $request['country'];
-		$address['is_active']  	= $activate;
+		//$address['is_active']  	= $activate;
 		$this->address->where('id', $ExistingAddress->id)->update( $address);
 		
 		$destinationPath = "images/articles/";
@@ -297,12 +307,20 @@ class ArticlesController extends Controller {
 		$articles['price']				=	$request['price'];
 		$articles['strike_price']			=	$request['strike_price'];
 		$articles['featured_details']			= 	$request['featured_details'];
+
+		$articles['bn_featured_title']			=	$request['bn_featured_title'];
+		$articles['bn_price']				=	$request['bn_price'];
+		$articles['bn_strike_price']			=	$request['bn_strike_price'];
+		$articles['bn_featured_details']		= 	$request['bn_featured_details'];
+
 		$articles['more_from_dhaka']			= 	$more_from_tag;
 		$articles['list_tag']				= 	$list_tag;
 		$articles['editorChoice']			= 	$editor_choice;
 		$articles['bnTitle']				=	$request['bengaliTitle'];
 		$articles['bnShort_detail']			=	$request['bengaliShortDetails'];
 		$articles['bnDetails']				=	$request['bengaliDetails'];
+		$articles['email']				= 	$request['email'];
+		$articles['rating']				= 	$request['rating'];
 
 		$this->articles->where('id', $id)->update( $articles );
 

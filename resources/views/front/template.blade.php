@@ -11,6 +11,8 @@
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/finestgraphic.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{ asset('js/jquery.flexisel.js')}}"></script>
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

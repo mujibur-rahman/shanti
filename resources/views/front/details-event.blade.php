@@ -1,5 +1,15 @@
 @extends('front.template')
-	@section('details')
+@section('metas')
+
+	<?php $keyword =  $event->meta_keyword;
+		$description = $event->meta_description;
+	?>
+
+<meta property="og:site_name" content="shantidhaka.com"/>
+<meta property="og:title" content='{{ $keyword }}'/>
+<meta property="og:description" content="{{ $description }}"/>
+
+@section('details')
 		<!-- START: left container -->
 <div class="col-md-9">
 	@include('front.search')
@@ -9,7 +19,7 @@
 				<div class="col-md-12">
 					<div class="article-style-5">
 						<div class="row">
-						<div class="col-md-6"><div class="pic-header">EVENTS <small> Home / {{ (session('locale') == "en" ? $event->article_category->title : $event->article_category->bnTitle ) }}</small></div></div>
+						<div class="col-md-6"><div class="pic-header">EVENTS <small> {{ trans('front/site.home') }}  / {{ (session('locale') == "en" ? $event->article_category->title : $event->article_category->bnTitle ) }}</small></div></div>
 							<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($event->created_at)->format('D H:i') }}</div></div>
 						</div>
 						<div class="picbox"><img src="/images/events/{{ $event->media }}" class="img-responsive"></div>

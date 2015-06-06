@@ -3,8 +3,9 @@
 <div class="col-md-6">
 	<div class="article-style-2">
 		<div class="picbox"><img src="/images/articles/{{ $ar->media }}" class="img-responsive"></div>
-		<a href="/details/article/{{ $ar->id }}"><h2>{{ $ar->title }}</h2></a>
-		<p>{{ strip_tags($ar->short_detail) }}</p>
+		<a href="/details/article/{{ $ar->id }}"><h2>{{ (session('locale') == "en" ? $ar->title : $ar->bnTitle) }}</h2></a>
+		<p>{{ (session('locale') == "en" ? strip_tags($ar->short_detail) : strip_tags($ar->bnShort_detail)) }}</p>
+
 		<!--div>Tags:{{ $ar->title }}</div-->
 		<div class="clearfix"></div>
 	</div>

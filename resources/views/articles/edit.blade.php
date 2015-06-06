@@ -59,12 +59,12 @@
 			                                            {!! Form::text('bengaliTitle', $articleLang->title, array('class' => 'form-control required')) !!}
 			                                        </div>
 			                                    </div>
-			                                    <div class="form-group">
+			                                    <!--div class="form-group">
 			                                        {!! Form::label('permalink', 'Permalink:', array('class' => 'col-sm-1 control-label')) !!}
 			                                        <div class="col-sm-7" style="margin-left: 10px; margin-top: 4px;">
 			                                           {!! Form::text('permalink', null, array('class' => 'form-control required')) !!}
 			                                        </div>
-			                                    </div>
+			                                    </div-->
 			                                </fieldset>
 		                                </div>
 		                                <hr />
@@ -105,9 +105,9 @@
 			                                        </div>
 			                                    </div>
 											</div>
-											 <div class="col-sm-12">
-											 	<div class="col-sm-5">
-												 	<div class="form-group">
+									<div class="col-sm-12">
+									<div class="col-sm-5">
+										<div class="form-group">
 				                                        {!! Form::label('country', 'Country:', array('class' => 'col-sm-2 control-label')) !!}
 				                                        <div class="col-sm-10" style="margin: 4px 0px 0px 0px;">
 				                                        	 {!! Form::select('country', $country, null, array('class' => 'form-control required')) !!}
@@ -196,12 +196,14 @@
 		                                	<fieldset>
 		                                		<legend>Related Tags</legend>
 			                                	<div class="form-group">
-			                                       
 			                                        <div class="col-sm-10" style="margin-left: 10px;margin-top: 4px;">
-			                                        	@foreach($tags as $tag)
-			                                        	 
-			                                            {!! Form::checkbox('tags[]', $tag->id, false, array('class' => 'pos-rel p-l-30')); !!} {{ $tag->tag}} &nbsp;
-			                                            @endforeach
+			                                        @foreach($atags as $tag)
+			                                        	{!! Form::checkbox('tags[]', $tag->id, true, array('class' => 'pos-rel p-l-30')); !!} {{ $tag->tag}} &nbsp;
+			                                        @endforeach
+
+			                                        @foreach($tags as $tag)
+			                                        	{!! Form::checkbox('tags[]', $tag->id, false, array('class' => 'pos-rel p-l-30')); !!} {{ $tag->tag}} &nbsp;
+			                                        @endforeach
 
 			                                        </div>
 			                                    </div>
@@ -245,6 +247,37 @@
 				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
 				                                        <div class="col-sm-10" style="margin-top: 4px;">
 				                                            {!! Form::text('featured_details', $article->featured_details, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                    </div>
+			                                	</div>
+			                                	<div class="form-group">
+			                                		<div class="col-sm-11" style="margin-left: 10px; margin-top: 4px;">
+			                                		<h3>Bengali featured details</h3>
+			                                		</div>
+			                                	</div>
+			                                	<div class="form-group">
+			                                        {!! Form::label('bn_featured_title', ' Title:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('bn_featured_title', $article->bn_featured_title, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('bn_price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('bn_price', $article->bn_price, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('bn_strike_price', 'Old price:', array('class' => 'col-sm-2 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-top: 4px;">
+			                                            {!! Form::text('bn_strike_price', $article->bn_strike_price, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-10" style="margin-top: 4px;">
+				                                            {!! Form::text('bn_featured_details', $article->bn_featured_details, array('class' => 'form-control required')) !!}
 				                                        </div>
 				                                    </div>
 			                                	</div>
@@ -310,6 +343,12 @@
 			                                           	@else
 			                                           		{!! Form::checkbox('review', '1', false, array('class' => 'pos-rel p-l-30')); !!}
 			                                            @endif
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('rating', 'Rating:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px;margin-top: 4px;">
+			                                            {!! Form::select('rating', [0, 1, 2, 3,4,5], $article->rating, ['class' => 'form-control required']) !!}
 			                                        </div>
 			                                    </div>
 			                                </fieldset>

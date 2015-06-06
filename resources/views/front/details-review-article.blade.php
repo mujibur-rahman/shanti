@@ -1,5 +1,15 @@
 @extends('front.template')
-	@section('details')
+@section('metas')
+
+	<?php $keyword =  $article->meta_keyword;
+		$description = $article->meta_description;
+	?>
+
+<meta property="og:site_name" content="shantidhaka.com"/>
+<meta property="og:title" content='{{ $keyword }}'/>
+<meta property="og:description" content="{{ $description }}"/>
+
+@section('details')
 <!-- START: left container -->
 <div class="col-md-9">
 @include('front.search')

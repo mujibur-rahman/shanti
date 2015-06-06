@@ -61,7 +61,7 @@ class EventsController extends Controller {
 		$events = $this->events
 							->with('address')
 							//->with('article_category')
-							->whereIsActive(1)
+							//->whereIsActive(1)
 							->paginate($limit);
 		//dd($events);
 		return view('events.index', compact('events'));
@@ -223,7 +223,7 @@ class EventsController extends Controller {
 		$address['district_id'] = $request['district'];
 		$address['division_id'] = $request['division'];
 		$address['country_id']  = $request['country'];
-		$address['is_active']  	= $activate;
+		//$address['is_active']  	= $activate;
 		$this->address->where('id', $ExistingAddress->id)->update( $address );
 		
 		$destinationPath = "images/events/";
