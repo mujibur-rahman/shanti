@@ -140,6 +140,10 @@ class EventsController extends Controller {
 			'price'					=>	$request['price'],
 			'strike_price'			=>	$request['strike_price'],
 			'featured_details'		=> 	$request['featured_details'],
+			'bn_featured_title'		=>	$request['bn_featured_title'],
+			'bn_price'			=>	$request['bn_price'],
+			'bn_strike_price'		=>	$request['bn_strike_price'],
+			'bn_featured_details'		=>	$request['bn_featured_details'],
 			'bnTitle' 			=>	$request['bengaliTitle'],
 			'bnInfo_title'			=>	$request['bengaliInfoTitle'],
 			'bnDetails'			=>	$request['bengaliDetails']
@@ -258,6 +262,10 @@ class EventsController extends Controller {
 		$event['price']				=	$request['price'];
 		$event['strike_price']			=	$request['strike_price'];
 		$event['featured_details']		= 	$request['featured_details'];
+		$event['bn_featured_title']		=	$request['bn_featured_title'];
+		$event['bn_price']			=	$request['bn_price'];
+		$event['bn_strike_price']		=	$request['bn_strike_price'];
+		$event['bn_featured_details']		= 	$request['bn_featured_details'];
 		$event['bnTitle'] 			=	$request['bengaliTitle'];
 		$event['bnInfo_title']			=	$request['bengaliInfoTitle'];
 		$event['bnDetails']			=	$request['bengaliDetails'];

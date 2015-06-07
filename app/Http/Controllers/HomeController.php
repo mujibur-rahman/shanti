@@ -214,6 +214,7 @@ class HomeController extends Controller {
 					->whereIsActive(1)
 					//->whereFeatured(0)
 					->whereLastMinute(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -223,7 +224,11 @@ class HomeController extends Controller {
 							'events.price',
 							'events.strike_price',
 							'events.address_id',
-							'events.opening_date'
+							'events.opening_date',
+							'events.bn_featured_title',
+							'events.bn_price',
+							'events.bn_strike_price',
+							'events.bn_featured_details'
 						])
 					->take(2);
 		$featuredEvents = $this->events
@@ -275,7 +280,11 @@ class HomeController extends Controller {
 							'events.id',
 							'events.media',
 							'events.title',
-							'events.bnTitle'
+							'events.bnTitle',
+							'events.bn_featured_title',
+							'events.bn_price',
+							'events.bn_strike_price',
+							'events.bn_featured_details'
 						]);
 		//dd($articles);							
 		$footersliders = $this->footersliders
@@ -317,7 +326,11 @@ class HomeController extends Controller {
 							'events.opening_date',
 							'events.bnTitle',
 							'events.meta_keyword',
-							'events.meta_description'
+							'events.metation',
+							'events.bn_featured_title',
+							'events.bn_price',
+							'events.bn_strike_price',
+							'events.bn_featured_details'
 						])
 					->take(2);
 	}

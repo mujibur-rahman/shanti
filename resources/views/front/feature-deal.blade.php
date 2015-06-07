@@ -42,10 +42,10 @@
 						</div>
 					<br>
 					<div class="row">
-						<div class="col-md-8"><b>{{ $event->featured_title }}</b></div>
+						<div class="col-md-8"><b>{{ (session('locale') == "en" ? $event->featured_title : $event->bn_featured_title) }}</b></div>
 						<div class="col-md-4 text-right">
-							<span class="sek-color"><b>{{ $event->price }} BDT</b></span> 
-							<del>{{ $event->strike_price }} BDT</del></div>
+							<span class="sek-color"><b>{{ (session('locale') == "en" ? $event->price : $event->bn_price) }} BDT</b></span> 
+							<del>{{ (session('locale') == "en" ? $event->strike_price : $event->bn_strike_price) }} BDT</del></div>
 					</div>
 					<br>
 					<div class="row">

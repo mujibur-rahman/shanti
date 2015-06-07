@@ -277,6 +277,37 @@
 				                                        </div>
 				                                    </div>
 			                                	</div>
+			                                	<div class="form-group">
+			                                		<div class="col-sm-11" style="margin-left: 10px; margin-top: 4px;">
+			                                		<h3>Bengali featured details</h3>
+			                                		</div>
+			                                	</div>
+			                                	<div class="form-group">
+			                                        {!! Form::label('bn_featured_title', ' Title:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-10" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('bn_featured_title', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('bn_price', 'Price:', array('class' => 'col-sm-1 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-left: 10px; margin-top: 4px;">
+			                                            {!! Form::text('bn_price', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        {!! Form::label('bn_strike_price', 'Old price:', array('class' => 'col-sm-2 control-label')) !!}
+			                                        <div class="col-sm-2" style="margin-top: 4px;">
+			                                            {!! Form::text('bn_strike_price', null, array('class' => 'form-control required')) !!}
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-sm-12">
+				                                    <div class="form-group">
+				                                        {!! Form::label('featured_details', 'Details:', array('class' => 'col-sm-1 control-label')) !!}
+				                                        <div class="col-sm-10" style="margin-top: 4px;">
+				                                            {!! Form::text('bn_featured_details', null, array('class' => 'form-control required')) !!}
+				                                        </div>
+				                                    </div>
+			                                	</div>
 			                                </fieldset>
 			                            </div>
 		                                <hr />
@@ -365,6 +396,7 @@
 		CKEDITOR.replace( 'bengaliDetails', config);
 	 
 	    $(document).ready(function($) {
+	    	$("#division").append("<option value='0' selected >Select</option>");
 	    	$('#district').attr('disabled', 'disabled');
 	    	$('#thana').attr('disabled', 'disabled');
 	    	$('#division').change(function(event) {
