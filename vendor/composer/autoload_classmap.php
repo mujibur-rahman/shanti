@@ -12,6 +12,7 @@ return array(
     'AddEditorChoiceArticlesTable' => $baseDir . '/database/migrations/2015_04_19_103857_add_editor_choice_articles_table.php',
     'AddEmailArticleTable' => $baseDir . '/database/migrations/2015_06_06_110748_add_email_article_table.php',
     'AddExtraFlagArticlesTable' => $baseDir . '/database/migrations/2015_03_15_072439_add_extra_flag_articles_table.php',
+    'AddFeatureBnEventsTable' => $baseDir . '/database/migrations/2015_06_07_025306_add_feature_bn_events_table.php',
     'AddFeaturedInfoArticleTable' => $baseDir . '/database/migrations/2015_06_06_141119_add_featured_info_article_table.php',
     'AddFieldBangaTagTagsTable' => $baseDir . '/database/migrations/2015_04_19_060137_add_field_bangaTag_Tags_table.php',
     'AddLanguageIdArticleLanguagesTable' => $baseDir . '/database/migrations/2015_02_28_062115_add_language_id_article_languages_table.php',
