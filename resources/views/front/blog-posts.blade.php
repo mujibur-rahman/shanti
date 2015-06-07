@@ -10,7 +10,7 @@ $result = mysql_query($sql, $con);
 <?php
 while ($row = mysql_fetch_assoc($result)) {
 
-?>                <div class="pic-box">
+?>                <div class="pic-box-blog">
                        <a href="<?php echo $row['guid'];?>" _target="blank"> <img src="/img/blog-post-pic-1.png"></a><br>
                         <p><?php echo $row['post_title'];?></p>
                         <div class="clearfix"></div>
