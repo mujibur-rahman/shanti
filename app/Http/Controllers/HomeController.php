@@ -326,7 +326,7 @@ class HomeController extends Controller {
 							'events.opening_date',
 							'events.bnTitle',
 							'events.meta_keyword',
-							'events.metation',
+							'events.meta_description',
 							'events.bn_featured_title',
 							'events.bn_price',
 							'events.bn_strike_price',
