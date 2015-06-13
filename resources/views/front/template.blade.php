@@ -20,6 +20,46 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+.language {
+    color: #fff;
+    float: right;
+    font-size: 18px;
+    font-weight: normal;
+    height: auto;
+    line-height: 33px;
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 45px;
+    width: auto;
+}
+.btn-group, .btn-group-vertical {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.btn-group > .btn:first-child {
+    margin-left: 0;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+    float: left;
+    position: relative;
+}
+.btn-style-1 {
+    background: none repeat scroll 0 0 #81317b;
+    color: #fff;
+}
+.btn-style-1 {
+    background: none repeat scroll 0 0 #81317b;
+    color: #fff;
+}
+</style>
+
 </head>
 <body style="padding-bottom:25px;">
 	<div class="container">
@@ -29,23 +69,31 @@
 				<div class="header">
 					<img src="/img/header-banner-bg.png">
 						<div class="logo">ShantiDhaka.com</div>
+						<!-- class="language"><ul>
+							<li class="imgflag" style="list-style: none;">
+							<a href="{!! url('language') !!}"><img width="32" height="32" alt="en" src="{!! asset('/img/' . (session('locale') == 'bg' ? 'bengali' : 'english') . '-flag.png') !!}"></a>
+
+							</li>
+							</ul>
+						</div-->
 						<div class="language">
-							
-								<ul>
-									<!--li style="padding-right:10px;">Select Language</li>
-									<li>
-										<select class="form-control">
-										  <option>Bangla</option>
-										  <option>English</option>
-										</select>
-									</li-->
-
-									<li class="imgflag" style="list-style: none;">
-									<a href="{!! url('language') !!}"><img width="32" height="32" alt="en" src="{!! asset('/img/' . (session('locale') == 'bg' ? 'bengali' : 'english') . '-flag.png') !!}"></a>
-
-									</li>
-								</ul>
-							
+							<div aria-label="..." role="group" class="btn-group">
+							<button class="btn btn-style-1" type="button">Select Language</button>
+							<div role="group" class="btn-group">
+								<select style="border-radius: 0 5px 5px 0;" class="form-control"  id="ChangeLang">
+									@if(session('locale') == 'bg')
+									<option selected value="bg">Bangla</option>
+									@else
+									<option value="bg">Bangla</option>
+									@endif
+									@if(session('locale') == 'en')
+									<option value="en" selected>English</option>
+									@else
+									<option value="en">English</option>
+									@endif
+								</select>
+							  </div>
+							</div>
 						</div>
 					<div class="clearboth"></div>
 				</div>
@@ -81,6 +129,12 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap-dropdown.js') }}"></script>
 @yield('scripts')
-
+<script type="text/javascript">
+	jQuery('#ChangeLang').change(function(event) {
+		/* Act on the event */
+		jQuery(this).val();
+		window.location.href = "{!! url('language') !!}";
+	});
+</script>
 </body>
 </html>
