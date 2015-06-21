@@ -357,7 +357,7 @@ img {
 .right-add-container {
 	width: auto;
 	height: 189px;
-	margin: 0 0 20px 0;
+	margin: 0 0 10px 0;
 	padding: 0;
 }
 
@@ -935,7 +935,7 @@ img {
 .footer-add-container {
 	width: auto;
 	height: 156px;
-	margin: 25px 0 0 0;
+	margin: 25px 0 10px 0;
 	padding: 0;
 }
 /*==================================== END : Footer Add ========================================*/

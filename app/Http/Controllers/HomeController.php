@@ -125,7 +125,11 @@ class HomeController extends Controller {
     }
 
     public function categoryList(){
-	return $this->articleCategory->all()->lists('title', 'id');
+	//return $this->articleCategory->all()->lists('title', 'id');
+	if( session('locale') == "en" )
+		return $this->articleCategory->all()->lists('title', 'id');
+	else
+		return $this->articleCategory->all()->lists('bnTitle', 'id');
     }
 
     public function moreArticles( ){
@@ -138,7 +142,7 @@ class HomeController extends Controller {
 					->orderBy('created_at', 'desc')
 					->orderBy('id', 'desc')
 					//->get()
-					->paginate( 2 );
+					->paginate( 3 );
 		$ar = [];
 		foreach ($articles as $key => $value) {
 			$ar[$key] = $value;
@@ -193,6 +197,7 @@ class HomeController extends Controller {
 							//->whereMoreFromDhaka(0)
 							//->whereListTag(0)
 							//->whereIsReviewing(0)
+                                                         ->orderBy('id', 'desc')
 							->get()
 							->take(10);
 		$moreTagArticles =      $this->articles->with('article_category')
@@ -268,7 +273,7 @@ class HomeController extends Controller {
 						->orderBy('id', 'desc')
 						->get()
 						->take(5);
-		$articles = $arti->take(2);
+		$articles = $arti->take(3);
 		$total = count($arti);
 		$categoryLists = $this->articleCategory->whereIsactive(1)->get();
 
@@ -276,6 +281,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+                                        ->take(10)
 					->get([
 							'events.id',
 							'events.media',
@@ -606,7 +612,7 @@ class HomeController extends Controller {
 					->whereIsActive(1)
 					->whereIsReviewing(1)
 					//->whereLastMinute(0)
-					->paginate(1);
+					->paginate(5);
 	}
 
 	public function reviewListsByCategory( $cid ){
@@ -617,7 +623,7 @@ class HomeController extends Controller {
 					->whereIsReviewing(1)
 					//->whereLastMinute(0)
 					->whereArticleCategoryId( $cid )
-					->paginate(1);
+					->paginate(5);
 	}
 
 	public function reviewsList(){
