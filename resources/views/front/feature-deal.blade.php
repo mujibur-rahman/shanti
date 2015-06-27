@@ -14,7 +14,7 @@
 		<div class="col-md-8"><b>{{ (session('locale') == "en" ? $article->featured_title : $article->bn_featured_title) }}</b></div>
 		<div class="col-md-4 text-right">
 			<span class="sek-color"><b>{{ (session('locale') == "en" ? $article->price : $article->bn_price) }} BDT</b></span> 
-			<del>{{ (session('locale') == "en" ? $article->strike_price : $article->bn_strike_price) }} BDT</del>
+			<del>{{ (session('locale') == "en" ? $article->strike_price : $article->bn_strike_price) }} {{ ($article->strike_price || $article->bn_strike_price ? "BDT" : "" )}} </del>
 		</div>
 	</div>
 	<p>{{ (session('locale') == "en" ? $article->featured_details : $article->bn_featured_details) }}</p>
@@ -44,8 +44,8 @@
 					<div class="row">
 						<div class="col-md-8"><b>{{ (session('locale') == "en" ? $event->featured_title : $event->bn_featured_title) }}</b></div>
 						<div class="col-md-4 text-right">
-							<span class="sek-color"><b>{{ (session('locale') == "en" ? $event->price : $event->bn_price) }} BDT</b></span> 
-							<del>{{ (session('locale') == "en" ? $event->strike_price : $event->bn_strike_price) }} BDT</del></div>
+							<span class="sek-color"><b>{{ (session('locale') == "en" ? $event->price : $event->bn_price) }} BDT</b></span>
+							<del>{{ (session('locale') == "en" ? $event->strike_price : $event->bn_strike_price) }} {{ ($event->strike_price && session('locale')=='en' ? "BDT" : "" )}} {{ ($event->bn_strike_price && session('locale') != 'en' ? "BDT" : "" )}} </del></div>
 					</div>
 					<br>
 					<div class="row">

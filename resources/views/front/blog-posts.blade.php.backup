@@ -1,0 +1,50 @@
+<?php
+$con = mysql_connect("localhost", "i1170387_gq241", "S^SwaD2Ci398@[0") or die("error");
+mysql_selectdb("i1170387_gq241");
+$sql = "select * from  gq24_posts where post_type='post' and post_status='publish' ORDER BY ID DESC limit 2";
+$result = mysql_query($sql, $con);
+?>
+<div class="blog-post">
+        <h1>BLOG POSTS</h1>
+        <div class="pic-area">
+<?php
+while ($row = mysql_fetch_assoc($result)) {
+
+$q = "SELECT p . *
+FROM gq24_postmeta AS pm
+INNER JOIN gq24_posts AS p ON pm.meta_value = p.ID
+WHERE pm.post_id =".$row['ID']."
+AND pm.meta_key = '_thumbnail_id'";
+$r =  mysql_query($q, $con);
+$guid = "/img/blog-post-pic-1.png";
+while($rw = mysql_fetch_assoc($r)) {
+$guid = $rw['guid'];
+}
+$b = explode('[:bn]', $row['post_title']);
+$title = "";
+if(session('locale') == 'en'){
+if(count($b) >= 2)
+	$title = str_replace('[:en]', '', $b[0]);
+}else{
+if(count($b) >= 2)
+	$title = str_replace('[:]', '', $b[1]);
+}
+?>                <div class="pic-box-blog">
+                       <a href="<?php echo $row['guid'];?>" _target="blank"> <img src="<?php echo $guid;?>"></a><br>
+                        <p id="post_title"><?php echo $title;?></p>
+                        <div class="clearfix"></div>
+                </div>
+<?php } ?>
+                <div class="clearfix"></div>
+
+        </div>
+</div>
+<script type="text/javascript">
+	jQuery.get('http://www.shantidhaka.com/blog/bengali-json/').done(function(data){
+		console.log("Data: ",data);
+		var obj = jQuery.parseJSON( data )
+		jQuery.each(obj, function(i,v){
+			console.log(v.title);
+		});
+	});
+</script>
