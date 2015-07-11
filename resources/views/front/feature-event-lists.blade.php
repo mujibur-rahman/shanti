@@ -3,7 +3,6 @@
 		<div class="more-info-container">
 			@foreach($featuredEvents as $key => $fevent)
 
-				@if( $key % 2 == 1)
 				<div class="more-info-box">
 					<div class="more-info-iconbox"><a href="/details/event/{{$fevent->id}}"><i class="fa fa-chevron-right fa-3x"></i></a></div>
 					<h1>More information</h1>
@@ -18,25 +17,6 @@
 					</div>
 					<br>
 				</div>
-				@else
-				<div class="more-info-box more-info-box-2">
-					<div class="more-info-iconbox"><a href="/details/event/{{$fevent->id}}"><i class="fa fa-chevron-right fa-3x"></i></a></div>
-					<h1>More information</h1>
-					<p>
-						<b><span class="label label-style-1">Events</span> {{ (session('locale') == "en" ? $fevent->title  : $fevent->bnTitle ) }}</b><br>
-						{{ (session('locale') == "en" ? $fevent->info_title  : $fevent->bnInfo_title ) }}
-						<br /><i class="fa fa-map-marker fa-lg"></i> {{ $fevent->address->location }} <br>
-						<div class="fz-ratings">
-							<a href=""><i class="fa fa-star fa-2x"></i></a>
-							<a href=""><i class="fa fa-star fa-2x"></i></a>
-							<a href=""><i class="fa fa-star fa-2x"></i></a>
-							<a href=""><i class="fa fa-star fa-2x"></i></a>
-							<a href=""><i class="fa fa-star fa-2x"></i></a>
-							<span class="badge badge-style-1 ">17</span>
-						</div>
-					</p>
-				</div>
-				@endif
 			@endforeach
 		</div>
 	</div>

@@ -23,11 +23,10 @@
 				<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($article->created_at)->format('D H:i') }}</div></div>
 			</div>
 			<div class="picbox"><img src="/images/articles/{{ $article->media }}" class="img-responsive"></div>
-			<div class="pic-credit text-right">Foto: Carolina Byrmo</div>
 			<h1>{{ (session('locale') == "en" ? $article->title  : $article->bnTitle ) }}</h1>
 			<div class="row">
 				<div class="col-md-8">
-				<div class="row">
+				<!--div class="row">
 						<div class="col-md-6">
 							<div class="fz-ratings">
 								<a href=""><i class="fa fa-star fa-2x"></i></a>
@@ -47,12 +46,12 @@
 							<i class="fa fa-plus fa-lg color-yellow"></i><br>
 							AOS GRADE <b>3</b></p>
 						</div>
-					</div>
+					</div-->
 
 					<p><b>
-						{{ (session('locale') == "en" ? strip_tags($article->short_detail)  : strip_tags($article->bnShort_detail) ) }}
+						{!! (session('locale') == "en" ? stripslashes($article->short_detail)  : stripslashes($article->bnShort_detail) ) !!}
 					</b></p>
-					{{ (session('locale') == "en" ? strip_tags($article->details) : strip_tags($article->bnDetails) ) }}
+					{!! (session('locale') == "en" ? stripslashes($article->details) : stripslashes($article->bnDetails) ) !!}
 				</div>
 				<div class="col-md-4">
 					<br><br>
@@ -149,7 +148,7 @@
 </div>
 </div>
 <div class="row">
-<div class="col-md-12"><h1 class="article-4">MORE FROM ALL OF STOCKHOLM</h1></div>
+<div class="col-md-12"><h1 class="article-4">MORE FROM ALL OF DHAKA</h1></div>
 </div>
 <div class="row" style="margin-top:0px;">
 <div class="clearfix"></div>

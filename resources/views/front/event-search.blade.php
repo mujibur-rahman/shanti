@@ -22,7 +22,7 @@
 				</div>
 				<hr>
 				<div class="form-group">
-				    <label for="exampleInputEmail1">When</label>
+				    <label for="exampleInputEmail1">Date From</label>
 				    <select class="form-control" name="when" id="when">
 				    	@for($i = 1; $i<=31; $i++)
 					  <option value="{{$i}}">{{$i}}</option>

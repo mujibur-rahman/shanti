@@ -8,7 +8,7 @@ class Articles extends Model {
 
 	protected $fillable = ['article_category_id','title', 'short_detail', 'details', 'is_active', 'address_id', 'meta_keyword', 'meta_description', 'website', 'phone', 'entrance', 
 		'media', 'featured', 'featured_title', 'price', 'strike_price', 'featured_details',
-		'more_from_dhaka', 'list_tag', 'editorChoice', 'bnTitle', 'bnShort_detail', 'bnDetails', 'rating', 'email','bn_featured_title', 'bn_price', 'bn_strike_price', 'bn_featured_details'
+		'more_from_dhaka', 'list_tag', 'editorChoice', 'bnTitle', 'bnShort_detail', 'bnDetails', 'rating', 'email','bn_featured_title', 'bn_price', 'bn_strike_price', 'bn_featured_details', 'is_reviewing'
 	];
 
 	public function address(){

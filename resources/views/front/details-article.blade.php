@@ -20,43 +20,31 @@
 								<div class="row">
 								<div class="col-md-6"><div class="pic-header">{{ trans('front/site.article') }} <small> / {{ trans('front/site.home') }} / {{ (session('locale') == "en" ? $article->article_category->title  : $article->article_category->bnTitle ) }}
 								</small></div></div>
-									<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($article->created_at)->format('D H:i') }}</div></div>
+									<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($article->created_at)->format('d, m, Y H:i') }}</div></div>
 								</div>
 								<div class="picbox"><img src="/images/articles/{{ $article->media }}" class="img-responsive"></div>
-								<div class="pic-credit text-right">Foto: Carolina Byrmo</div>
+								<!--div class="pic-credit text-right">Foto: Carolina Byrmo</div-->
 								<h1>{{ (session('locale') == "en" ? $article->title  : $article->bnTitle ) }}</h1>
 								<div class="row">
 									<div class="col-md-8">
 									@if($article->is_reviewing)
 										<div class="row">
-											<div class="col-md-6">
-									<div class="fz-ratings">
-									<a href=""><i class="fa fa-star fa-2x"></i></a>
-									<a href=""><i class="fa fa-star fa-2x"></i></a>
-									<a href=""><i class="fa fa-star fa-2x"></i></a>
-									<a href=""><i class="fa fa-star fa-2x"></i></a>
-									<a href=""><i class="fa fa-star fa-2x"></i></a>
-								</div>
-										READERS GRADE <b>4</b><br>
-										NUMBER OF VOTES <span class="badge badge-style-1 ">3</span><br>
-										<i>Click on the symble</i>
-											</div>
-											<div class="col-md-6">
+										<div class="col-md-6">
 										<p>
 										@for($i=0;$i<$article->rating;$i++)
 										<i class="fa fa-plus fa-lg color-yellow m-t-10"></i>
-									@endfor
+										@endfor
 										
 										<br>
-										AOS GRADE <b>{!! $article->rating !!}</b></p>
+										Reviews: <b>{!! $article->rating !!}</b></p>
 											</div>
 										</div>
 									@endif
 
 										<p><b>
-										{{ (session('locale') == "en" ? strip_tags($article->short_detail)  : strip_tags($article->bnShort_detail) ) }}
+										{!! (session('locale') == "en" ? stripslashes($article->short_detail)  : stripslashes($article->bnShort_detail) ) !!}
 										</b></p>
-					{{ (session('locale') == "en" ? strip_tags($article->details) : strip_tags($article->bnDetails) ) }}
+					{!! (session('locale') == "en" ? stripslashes($article->details) : stripslashes($article->bnDetails) ) !!}
 									</div>
 									<div class="col-md-4">
 										<br><br>
@@ -75,7 +63,9 @@
 											<h4>MAP</h4>
 										    <a href="mailto:#">{{ $article->email }}</a>
 										</address>
-										<img src="/img/225.gif">
+										<?php $direction = str_replace(' ', '+',$article->address->location) ."+". $article->address->division->title ."+". $article->address->district->title. "+" . $article->address->thana->title. "+". $article->address->country->title; ?>
+										<iframe width="188" height="360" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=<?php print $direction;?>&key=AIzaSyCeUb_0vmLT4grYzP6VsbvlXeuD97D7on4"></iframe> 
 									</div>
 								</div>
 								<div class="clearfix"></div>
@@ -153,7 +143,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12"><h1 class="article-4">MORE FROM ALL OF STOCKHOLM</h1></div>
+				<div class="col-md-12"><h1 class="article-4">MORE FROM ALL OF DHAKA</h1></div>
 			</div>
 			<div class="row" style="margin-top:0px;">
 				<div class="clearfix"></div>

@@ -20,10 +20,10 @@
 					<div class="article-style-5">
 						<div class="row">
 						<div class="col-md-6"><div class="pic-header">EVENTS <small> {{ trans('front/site.home') }}  / {{ (session('locale') == "en" ? $event->article_category->title : $event->article_category->bnTitle ) }}</small></div></div>
-							<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($event->created_at)->format('D H:i') }}</div></div>
+							<div class="col-md-6"><div class="pic-credit text-right">Publ. {{ \Carbon::parse($event->created_at)->format('d, m, Y H:i') }}</div></div>
 						</div>
 						<div class="picbox"><img src="/images/events/{{ $event->media }}" class="img-responsive"></div>
-						<div class="pic-credit text-right">Foto: Carolina Byrmo</div>
+						<!--div class="pic-credit text-right">Foto: Carolina Byrmo</div-->
 						<h1>{{ (session('locale') == "en" ? $event->title : $event->bnTitle ) }}</h1>
 						<br />
 						<div class="row">
@@ -35,7 +35,7 @@
 						<div class="row">
 							<div class="col-md-8">
 							<br>
-								<div class="row">
+								<!--div class="row">
 									<div class="col-md-6">
 										<div class="fz-ratings">
 											<a href=""><i class="fa fa-star fa-2x"></i></a>
@@ -55,12 +55,12 @@
 										<i class="fa fa-plus fa-lg color-yellow"></i><br>
 										AOS GRADE <b>3</b></p>
 									</div>
-								</div>
+								</div-->
 
 								<p><b>
-		{{ (session('locale') == "en" ? strip_tags($event->short_detail) : strip_tags($event->bnShort_detail) ) }}
+		{!! (session('locale') == "en" ? stripslashes($event->short_detail) : stripslashes($event->bnShort_detail) ) !!}
 								</b></p>
-		{{ (session('locale') == "en" ? strip_tags($event->details) : strip_tags($event->bnDetails) ) }}
+		{!! (session('locale') == "en" ? stripslashes($event->details) : stripslashes($event->bnDetails) ) !!}
 							</div>
 							<div class="col-md-4">
 								<br><br>
@@ -79,7 +79,8 @@
 									<h4>MAP</h4>
 								    <a href="mailto:#">{{ $event->email }}</a>
 								</address>
-								<img src="/img/225.gif">
+								<?php $direction = str_replace(' ', '+',$event->address->location) ."+". $event->address->division->title ."+". $event->address->district->title. "+" . $event->address->thana->title. "+". $event->address->country->title; ?>
+<iframe width="188" height="360" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<?php print $direction;?>&key=AIzaSyCeUb_0vmLT4grYzP6VsbvlXeuD97D7on4"></iframe>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -157,7 +158,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12"><h1 class="article-4">MORE FROM ALL OF STOCKHOLM</h1></div>
+		<div class="col-md-12"><h1 class="article-4">MORE FROM ALL OF DHAKA</h1></div>
 	</div>
 	<div class="row" style="margin-top:0px;">
 		<div class="clearfix"></div>

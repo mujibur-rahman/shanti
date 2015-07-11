@@ -98,6 +98,7 @@ class HomeController extends Controller {
 			->whereIsActive(1)
 			->whereIsPending(0)
 			->wherePosition('Top-Right')
+			->orderBy('created_at', 'desc')
 			->get([
 				'ads.id',
 				'ads.image',
@@ -113,6 +114,7 @@ class HomeController extends Controller {
 			->with('ad_position')
 			->whereIsActive(1)
 			->wherePosition('Bottom-Right')
+			->orderBy('created_at', 'desc')
 			->get([
 				'ads.id',
 				'ads.image',
@@ -241,6 +243,7 @@ class HomeController extends Controller {
 					->with('address')
 					->whereIsActive(1)
 					->whereFeatured(1)
+					->orderBy('created_at', 'desc')
 					//->whereLastMinute(0)
 					->get()
 					->take(2);
@@ -250,8 +253,9 @@ class HomeController extends Controller {
 						//->whereMoreFromDhaka(0)
 						//->whereFeatured(0)
 						//->whereIsReviewing(0)
-						->get()
-						->take(3);
+						->orderBy('id', 'desc')
+						->get();
+						//->take(3);
 
 		$reviewArticles = $this->articles->with('article_category')
 						->whereIsActive(1)
@@ -281,6 +285,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
                                         ->take(10)
 					->get([
 							'events.id',
@@ -311,8 +316,9 @@ class HomeController extends Controller {
 									//->whereMoreFromDhaka(0)
 									//->whereListTag(0)
 									//->whereIsReviewing(0)
+									->orderBy('id', 'desc')
 									->get()
-									->take(2);
+									->take(3);
 	}
 	public function getEvents(){
 		return $this->events
@@ -321,6 +327,7 @@ class HomeController extends Controller {
 					->whereIsActive(1)
 					//->whereFeatured(0)
 					->whereLastMinute(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -348,6 +355,7 @@ class HomeController extends Controller {
 					->whereIsActive(1)
 					->whereFeatured(1)
 					//->whereLastMinute(0)
+					->orderBy('id', 'desc')
 					->get()
 					->take(2);
 	}
@@ -358,6 +366,7 @@ class HomeController extends Controller {
 									->whereMoreFromDhaka(1)
 									//->whereListTag(0)
 									//->whereIsReviewing(0)
+									->orderBy('id', 'desc')
 									->get()
 									->take(10);
 	}
@@ -369,6 +378,7 @@ class HomeController extends Controller {
 									//->whereListTag(0)
 									//->whereIsReviewing(0)
 									->whereArticleCategoryId( $id )
+									->orderBy('id', 'desc')
 									->get()
 									->take(10);
 	}
@@ -379,8 +389,9 @@ class HomeController extends Controller {
 									//->whereMoreFromDhaka(0)
 									//->whereFeatured(0)
 									//->whereIsReviewing(0)
-									->get()
-									->take(3);
+									->orderBy('id', 'desc')
+									->get();
+									//->take(3);
 	}
 	public function mostReadArticles(){
 		return $this->articles
@@ -417,6 +428,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -448,7 +460,7 @@ class HomeController extends Controller {
 			
 		}
 		krsort($art);
-		$articleRelated = $this->articles->whereIn('id', $art)->get()->take(2);
+		$articleRelated = $this->articles->whereIn('id', $art)->orderBy('created_at', 'desc')->get()->take(2);
 		//print_r($articleRelated);  
 		//dd($articleRelated);
 		$footersliders = $this->footersliders
@@ -474,6 +486,7 @@ class HomeController extends Controller {
 									//->whereMoreFromDhaka(0)
 									//->whereFeatured(0)
 									->whereIsReviewing(1)
+									->orderBy('id', 'desc')
 									->get()
 									->take(3);
 		$arLists = $this->articles->with('article_category')
@@ -494,6 +507,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -541,6 +555,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -567,6 +582,7 @@ class HomeController extends Controller {
 					->with('address')
 					->whereIsActive(1)
 					->whereFeatured(1)
+					->orderBy('created_at', 'desc')
 					//->whereLastMinute(0)
 					->paginate(5);
 	}
@@ -583,6 +599,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -612,6 +629,7 @@ class HomeController extends Controller {
 					->whereIsActive(1)
 					->whereIsReviewing(1)
 					//->whereLastMinute(0)
+					->orderBy('created_at','desc')
 					->paginate(5);
 	}
 
@@ -642,6 +660,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -680,6 +699,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -714,6 +734,7 @@ class HomeController extends Controller {
 		$reviewArticles = $this->articles->with('article_category')
 									->whereIsActive(1)
 									->whereIsReviewing(1)
+									->orderBy('id', 'desc')
 									->get()
 									->take(3);
 
@@ -734,6 +755,7 @@ class HomeController extends Controller {
 					->with('article_category')
 					->with('address')
 					->whereIsActive(1)
+					->orderBy('id', 'desc')
 					->get([
 							'events.id',
 							'events.media',
@@ -806,6 +828,7 @@ class HomeController extends Controller {
 								->with('article_category')
 								->with('address')
 								->whereIsActive(1)
+								->orderBy('id', 'desc')
 								->get([
 										'events.id',
 										'events.media',

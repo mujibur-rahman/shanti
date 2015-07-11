@@ -17,5 +17,6 @@ return [
 	'weekend' => 'WEEKEND',
 	'children' => 'CHILD',
 	'kickoff' => 'KICKOFF & CONFERENCE',
-	'lunch' => 'LUNCH'
+	'lunch' => 'LUNCH',
+	'more' => "MORE"
 ];

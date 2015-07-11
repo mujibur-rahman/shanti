@@ -3,11 +3,11 @@
 	<div class="picbox">
 		<a href="/details/article/{{ $article->id }}" title="{!! $article->title !!}">
 			<img src="/images/articles/{{ $article->media }}" class="img-responsive" />		
-			<div class="as1-tag tag-1">{!! $article->article_category->title !!}</div>
+			<div class="as1-tag tag-1">{!! (session('locale') == "en" ? $article->article_category->title : $article->article_category->bnTitle) !!}</div>
 		</a>
 	</div>
-	<a href="/details/article/{{ $article->id }}" title="{!! $article->title !!}"><h1>{!! $article->title !!}</h1></a>
-	{!! $article->short_detail !!}
+	<a href="/details/article/{{ $article->id }}" title="{!! $article->title !!}"><h1>{!! (session('locale') == "en" ? $article->title : $article->bnTitle) !!}</h1></a>
+	{!! (session('locale') == "en" ? $article->short_detail : $article->bnShort_detail) !!}
 	<div class="clearfix"></div>
 </div>
 @endforeach
@@ -42,9 +42,21 @@ $(document).ready(function(){
 		}).done(function( json ) {            
             $(".viewmoreArticle").show(); //bring back load more button                
             data = [];
+	var category = "";
+            var title = "";
+            var shortDetail = "";
             //console.log('message' , data);
-            $.each(json.articles, function(index, val) {
-            	 var result = '<div class="article-style-1"><div class="picbox"><a href="/details/article/' + val.id + '" title="' + val.title + '"><img src="/images/articles/' + val.media + '" class="img-responsive" /><div class="as1-tag tag-1">' + val.article_category.title + '</div></a></div><a href="/details/article/' + val.id + '" title="' + val.title + '"><h1>' + val.title + '</h1></a>' + val.short_detail + '<div class="clearfix"></div></div>';
+            $.each(json.articles, function(index, val) { 
+		<?php if(session('locale') == "en"){?>
+                title = val.title;
+                category = val.article_category.title;
+                shortDetail = val.short_detail;
+                <?php }else{?>
+                    title = val.bnTitle;
+                    category = val.article_category.bnTitle;
+                    shortDetail = val.bnShort_detail;
+                <?php }?>
+            	 var result = '<div class="article-style-1"><div class="picbox"><a href="/details/article/' + val.id + '" title="' + title + '"><img src="/images/articles/' + val.media + '" class="img-responsive" /><div class="as1-tag tag-1">' + category + '</div></a></div><a href="/details/article/' + val.id + '" title="' + title + '"><h1>' + title + '</h1></a>' + shortDetail + '<div class="clearfix"></div></div>';	
             	data.push( result );
             });
             $("#results").append( data ); //append data received from server
